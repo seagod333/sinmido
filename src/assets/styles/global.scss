@@ -1,0 +1,85 @@
+// Import font definitions
+@use './fonts/fonts.scss';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  font-size: 15px;
+  font-family: 'Shippori Mincho', serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.poppins {
+  font-family: "Poppins", sans-serif;
+}
+
+
+// Animation Utilities
+
+// Fade In Animation
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.animate-fade-in {
+  animation: fade-in 0.5s ease-in-out;
+}
+
+// Slide Up Animation
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-slide-up {
+  animation: slide-up 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Slight Zoom In Animation
+@keyframes zoom-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.animate-zoom-in {
+  animation: zoom-in 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Image zoom on hover
+.zoom-on-hover {
+  overflow: hidden;
+}
+
+.zoom-on-hover img {
+  transition: transform 0.3s ease-in-out;
+}
+
+.zoom-on-hover:hover img {
+  transform: scale(1.1);
+}
+
+

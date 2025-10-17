@@ -1,0 +1,72 @@
+// Shippori Mincho Font Family
+@font-face {
+  font-family: 'Shippori Mincho';
+  src: url('./ShipporiMincho-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Shippori Mincho';
+  src: url('./ShipporiMincho-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Shippori Mincho';
+  src: url('./ShipporiMincho-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Shippori Mincho';
+  src: url('./ShipporiMincho-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Shippori Mincho';
+  src: url('./ShipporiMincho-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+// Utility classes for Shippori Mincho font family
+.shippori-mincho {
+  font-family: 'Shippori Mincho', serif;
+}
+
+// Font weight utility classes
+.shippori-mincho-regular {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 400;
+}
+
+.shippori-mincho-medium {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 500;
+}
+
+.shippori-mincho-semibold {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 600;
+}
+
+.shippori-mincho-bold {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 700;
+}
+
+.shippori-mincho-extrabold {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 800;
+}
