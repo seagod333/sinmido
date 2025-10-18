@@ -178,10 +178,10 @@ const Hero = () => {
             <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-20 lg:gap-40">
                 {heroNews.map((item, index) => (
                     <div key={index}
-                        className={`${item?.color ? `text-${item.color}` : ``} ${item?.reverseColor ? `hover:text-${item.reverseColor}` : ``} rounded-xl overflow-hidden cursor-pointer aspect-[${item.size.response.w}/${item.size.response.h}] lg:aspect-[${item.size.w}/${item.size.h}] col-span-${item.size.response.w} row-span-${item.size.response.h} lg:col-span-${item.size.w} lg:row-span-${item.size.h} ${item.reactAnimation ? 'react-animation' : item.reactAnimation1 ? 'react-animation-1' : ''} ${item?.reverseColor ? `bg-${item?.reverseColor} hover:bg-${item.color}` : ``} ${!item?.img ? `aspect-auto` : ''}`}
+                        className={`${item?.color ? `text-${item.color}` : ``} ${item?.reverseColor ? `hover:text-${item.reverseColor}` : ``} rounded-xl overflow-hidden cursor-pointer aspect-[${item.size.response.w}/${item.size.response.h}] lg:aspect-[${item.size.w}/${item.size.h}] col-span-${item.size.response.w} row-span-${item.size.response.h} lg:col-span-${item.size.w} lg:row-span-${item.size.h} ${item.reactAnimation ? 'react-animation' : item.reactAnimation1 ? 'react-animation-1' : ''} ${item?.reverseColor ? `bg-${item?.reverseColor} hover:bg-${item.color}` : ``} ${!item?.img && !item?.video ? `aspect-auto` : ''}`}
                     >
                         {item.img ? (
-                            <div className={`relative w-full h-full px-15 py-15 lg:px-30 lg:py-25 overflow-hidden flex flex-col justify-between zoom-on-hover ${item.center ? 'items-center' : 'items-start'} ${item.reactAnimation ? 'react-animation-content' : item.reactAnimation1 ? 'react-animation-content-1' : ''}`}>
+                            <div className={`relative w-full h-full px-15 py-15 md:px-25 md:py-25 lg:px-30 lg:py-30 overflow-hidden flex flex-col justify-between zoom-on-hover ${item.center ? 'items-center' : 'items-start'} ${item.reactAnimation ? 'react-animation-content' : item.reactAnimation1 ? 'react-animation-content-1' : ''}`}>
                                 {!item?.reverseColor && (
                                     <img src={item.img}
                                         alt={`News item ${index + 1}`}

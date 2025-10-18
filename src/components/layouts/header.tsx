@@ -14,7 +14,7 @@ const Header = () => {
   ];
 
   const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+    if (!isDropdownOpen) setIsDropdownOpen(!isDropdownOpen);
   };
 
   const closeDropdown = () => {
