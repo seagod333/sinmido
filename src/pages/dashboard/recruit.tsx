@@ -28,7 +28,7 @@ const recruitData = [
         }
     },
     {
-        title: ["パート・アルバイト", "業務委託", "", "正社員"],
+        title1: ["パート・アルバイト", "業務委託", "", "正社員"],
         image: recruit2,
         gridSize: {
             w: 1,
@@ -45,7 +45,7 @@ const Recruit = () => {
     return (
         <GlobalSpacing>
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 gap-20 lg:gap-25 mb-50 lg:mb-100">
-                {recruitData.map((item, index) => (
+                {recruitData.map((item: any, index) => (
                     <div key={index}
                         className={`relative rounded-xl overflow-hidden cursor-pointer aspect-[${item.responseSize?.w}/${item.responseSize?.h}] lg:aspect-[${item.gridSize?.w}/${item.gridSize?.h}] col-span-${item.responseSize?.w} row-span-${item.responseSize?.h} lg:col-span-${item.gridSize?.w} lg:row-span-${item.gridSize?.h} zoom-on-hover`}
                     >
@@ -57,7 +57,7 @@ const Recruit = () => {
                         )}
 
                         {/* Content Section - Overlay on image */}
-                        {(item.description || item.title) && (
+                        {(item.description || item.title || item.title1) && (
                             <div className={`relative z-10 w-full h-full flex flex-col justify-center ${item.image ? 'items-center' : 'items-start'} gap-18 lg:gap-30`}>
                                 {/* Description - shown first */}
                                 {item.description && (
@@ -65,14 +65,13 @@ const Recruit = () => {
                                         {item.description}
                                     </div>
                                 )}
-
                                 {/* Title - shown second */}
                                 {item.title && (
                                     <h2 className="font-bold text-white text-20 lg:text-30 font-300">
                                         {Array.isArray(item.title)
-                                            ? item.title.map((text, i) => (
+                                            ? item.title.map((text: string, i: number) => (
                                                 <div key={i}>
-                                                    {text? text : <br />}
+                                                    {text ? text : <br />}
                                                 </div>
                                             ))
                                             : item.title
@@ -80,9 +79,23 @@ const Recruit = () => {
                                     </h2>
                                 )}
 
+                                {/* Title - shown second */}
+                                {!!item?.title1 && (
+                                    <h2 className="font-bold text-white text-14 lg:text-30 font-300">
+                                        {Array.isArray(item?.title1)
+                                            ? item.title1.map((text: string, i: number) => (
+                                                <div key={i}>
+                                                    {text ? text : <br />}
+                                                </div>
+                                            ))
+                                            : item.title1
+                                        }
+                                    </h2>
+                                )}
+
                                 {item.headerTitle && (
                                     <h2 className="font-bold text-white text-50 lg:text-80 font-400 !leading-none">
-                                        {item.headerTitle.map((text, i) => (
+                                        {item.headerTitle.map((text: string, i: number) => (
                                             <span key={i}>
                                                 {text}
                                                 {i < item.headerTitle.length - 1 && <br />}
@@ -91,7 +104,7 @@ const Recruit = () => {
                                     </h2>
                                 )}
                             </div>
-                        )}  
+                        )}
                     </div>
                 ))}
             </div>

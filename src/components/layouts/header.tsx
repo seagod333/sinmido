@@ -27,7 +27,9 @@ const Header = () => {
         <div className="flex justify-between items-center py-25 lg:py-20">
           {/* Left Section - Brand */}
           <div className="flex flex-col flex-column group">
-            <img src={logo} className="h-35 lg:h-55 w-auto" />
+            <div className="flex flex-row">
+              <img src={logo} className="h-35 lg:h-55 w-auto" />
+            </div>
 
             <p className="font-400 text-10 lg:text-15 text-white">
               Copyright © 2024 Sinmido. All Rights Reserved.
