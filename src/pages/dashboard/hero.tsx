@@ -14,6 +14,7 @@ import news9 from '../../assets/image/dashboard/news-9.png';
 import news10 from '../../assets/image/dashboard/news-10.png';
 import news11 from '../../assets/image/dashboard/news-11.png';
 import news12 from '../../assets/image/dashboard/news-12.png';
+import './hero.scss';
 
 const heroNews = [
     {
@@ -220,8 +221,8 @@ const Hero = () => {
                                 />
                             </div>
                         ) : (
-                            <div className="w-full h-full overflow-hidden flex flex-col gap-20 lg:gap-30">
-                                <h3 className="text-25 lg:text-35 font-600 text-shadow-lg">
+                            <div className="text-background w-full h-full overflow-hidden flex flex-col gap-20 lg:gap-30">
+                                <h3 className="text-25 lg:text-35 font-600">
                                     {item.title}
                                 </h3>
 
@@ -229,10 +230,10 @@ const Hero = () => {
                                     <div className="flex-1 flex flex-col gap-10 lg:gap-30">
                                         {item.items.map((newsItem, idx) => (
                                             <div key={idx} className="flex flex-col gap-5 lg:gap-10">
-                                                <div className="text-10 lg:text-18 font-400 text-shadow-lg">
+                                                <div className="text-10 lg:text-18 font-400">
                                                     {newsItem.subTitle}
                                                 </div>
-                                                <div className="text-15 lg:text-25 font-500 text-shadow-lg">
+                                                <div className="text-15 lg:text-25 font-500">
                                                     {newsItem.title}
                                                 </div>
                                             </div>

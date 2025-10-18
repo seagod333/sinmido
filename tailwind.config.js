@@ -162,6 +162,14 @@ module.exports = {
         },
       },
 
+      fontFamily: {
+        'sans': ['Zen Old Mincho', 'serif'],
+        'serif': ['Zen Old Mincho', 'serif'],
+        'mono': ['Zen Old Mincho', 'serif'],
+        'display': ['Zen Old Mincho', 'serif'],
+        'body': ['Zen Old Mincho', 'serif'],
+      },
+
       fontWeight: {
         ...range(minFontWeight, maxFontWeight, 100).reduce((merged, f) => (
           { ...merged, [f]: `${f}` }
@@ -344,13 +352,13 @@ module.exports = {
     function ({ addUtilities, theme }) {
       const textShadows = theme('textShadow');
       const utilities = {};
-      
+
       Object.keys(textShadows).forEach(key => {
         utilities[`.text-shadow-${key}`] = {
           textShadow: textShadows[key]
         };
       });
-      
+
       addUtilities(utilities);
     }
   ]

@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { GlobalSpacing } from '../../components/layouts/layouts';
 import student1 from '../../assets/image/dashboard/student-1.png';
-import student2 from '../../assets/image/dashboard/student-2.jpg';
-import student3 from '../../assets/image/dashboard/student-3.jpg';
-import studentBg from '../../assets/image/dashboard/student-bg.png';
+import student2 from '../../assets/image/dashboard/student-2.png';
+import student3 from '../../assets/image/dashboard/student-3.png';
+import studentBg1 from '../../assets/image/dashboard/student-bg-1.png';
+import studentBg2 from '../../assets/image/dashboard/student-bg-2.png';
+import studentBg3 from '../../assets/image/dashboard/student-bg-3.png';
 import arrowNext from '../../assets/image/icons/arrow-next.svg';
 import arrowPrev from '../../assets/image/icons/arrow-prev.svg';
 
@@ -12,24 +14,23 @@ import './students.scss';
 const slideData = [
     {
         image: student1,
-        image1: studentBg,
+        image1: studentBg1,
         subTitle: "仕事内容",
         title: ['地域と企業の', '未来をつくる仕事'],
         desc: '地域企業の採用・育成・DXなど、さまざまな課題に向き合い、人と組織の力で解決へ導く。経営者と共に考え、形にしていくことで、企業の成長と地域の活性化を実現します。',
     },
     {
         image: student2,
-        image1: studentBg,
-        subTitle: "仕事内容",
-        title: ['地域と企業の', '未来をつくる仕事'],
-        desc: '地域企業の採用・育成・DXなど、さまざまな課題に向き合い、人と組織の力で解決へ導く。経営者と共に考え、形にしていくことで、企業の成長と地域の活性化を実現します。',
+        image1: studentBg2,
+        title: ['Sinmidoの', '親身• 真實 • 新観'],
+        desc: 'Sinmido の「シンミ」には、３つの意味があります。私たちらしさをあらわすキーワードであり、経営理念でもある３つのシンミ。それを、社員一人ひとりの個性と人間力をもって実現します。',
     },
     {
         image: student3,
-        image1: studentBg,
-        subTitle: "仕事内容",
-        title: ['地域と企業の', '未来をつくる仕事'],
-        desc: '地域企業の採用・育成・DXなど、さまざまな課題に向き合い、人と組織の力で解決へ導く。経営者と共に考え、形にしていくことで、企業の成長と地域の活性化を実現します。',
+        image1: studentBg3,
+        subTitle: "会社員",
+        title: ['シンミの心で', '未来を創る仲間たち'],
+        desc: 'Sinmidoには、想いをもって行動し、挑戦を楽しむ仲間が集まっています。「親身・真實・新観」を胸に、人と地域の未来を創っています。',
     },
 ]
 
@@ -106,7 +107,7 @@ const Students = () => {
                                 <div className="student-content absolute h-full w-full max-w-100% lg:max-w-55% w-700 flex flex-col items-center justify-center">
                                     <div className="flex flex-col items-center justify-center gap-10 lg:gap-80 z-10 text-white">
                                         <span className="text-15 lg:text-25">
-                                            {slide.subTitle}
+                                            {slide?.subTitle || ''}
                                         </span>
 
                                         <h2 className="text-35 lg:text-90 font-500 text-center tracking-wide">
