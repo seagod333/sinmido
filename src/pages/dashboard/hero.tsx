@@ -19,12 +19,14 @@ import './hero.scss';
 const heroNews = [
     {
         center: false,
+        reactAnimation: false,
         size: { w: 3, h: 2, response: { w: 2, h: 1.5 } },
         video: heroVideo,
         videoThumb: heroVideoThumb,
     },
     {
         center: false,
+        reactAnimation: true,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
         img: news1,
         headerTitle: "#ENTRY",
@@ -36,6 +38,7 @@ const heroNews = [
     },
     {
         center: true,
+        reactAnimation1: true,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
         img: news2,
         bodyTitle: {
@@ -49,6 +52,7 @@ const heroNews = [
     },
     {
         center: false,
+        reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
         img: news3,
         headerTitle: "#PHILOSOPHY",
@@ -57,6 +61,7 @@ const heroNews = [
     },
     {
         center: true,
+        reactAnimation: true,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
         img: news4,
         bodyTitle: {
@@ -67,6 +72,7 @@ const heroNews = [
     },
     {
         center: true,
+        reactAnimation: true,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
         img: news5,
         bodyTitle: {
@@ -77,6 +83,7 @@ const heroNews = [
     },
     {
         center: true,
+        reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
         img: news6,
         bodyTitle: {
@@ -86,6 +93,7 @@ const heroNews = [
     },
     {
         center: false,
+        reactAnimation: false,
         size: { w: 1, h: 2, response: { w: 2, h: 1 } },
         title: "NEWS",
         items: [
@@ -107,6 +115,7 @@ const heroNews = [
     },
     {
         center: true,
+        reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
         img: news7,
         bodyTitle: {
@@ -116,6 +125,7 @@ const heroNews = [
     },
     {
         center: true,
+        reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
         img: news8,
         bodyTitle: {
@@ -125,11 +135,13 @@ const heroNews = [
     },
     {
         center: true,
+        reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
         img: news9,
     },
     {
         center: true,
+        reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
         img: news10,
         bodyTitle: {
@@ -139,6 +151,7 @@ const heroNews = [
     },
     {
         center: true,
+        reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
         img: news11,
         bodyTitle: {
@@ -148,6 +161,7 @@ const heroNews = [
     },
     {
         center: true,
+        reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
         img: news12,
         bodyTitle: {
@@ -163,10 +177,10 @@ const Hero = () => {
             <div className="grid grid-cols-2 lg:grid-cols-5 gap-20 lg:gap-40">
                 {heroNews.map((item, index) => (
                     <div key={index}
-                        className={`${item?.color} rounded-xl overflow-hidden cursor-pointer aspect-[${item.size.response.w}/${item.size.response.h}] lg:aspect-[${item.size.w}/${item.size.h}] col-span-${item.size.response.w} row-span-${item.size.response.h} lg:col-span-${item.size.w} lg:row-span-${item.size.h}`}
+                        className={`${item?.color} rounded-xl overflow-hidden cursor-pointer aspect-[${item.size.response.w}/${item.size.response.h}] lg:aspect-[${item.size.w}/${item.size.h}] col-span-${item.size.response.w} row-span-${item.size.response.h} lg:col-span-${item.size.w} lg:row-span-${item.size.h} ${item.reactAnimation ? 'react-animation' : item.reactAnimation1 ? 'react-animation-1' : ''}`}
                     >
                         {item.img ? (
-                            <div className={`relative w-full h-full px-10 py-10 lg:px-30 lg:py-25 overflow-hidden flex flex-col justify-between zoom-on-hover ${item.center ? 'items-center' : 'items-start'}`}>
+                            <div className={`relative w-full h-full px-10 py-10 lg:px-30 lg:py-25 overflow-hidden flex flex-col justify-between zoom-on-hover ${item.center ? 'items-center' : 'items-start'} ${item.reactAnimation ? 'react-animation-content' : item.reactAnimation1 ? 'react-animation-content-1' : ''}`}>
                                 <img src={item.img}
                                     alt={`News item ${index + 1}`}
                                     className="absolute inset-0 w-full h-full object-cover"
@@ -215,13 +229,13 @@ const Hero = () => {
                                 </span>
                             </div>
                         ) : item.video ? (
-                            <div className="relative w-full h-full overflow-hidden flex flex-col gap-20 lg:gap-45">
+                            <div className={`relative w-full h-full overflow-hidden flex flex-col gap-20 lg:gap-45`}>
                                 <video src={item.video} poster={item.videoThumb} autoPlay muted loop
                                     className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-fill scale-x-[113%] scale-y-[105%]"
                                 />
                             </div>
                         ) : (
-                            <div className="text-background w-full h-full overflow-hidden flex flex-col gap-20 lg:gap-30">
+                            <div className={`text-background w-full h-full overflow-hidden flex flex-col gap-20 lg:gap-30`}>
                                 <h3 className="text-25 lg:text-35 font-600">
                                     {item.title}
                                 </h3>

@@ -1,3 +1,44 @@
 .text-background {
     text-shadow: 0 1px 1px rgba(0, 51, 145, 0.5);
-}   
+}
+
+/* React Animation Hover Effect */
+.react-animation,
+.react-animation-1 {
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: visible;
+    cursor: pointer;
+}
+
+.react-animation::before,
+.react-animation-1::before {
+    content: '';
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #003391;
+    border-radius: 5px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.react-animation:hover::before,
+.react-animation-1:hover::before {
+    width: 105%;
+    height: 105%;
+    border-color: rgba(255, 255, 255, 1);
+    transform: translate(-50%, -50%) scale(1.02);
+}
+
+.react-animation-1::before {
+    border-color: #FFFFFF !important;
+}
+
+.react-animation-1:hover::before {
+    border-color: #003391 !important;
+}
