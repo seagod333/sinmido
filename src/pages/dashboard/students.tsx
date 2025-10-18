@@ -77,18 +77,18 @@ const Students = () => {
             <div className={`students-container relative rounded-2xl ${isPageLoaded ? 'page-load' : ''} ${isTransitioning ? 'slide-transition' : ''}`}>
                 {/* Slide Container */}
                 <div className="slide-container overflow-hidden">
-                    <div className="flex flex-row transition-transform pb-40 lg:pb-80 pt-20"
+                    <div className="flex flex-row transition-transform pb-30 sm:pb-40 lg:pb-80 pt-20"
                         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
                     >
                         {slideData.map((slide, index) => (
                             <div key={`${index}-${currentSlide}`} className="relative flex flex-row items-center justify-center min-w-full">
-                                <div className="student-image-container max-w-70% lg:max-w-50% w-550 aspect-[3/4] relative left-[-5px] lg:left-[-20px]">
+                                <div className="student-image-container max-w-85% lg:max-w-50% w-650 aspect-[3/4] relative left-[-5px] lg:left-[-20px]">
                                     <img src={slide.image1}
                                         key={`bg-${index}-${animationKey}`}
                                         className={`student-bg-image w-full aspect-3/4 rounded-2xl rotate-3`}
                                         style={{
                                             transform: index === currentSlide && isTransitioning ? 'none' : 'rotate(-3deg)',
-                                            transition: 'transform 0.7s ease-in-out'
+                                            transition: 'transform 0.5s ease-in-out'
                                         }}
                                     />
 
@@ -98,7 +98,7 @@ const Students = () => {
                                         style={{
                                             transform: index === currentSlide && isTransitioning ? 'none' : 'rotate(3deg)',
                                             right: index === currentSlide && isTransitioning ? 'none' : '-20px',
-                                            transition: 'all 0.7s ease-in-out',
+                                            transition: 'all 0.5s ease-in-out',
                                         }}
                                     />
                                 </div>
@@ -110,7 +110,7 @@ const Students = () => {
                                             {slide?.subTitle || ''}
                                         </span>
 
-                                        <h2 className="text-35 lg:text-90 font-500 text-center tracking-wide">
+                                        <h2 className="text-30 sm:text-35 lg:text-90 font-500 text-center tracking-wide">
                                             {Array.isArray(slide.title) && (
                                                 slide.title.map((line, idx) => (
                                                     <span key={idx} className="block lg:tracking-[0.85em]">
@@ -145,16 +145,15 @@ const Students = () => {
                     style={{ zIndex: 20 }}
                 >
                     <img src={arrowNext} alt="Previous" className="w-40 lg:w-57" />
-
                 </button>
 
                 {/* Mobile Navigation Controls */}
-                <div className="navigation-controls md:hidden flex flex-row items-center justify-center gap-55">
+                <div className="navigation-controls md:hidden flex flex-row items-center justify-center gap-30 sm:gap-35 lg:gap-55">
                     {/* Prev Button - Mobile */}
                     <button onClick={prevSlide}
-                        className="navigation-button w-50 h-50 text-white rounded-full border-1 border-white flex items-center justify-center"
+                        className="navigation-button w-40 sm:w-50 h-40 sm:h-50 text-white rounded-full border-1 border-white flex items-center justify-center"
                     >
-                        <img src={arrowPrev} alt="Previous" className="w-20" />
+                        <img src={arrowPrev} alt="Previous" className="w-18 sm:w-20" />
                     </button>
 
                     {/* Slide Indicators */}
@@ -162,7 +161,7 @@ const Students = () => {
                         {slideData.map((_, index) => (
                             <button key={index}
                                 onClick={() => goToSlide(index)}
-                                className={`slide-indicator text-base text-12 ${index === currentSlide ? 'text-white' : 'text-white/60 hover:text-white'}`}
+                                className={`slide-indicator text-base text-15 sm:text-20 ${index === currentSlide ? 'text-white' : 'text-white/60 hover:text-white'}`}
                             >
                                 {String(index + 1).padStart(2, '0')}
                             </button>
@@ -172,15 +171,15 @@ const Students = () => {
                     {/* Next Button - Mobile */}
                     <button
                         onClick={nextSlide}
-                        className="navigation-button w-50 h-50 text-white rounded-full border-1 border-white flex items-center justify-center"
+                        className="navigation-button w-40 sm:w-50 h-40 sm:h-50 text-white rounded-full border-1 border-white flex items-center justify-center"
                         style={{ zIndex: 20 }}
                     >
-                        <img src={arrowNext} alt="Next" className="w-20" />
+                        <img src={arrowNext} alt="Next" className="w-18 sm:w-20" />
                     </button>
                 </div>
 
                 {/* Desktop Slide Indicators */}
-                <div className="navigation-controls hidden md:flex w-full flex flex-row items-center justify-center gap-45">
+                <div className="navigation-controls hidden md:flex w-full flex flex-row items-center justify-center gap-35 lg:gap-45">
                     {slideData.map((_, index) => (
                         <button key={index}
                             onClick={() => goToSlide(index)}

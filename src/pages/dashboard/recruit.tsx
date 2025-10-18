@@ -44,7 +44,7 @@ const recruitData = [
 const Recruit = () => {
     return (
         <GlobalSpacing>
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 gap-20 lg:gap-25 mb-50 lg:mb-100">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-20 lg:gap-25 mb-50 lg:mb-100">
                 {recruitData.map((item: any, index) => (
                     <div key={index}
                         className={`relative rounded-xl overflow-hidden cursor-pointer aspect-[${item.responseSize?.w}/${item.responseSize?.h}] lg:aspect-[${item.gridSize?.w}/${item.gridSize?.h}] col-span-${item.responseSize?.w} row-span-${item.responseSize?.h} lg:col-span-${item.gridSize?.w} lg:row-span-${item.gridSize?.h} zoom-on-hover`}
@@ -58,16 +58,16 @@ const Recruit = () => {
 
                         {/* Content Section - Overlay on image */}
                         {(item.description || item.title || item.title1) && (
-                            <div className={`relative z-10 w-full h-full flex flex-col justify-center ${item.image ? 'items-center' : 'items-start'} gap-18 lg:gap-30`}>
+                            <div className={`relative z-10 w-full h-full flex flex-col justify-center ${item.image ? 'items-center' : 'items-start'} gap-10 sm:gap-18 lg:gap-30`}>
                                 {/* Description - shown first */}
                                 {item.description && (
-                                    <div className="text-white text-18 lg:text-25 font-300">
+                                    <div className="text-white text-14 sm:text-18 lg:text-25 font-300">
                                         {item.description}
                                     </div>
                                 )}
                                 {/* Title - shown second */}
                                 {item.title && (
-                                    <h2 className="font-bold text-white text-20 lg:text-30 font-300">
+                                    <h2 className="font-bold text-white text-15 sm:text-20 lg:text-30 font-300">
                                         {Array.isArray(item.title)
                                             ? item.title.map((text: string, i: number) => (
                                                 <div key={i}>
@@ -94,7 +94,7 @@ const Recruit = () => {
                                 )}
 
                                 {item.headerTitle && (
-                                    <h2 className="font-bold text-white text-50 lg:text-80 font-400 !leading-none">
+                                    <h2 className="font-bold text-white text-35 sm:text-50 lg:text-80 font-400 !leading-none">
                                         {item.headerTitle.map((text: string, i: number) => (
                                             <span key={i}>
                                                 {text}

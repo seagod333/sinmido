@@ -8,7 +8,7 @@ import './layouts.scss';
 export const GlobalSpacing = ({ children, className }: any) => {
   return (
     <div
-      className={`px-30 lg:px-58 w-full ${typeof (className) === "string" ? className : ""}`}
+      className={`px-15 sm:px-30 lg:px-58 w-full ${typeof (className) === "string" ? className : ""}`}
     >
       {children}
     </div>

@@ -34,7 +34,8 @@ const heroNews = [
             title: ["2025.9.24", "START!!"],
             desc: ["2025年9月24日", "海外大選考エントリー開始"]
         },
-        color: 'text-textSecondary',
+        color: 'textSecondary',
+        reverseColor: 'textThird'
     },
     {
         center: true,
@@ -48,7 +49,7 @@ const heroNews = [
                 "Instagram"
             ]
         },
-        color: 'text-textPrimary',
+        color: 'textPrimary',
     },
     {
         center: false,
@@ -57,7 +58,7 @@ const heroNews = [
         img: news3,
         headerTitle: "#PHILOSOPHY",
         footerTitle: "企業理念",
-        color: 'text-textPrimary',
+        color: 'textPrimary',
     },
     {
         center: true,
@@ -68,7 +69,7 @@ const heroNews = [
             desc: ["#Morning with Sinmido"],
             subTitle: ["社員訪問案内"]
         },
-        color: 'text-textSecondary',
+        color: 'textSecondary',
     },
     {
         center: true,
@@ -79,7 +80,7 @@ const heroNews = [
             desc: ["#About Sinmido"],
             subTitle: ["企業情報"]
         },
-        color: 'text-textSecondary',
+        color: 'textSecondary',
     },
     {
         center: true,
@@ -89,7 +90,7 @@ const heroNews = [
         bodyTitle: {
             subTitle: ["募集要項"]
         },
-        color: 'text-textPrimary',
+        color: 'textPrimary',
     },
     {
         center: false,
@@ -111,7 +112,7 @@ const heroNews = [
                 title: "対談2-3：常務×中途1年目"
             }
         ],
-        color: 'text-textPrimary',
+        color: 'textPrimary',
     },
     {
         center: true,
@@ -121,7 +122,7 @@ const heroNews = [
         bodyTitle: {
             subTitle: ["インタビュー"]
         },
-        color: 'text-textPrimary',
+        color: 'textPrimary',
     },
     {
         center: true,
@@ -131,7 +132,7 @@ const heroNews = [
         bodyTitle: {
             subTitle: ["ホワイトペーパー"]
         },
-        color: 'text-textPrimary',
+        color: 'textPrimary',
     },
     {
         center: true,
@@ -147,7 +148,7 @@ const heroNews = [
         bodyTitle: {
             subTitle: ["仕事内容"]
         },
-        color: 'text-textPrimary',
+        color: 'textPrimary',
     },
     {
         center: true,
@@ -157,7 +158,7 @@ const heroNews = [
         bodyTitle: {
             subTitle: ["働く環境・制度"]
         },
-        color: 'text-textPrimary',
+        color: 'textPrimary',
     },
     {
         center: true,
@@ -167,26 +168,28 @@ const heroNews = [
         bodyTitle: {
             subTitle: ["コラム"]
         },
-        color: 'text-textPrimary',
+        color: 'textPrimary',
     }
 ]
 
 const Hero = () => {
     return (
         <GlobalSpacing>
-            <div className="grid grid-cols-2 lg:grid-cols-5 gap-20 lg:gap-40">
+            <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-20 lg:gap-40">
                 {heroNews.map((item, index) => (
                     <div key={index}
-                        className={`${item?.color} rounded-xl overflow-hidden cursor-pointer aspect-[${item.size.response.w}/${item.size.response.h}] lg:aspect-[${item.size.w}/${item.size.h}] col-span-${item.size.response.w} row-span-${item.size.response.h} lg:col-span-${item.size.w} lg:row-span-${item.size.h} ${item.reactAnimation ? 'react-animation' : item.reactAnimation1 ? 'react-animation-1' : ''}`}
+                        className={`${item?.color ? `text-${item.color}` : ``} ${item?.reverseColor ? `hover:text-${item.reverseColor}` : ``} rounded-xl overflow-hidden cursor-pointer aspect-[${item.size.response.w}/${item.size.response.h}] lg:aspect-[${item.size.w}/${item.size.h}] col-span-${item.size.response.w} row-span-${item.size.response.h} lg:col-span-${item.size.w} lg:row-span-${item.size.h} ${item.reactAnimation ? 'react-animation' : item.reactAnimation1 ? 'react-animation-1' : ''} ${item?.reverseColor ? `bg-${item?.reverseColor} hover:bg-${item.color}` : ``} ${!item?.img ? `aspect-auto` : ''}`}
                     >
                         {item.img ? (
-                            <div className={`relative w-full h-full px-10 py-10 lg:px-30 lg:py-25 overflow-hidden flex flex-col justify-between zoom-on-hover ${item.center ? 'items-center' : 'items-start'} ${item.reactAnimation ? 'react-animation-content' : item.reactAnimation1 ? 'react-animation-content-1' : ''}`}>
-                                <img src={item.img}
-                                    alt={`News item ${index + 1}`}
-                                    className="absolute inset-0 w-full h-full object-cover"
-                                />
+                            <div className={`relative w-full h-full px-15 py-15 lg:px-30 lg:py-25 overflow-hidden flex flex-col justify-between zoom-on-hover ${item.center ? 'items-center' : 'items-start'} ${item.reactAnimation ? 'react-animation-content' : item.reactAnimation1 ? 'react-animation-content-1' : ''}`}>
+                                {!item?.reverseColor && (
+                                    <img src={item.img}
+                                        alt={`News item ${index + 1}`}
+                                        className="absolute inset-0 w-full h-full object-cover"
+                                    />
+                                )}
 
-                                <span className="relative z-10 text-12 lg:text-15 font-600">
+                                <span className="relative z-10 text-10 sm:text-12 lg:text-15 font-600">
                                     {item?.headerTitle}
                                 </span>
 
@@ -197,7 +200,7 @@ const Hero = () => {
                                         {item.bodyTitle.title && (
                                             <div className="space-y-2">
                                                 {item.bodyTitle.title.map((title, idx) => (
-                                                    <div key={idx} className="text-20 lg:text-40 font-600">
+                                                    <div key={idx} className="text-15 sm:text-20 lg:text-40 font-600">
                                                         {title}
                                                     </div>
                                                 ))}
@@ -206,7 +209,7 @@ const Hero = () => {
                                         {item.bodyTitle.desc && (
                                             <div className="space-y-1 mt-2">
                                                 {item.bodyTitle.desc.map((desc, idx) => (
-                                                    <div key={idx} className="text-12 lg:text-15 font-400">
+                                                    <div key={idx} className="text-10 sm:text-12 lg:text-15 font-400">
                                                         {desc}
                                                     </div>
                                                 ))}
@@ -215,7 +218,7 @@ const Hero = () => {
                                         {item.bodyTitle.subTitle && (
                                             <div className="space-y-1">
                                                 {item.bodyTitle.subTitle.map((subTitle, idx) => (
-                                                    <div key={idx} className="text-20 lg:text-30 font-500">
+                                                    <div key={idx} className="text-15 sm:text-20 lg:text-30 font-500">
                                                         {subTitle}
                                                     </div>
                                                 ))}
@@ -224,19 +227,19 @@ const Hero = () => {
                                     </div>
                                 )}
 
-                                <span className="relative z-10 text-15 lg:text-25 font-500">
+                                <span className="relative z-10 text-10 sm:text-15 lg:text-25 font-500">
                                     {item?.footerTitle}
                                 </span>
                             </div>
                         ) : item.video ? (
-                            <div className={`relative w-full h-full overflow-hidden flex flex-col gap-20 lg:gap-45`}>
+                            <div className={`relative w-full h-full overflow-hidden flex flex-col`}>
                                 <video src={item.video} poster={item.videoThumb} autoPlay muted loop
                                     className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-fill scale-x-[113%] scale-y-[105%]"
                                 />
                             </div>
                         ) : (
-                            <div className={`text-background w-full h-full overflow-hidden flex flex-col gap-20 lg:gap-30`}>
-                                <h3 className="text-25 lg:text-35 font-600">
+                            <div className={`text-background w-full h-full overflow-hidden flex flex-col gap-10 sm:gap-20 lg:gap-30`}>
+                                <h3 className="text-20 sm:text-25 lg:text-35 font-600">
                                     {item.title}
                                 </h3>
 

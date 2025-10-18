@@ -42,3 +42,11 @@
 .react-animation-1:hover::before {
     border-color: #003391 !important;
 }
+
+@media (max-width: 900px) {
+    .react-animation::before,
+    .react-animation-1::before {
+        width: 92% !important;
+        height: 92% !important;
+    }
+}

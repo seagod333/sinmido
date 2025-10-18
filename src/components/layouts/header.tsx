@@ -24,11 +24,11 @@ const Header = () => {
   return (
     <GlobalSpacing className="header-wrapper sticky top-0 z-50">
       <header className="relative z-50">
-        <div className="flex justify-between items-center py-25 lg:py-20">
+        <div className="flex justify-between items-center py-15 sm:py-25 lg:py-20">
           {/* Left Section - Brand */}
           <div className="flex flex-col flex-column group">
             <div className="flex flex-row">
-              <img src={logo} className="h-35 lg:h-55 w-auto" />
+              <img src={logo} className="h-30 sm:h-35 lg:h-55 w-auto" />
             </div>
 
             <p className="font-400 text-10 lg:text-15 text-white">
@@ -41,8 +41,7 @@ const Header = () => {
             {/* Desktop Navigation Menu */}
             <nav className="hidden lg:flex items-center gap-x-55">
               {navigationItems.map((item, index) => (
-                <a
-                  key={index}
+                <a key={index}
                   href={item.href}
                   className="text-white text-15 font-600 cursor-pointer"
                   style={{ animationDelay: `${index * 100}ms` }}
@@ -55,12 +54,12 @@ const Header = () => {
             {/* Enhanced Hamburger Button */}
             <div className="relative">
               <button onClick={toggleDropdown}
-                className="relative w-64 h-64 rounded-100 flex items-center justify-center group hover-lift border-1 border-white"
+                className="relative w-40 sm:w-50 lg:w-64 h-40 sm:h-50 lg:h-64 rounded-100 flex items-center justify-center group hover-lift border-1 border-white"
               >
-                <div className="flex flex-col gap-y-8">
-                  <div className={`w-4 h-4 bg-white rounded-full`} />
-                  <div className={`w-4 h-4 bg-white rounded-full`} />
-                  <div className={`w-4 h-4 bg-white rounded-full`} />
+                <div className="flex flex-col gap-y-5 sm:gap-y-8">
+                  <div className={`w-3 sm:w-4 h-3 sm:h-4 bg-white rounded-full`} />
+                  <div className={`w-3 sm:w-4 h-3 sm:h-4 bg-white rounded-full`} />
+                  <div className={`w-3 sm:w-4 h-3 sm:h-4 bg-white rounded-full`} />
                 </div>
               </button>
 

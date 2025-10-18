@@ -78,6 +78,21 @@ module.exports = {
     'lg:aspect-[3/2]',
     'lg:aspect-[1/2]',
     'lg:aspect-[1.5/1]',
+
+    // Custom text and background color classes
+    'text-textPrimary',
+    'text-textSecondary',
+    'text-textThird',
+    'hover:text-textPrimary',
+    'hover:text-textSecondary',
+    'hover:text-textThird',
+    'bg-textPrimary',
+    'bg-textSecondary',
+    'bg-textThird',
+    'hover:bg-textPrimary',
+    'hover:bg-textSecondary',
+    'hover:bg-textThird',
+
     // Positioning classes
     ...range(0, 100).map(i => `-right-${i}`),
     ...range(0, 100).map(i => `right-${i}`),
@@ -102,6 +117,7 @@ module.exports = {
 
         textPrimary: '#ffffff',
         textSecondary: '#003391',
+        textThird: '#B8FB3C',
 
         // Enhanced brand colors based on your gradient theme
         primary: {
@@ -348,18 +364,6 @@ module.exports = {
   },
 
   plugins: [
-    // Custom plugin for glass morphism utilities
-    function ({ addUtilities, theme }) {
-      const textShadows = theme('textShadow');
-      const utilities = {};
 
-      Object.keys(textShadows).forEach(key => {
-        utilities[`.text-shadow-${key}`] = {
-          textShadow: textShadows[key]
-        };
-      });
-
-      addUtilities(utilities);
-    }
   ]
 }
