@@ -1,5 +1,6 @@
 import { GlobalSpacing } from '../../components/layouts/layouts';
 import heroVideo from "../../assets/video/名称未設定のデザイン.mp4";
+import heroVideoThumb from "../../assets/video/名称未設定のデザイン-thumb.png";
 // import leadsLocal from '../../assets/image/dashboard/leads-local.png';
 import news1 from '../../assets/image/dashboard/news-1.png';
 import news2 from '../../assets/image/dashboard/news-2.png';
@@ -19,6 +20,7 @@ const heroNews = [
         center: false,
         size: { w: 3, h: 2, response: { w: 2, h: 1.5 } },
         video: heroVideo,
+        videoThumb: heroVideoThumb,
     },
     {
         center: false,
@@ -213,7 +215,7 @@ const Hero = () => {
                             </div>
                         ) : item.video ? (
                             <div className="relative w-full h-full overflow-hidden flex flex-col gap-20 lg:gap-45">
-                                <video src={item.video} autoPlay muted loop
+                                <video src={item.video} poster={item.videoThumb} autoPlay muted loop
                                     className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-fill scale-x-[113%] scale-y-[105%]"
                                 />
                             </div>
