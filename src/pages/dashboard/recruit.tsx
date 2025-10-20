@@ -44,10 +44,10 @@ const recruitData = [
 const Recruit = () => {
     return (
         <GlobalSpacing>
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-20 lg:gap-25 mb-50 lg:mb-100">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-20 lg:gap-25 mb-30 lg:mb-80">
                 {recruitData.map((item: any, index) => (
                     <div key={index}
-                        className={`relative rounded-xl overflow-hidden cursor-pointer aspect-[${item.responseSize?.w}/${item.responseSize?.h}] lg:aspect-[${item.gridSize?.w}/${item.gridSize?.h}] col-span-${item.responseSize?.w} row-span-${item.responseSize?.h} lg:col-span-${item.gridSize?.w} lg:row-span-${item.gridSize?.h} zoom-on-hover`}
+                        className={`relative rounded-xl overflow-hidden cursor-pointer ${index !== 0 ? 'aspect-[9/7]' : 'py-20'} col-span-${item.responseSize?.w} row-span-${item.responseSize?.h} lg:col-span-${item.gridSize?.w} lg:row-span-${item.gridSize?.h} zoom-on-hover`}
                     >
                         {/* Image Section - Absolute positioned */}
                         {item.image && (
