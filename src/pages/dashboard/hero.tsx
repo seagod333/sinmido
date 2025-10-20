@@ -34,8 +34,8 @@ const heroNews = [
             title: ["2025.9.24", "START!!"],
             desc: ["2025年9月24日", "海外大選考エントリー開始"]
         },
-        color: 'textSecondary',
-        reverseColor: 'textThird'
+        color: 'secondary',
+        reverseColor: 'third'
     },
     {
         center: true,
@@ -49,7 +49,7 @@ const heroNews = [
                 "Instagram"
             ]
         },
-        color: 'textPrimary',
+        color: 'primary',
     },
     {
         center: false,
@@ -58,7 +58,7 @@ const heroNews = [
         img: news3,
         headerTitle: "#PHILOSOPHY",
         footerTitle: "企業理念",
-        color: 'textPrimary',
+        color: 'primary',
     },
     {
         center: true,
@@ -69,7 +69,7 @@ const heroNews = [
             desc: ["#Morning with Sinmido"],
             subTitle: ["社員訪問案内"]
         },
-        color: 'textSecondary',
+        color: 'secondary',
     },
     {
         center: true,
@@ -80,7 +80,7 @@ const heroNews = [
             desc: ["#About Sinmido"],
             subTitle: ["企業情報"]
         },
-        color: 'textSecondary',
+        color: 'secondary',
     },
     {
         center: true,
@@ -90,7 +90,7 @@ const heroNews = [
         bodyTitle: {
             subTitle: ["募集要項"]
         },
-        color: 'textPrimary',
+        color: 'primary',
     },
     {
         center: false,
@@ -112,7 +112,7 @@ const heroNews = [
                 title: "対談2-3：常務×中途1年目"
             }
         ],
-        color: 'textPrimary',
+        color: 'primary',
     },
     {
         center: true,
@@ -122,7 +122,7 @@ const heroNews = [
         bodyTitle: {
             subTitle: ["インタビュー"]
         },
-        color: 'textPrimary',
+        color: 'primary',
     },
     {
         center: true,
@@ -132,7 +132,7 @@ const heroNews = [
         bodyTitle: {
             subTitle: ["ホワイトペーパー"]
         },
-        color: 'textPrimary',
+        color: 'primary',
     },
     {
         center: true,
@@ -148,7 +148,7 @@ const heroNews = [
         bodyTitle: {
             subTitle: ["仕事内容"]
         },
-        color: 'textPrimary',
+        color: 'primary',
     },
     {
         center: true,
@@ -158,7 +158,7 @@ const heroNews = [
         bodyTitle: {
             subTitle: ["働く環境・制度"]
         },
-        color: 'textPrimary',
+        color: 'primary',
     },
     {
         center: true,
@@ -168,7 +168,7 @@ const heroNews = [
         bodyTitle: {
             subTitle: ["コラム"]
         },
-        color: 'textPrimary',
+        color: 'primary',
     }
 ]
 

@@ -2,7 +2,7 @@ import Header from "./header";
 import Footer from "./footer";
 import backgroundVideo from "../../assets/video/background.mp4";
 import backgroundThumb from "../../assets/video/background-thumb.jpg";
-import { useState } from "react";
+import React, { useState } from "react";
 import './layouts.scss';
 
 export const GlobalSpacing = ({ children, className }: any) => {
@@ -15,7 +15,15 @@ export const GlobalSpacing = ({ children, className }: any) => {
   );
 };
 
-export const Layouts = ({ children }: { children: React.ReactNode }) => {
+export const HeaderSpacing = ({ children, className }: any) => {
+  return (
+    <div className={`pt-75 sm:pt-100 lg:pt-120 ${typeof (className) === "string" ? className : ""}`}>
+      {children}
+    </div>
+  );
+};
+
+export const Layouts = ({ children, topPage = false }: { children: React.ReactNode, topPage?: boolean }) => {
   const [videoLoaded, setVideoLoaded] = useState(false);
 
   const handleVideoLoad = () => {
@@ -23,26 +31,32 @@ export const Layouts = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <div className="layouts-wrapper relative flex flex-col h-screen overflow-x-hidden overflow-y-auto">
-      {/* Background Thumbnail - shown until video loads */}
-      {!videoLoaded && (
-        <img src={backgroundThumb} className="fixed inset-0 w-full h-full object-cover -z-10" />
-      )}
+    <div className="layouts-wrapper flex flex-col">
+      {topPage && (
+        <React.Fragment>
+          {/* Background Thumbnail - shown until video loads */}
+          {!videoLoaded && (
+            <img src={backgroundThumb} className="fixed inset-0 w-full h-full object-cover -z-10" />
+          )}
 
-      {/* Background Video */}
-      <video autoPlay loop muted playsInline
-        className={`fixed inset-0 w-full h-full object-cover -z-10 transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
-        onLoadStart={() => setVideoLoaded(false)}
-        onCanPlayThrough={handleVideoLoad}
-      >
-        <source src={backgroundVideo} type="video/mp4" />
-      </video>
+          {/* Background Video */}
+          <video autoPlay loop muted playsInline
+            className={`fixed inset-0 w-full h-full object-cover -z-10 transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+            onLoadStart={() => setVideoLoaded(false)}
+            onCanPlayThrough={handleVideoLoad}
+          >
+            <source src={backgroundVideo} type="video/mp4" />
+          </video>
+        </React.Fragment>
+      )}
 
       <Header />
 
       <div className="flex-1 flex flex-col relative z-10">{children}</div>
 
-      <Footer />
+      {topPage && (
+        <Footer />
+      )}
     </div>
   )
 }

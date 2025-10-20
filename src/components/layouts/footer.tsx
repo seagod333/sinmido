@@ -14,7 +14,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="bg-textSecondary text-white text-center">
+      <div className="bg-secondary text-white text-center">
         <div className="text-10 px-10 py-5 sm:px-15 sm:py-10 border-b border-white">
           企業文化
         </div>

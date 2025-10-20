@@ -22,7 +22,7 @@ const Header = () => {
   };
 
   return (
-    <GlobalSpacing className="header-wrapper sticky top-0 z-50">
+    <GlobalSpacing className="header-wrapper fixed top-0 left-0 right-0 z-50">
       <header className="relative z-50">
         <div className="flex justify-between items-center py-15 sm:py-25 lg:py-20">
           {/* Left Section - Brand */}
