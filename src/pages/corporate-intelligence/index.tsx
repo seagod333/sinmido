@@ -125,7 +125,7 @@ const CorporateIntelligence = () => {
                 </div>
             </HeaderSpacing>
 
-            <ComponentsSpacing className="flex flex-col gap-20 sm:gap-25 lg:gap-60 bg-primary">
+            <ComponentsSpacing className="flex flex-col gap-30 sm:gap-50 lg:gap-100 bg-primary">
                 <ComponentsHeader title="会社概要" />
 
                 <div className="w-full max-w-1200 mx-auto">
@@ -183,7 +183,7 @@ const CorporateIntelligence = () => {
                 </div>
             </ComponentsSpacing>
 
-            <ComponentsSpacing className="flex flex-col gap-20 sm:gap-25 lg:gap-60 bg-fifth">
+            <ComponentsSpacing className="flex flex-col gap-30 sm:gap-50 lg:gap-120 bg-fifth">
                 <ComponentsHeader title="代表挨拶" />
 
                 <div className="w-full max-w-1200 mx-auto mb-30 lg:mb-100">
@@ -201,8 +201,8 @@ const CorporateIntelligence = () => {
                 </div>
             </ComponentsSpacing>
 
-            <div className="flex flex-col gap-20 sm:gap-35 lg:gap-100">
-                <ComponentsHeader title="数字でみる" className="pt-30 sm:pt-80 lg:pt-120" />
+            <div className="flex flex-col gap-40 sm:gap-50 lg:gap-100">
+                <ComponentsHeader title="数字でみる" className="pt-40 sm:pt-50 lg:pt-120" />
 
                 <div className="flex flex-col px-20 sm:px-75 lg:px-170 py-20 py-30 sm:py-75 lg:py-130 bg-secondary">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20 lg:gap-40">

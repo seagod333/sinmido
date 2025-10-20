@@ -25,7 +25,7 @@ export const HeaderSpacing = ({ children, className }: any) => {
 
 export const ComponentsSpacing = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => {
   return (
-    <div className={`px-30 sm:px-35 lg:px-300 py-20 sm:py-30 lg:py-90 w-full ${className}`}>
+    <div className={`px-30 sm:px-35 lg:px-300 py-30 sm:py-40 lg:py-90 w-full ${className}`}>
       {children}
     </div>
   )

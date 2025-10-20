@@ -60,7 +60,7 @@ const aboutTexts = [
 
 const ComponentsHeader = ({ title }: { title: string }) => {
     return (
-        <div className="text-fourth/10 text-18 sm:text-20 lg:text-60 font-600 text-start">
+        <div className="text-fourth/10 text-25 sm:text-30 lg:text-96 font-600 text-start">
             {title}
         </div>
     )
