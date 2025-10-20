@@ -92,11 +92,11 @@
 
 .slide-indicator {
     transition: all 0.3s ease;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    // text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 
     &:hover {
         transform: scale(1.2);
-        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        // text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     }
 }
 

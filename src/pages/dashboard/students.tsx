@@ -104,23 +104,23 @@ const Students = () => {
                                 </div>
 
 
-                                <div className="student-content absolute h-full w-full max-w-100% lg:max-w-55% w-700 flex flex-col items-center justify-center">
+                                <div className="student-content absolute h-full w-full max-w-100% lg:max-w-60% w-870 flex flex-col items-center justify-center">
                                     <div className="flex flex-col items-center justify-center gap-10 lg:gap-80 z-10 text-white">
                                         <span className="text-15 lg:text-25">
                                             {slide?.subTitle || ''}
                                         </span>
 
-                                        <h2 className="text-30 sm:text-35 lg:text-90 font-500 text-center tracking-wide">
+                                        <h2 className="text-30 sm:text-35 lg:text-80 font-500 text-center tracking-0 lg:tracking-15">
                                             {Array.isArray(slide.title) && (
                                                 slide.title.map((line, idx) => (
-                                                    <span key={idx} className="block lg:tracking-[0.85em]">
+                                                    <span key={idx} className="block">
                                                         {line}
                                                     </span>
                                                 ))
                                             )}
                                         </h2>
 
-                                        <p className="text-12 lg:text-16 max-w-70% lg:max-w-50% text-center">
+                                        <p className="text-12 lg:text-16 max-w-70% lg:max-w-50% text-center leading-20 lg:leading-35">
                                             {slide.desc}
                                         </p>
                                     </div>

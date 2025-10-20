@@ -11,7 +11,7 @@ function range1(start, end, increment = 10) {
 }
 
 const minFont = 5;
-const maxFont = 80;
+const maxFont = 100;
 
 const minPixel = 0;
 const maxPixel = 1500;
@@ -85,42 +85,90 @@ module.exports = {
     'text-third',
     'text-fourth',
     'text-fifth',
+    'text-sixth',
+    'text-seventh',
+    'text-eighth',
+    'text-ninth',
     'hover:text-primary',
     'hover:text-secondary',
     'hover:text-third',
     'hover:text-fourth',
     'hover:text-fifth',
+    'hover:text-sixth',
+    'hover:text-seventh',
+    'hover:text-eighth',
+    'hover:text-ninth',
     'bg-primary',
     'bg-secondary',
     'bg-third',
     'bg-fourth',
     'bg-fifth',
+    'bg-sixth',
+    'bg-seventh',
+    'bg-eighth',
+    'bg-ninth',
     'hover:bg-primary',
     'hover:bg-secondary',
     'hover:bg-third',
     'hover:bg-fourth',
     'hover:bg-fifth',
+    'hover:bg-sixth',
+    'hover:bg-eighth',
+    'hover:bg-ninth',
     'border-primary',
     'border-secondary',
     'border-third',
     'border-fourth',
     'border-fifth',
     'border-fifth',
+    'border-sixth',
+    'border-seventh',
+    'border-eighth',
+    'border-ninth',
     'hover:border-primary',
     'hover:border-secondary',
     'hover:border-third',
     'hover:border-fourth',
     'hover:border-fifth',
-
+    'hover:border-sixth',
+    'hover:border-seventh',
+    'hover:border-eighth',
+    'hover:border-ninth',
     // Positioning classes
-    ...range(0, 100).map(i => `-right-${i}`),
-    ...range(0, 100).map(i => `right-${i}`),
-    ...range(0, 100).map(i => `-left-${i}`),
-    ...range(0, 100).map(i => `left-${i}`),
-    ...range(0, 100).map(i => `-top-${i}`),
-    ...range(0, 100).map(i => `top-${i}`),
-    ...range(0, 100).map(i => `-bottom-${i}`),
-    ...range(0, 100).map(i => `bottom-${i}`),
+    ...range(0, 200).map(i => `-right-${i}`),
+    ...range(0, 200).map(i => `right-${i}`),
+    ...range(0, 200).map(i => `-left-${i}`),
+    ...range(0, 200).map(i => `left-${i}`),
+    ...range(0, 200).map(i => `-top-${i}`),
+    ...range(0, 200).map(i => `top-${i}`),
+    ...range(0, 200).map(i => `-bottom-${i}`),
+    ...range(0, 200).map(i => `bottom-${i}`),
+    // Letter spacing classes
+    ...range(-5, 20).map(i => `tracking-${i}`),
+    ...range1(0.1, 2, 10).map(i => `tracking-${i}r`),
+    'tracking-tighter',
+    'tracking-tight',
+    'tracking-normal',
+    'tracking-wide',
+    'tracking-wider',
+    'tracking-widest',
+    // Line height classes
+    ...range(10, 200).map(i => `leading-${i}`),
+    ...range1(0.5, 5, 10).map(i => `leading-${i}r`),
+    'leading-none',
+    'leading-tight',
+    'leading-snug',
+    'leading-normal',
+    'leading-relaxed',
+    'leading-loose',
+    'leading-3',
+    'leading-4',
+    'leading-5',
+    'leading-6',
+    'leading-7',
+    'leading-8',
+    'leading-9',
+    'leading-10',
   ],
 
   theme: {
@@ -139,6 +187,10 @@ module.exports = {
         third: '#B8FB3C',
         fourth: '#165BD9',
         fifth: '#EEF4FF',
+        sixth: "#0F62FE",
+        seventh: '#335CA7',
+        eighth: '#0061A0',
+        ninth: '#139486',
       },
 
       fontFamily: {
@@ -162,7 +214,7 @@ module.exports = {
 
       // Positioning utilities
       inset: {
-        ...range(-100, 100).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
+        ...range(-200, 200).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
         ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem !important` }), {}),
         'auto': 'auto !important',
         'full': '100% !important',
@@ -174,7 +226,7 @@ module.exports = {
       },
 
       top: {
-        ...range(-100, 100).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
+        ...range(-200, 200).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
         ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem !important` }), {}),
         'auto': 'auto !important',
         'full': '100% !important',
@@ -186,7 +238,7 @@ module.exports = {
       },
 
       right: {
-        ...range(-100, 100).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
+        ...range(-200, 200).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
         ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem !important` }), {}),
         'auto': 'auto !important',
         'full': '100% !important',
@@ -198,7 +250,7 @@ module.exports = {
       },
 
       bottom: {
-        ...range(-100, 100).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
+        ...range(-200, 200).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
         ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem !important` }), {}),
         'auto': 'auto !important',
         'full': '100% !important',
@@ -210,7 +262,7 @@ module.exports = {
       },
 
       left: {
-        ...range(-100, 100).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
+        ...range(-200, 200).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
         ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem !important` }), {}),
         'auto': 'auto !important',
         'full': '100% !important',
@@ -323,6 +375,38 @@ module.exports = {
       'glow': '0 0 10px rgba(255, 255, 255, 0.8)',
       'glow-primary': '0 0 10px rgba(139, 92, 246, 0.8)',
       'glow-secondary': '0 0 10px rgba(236, 72, 153, 0.8)',
+    },
+
+    // Custom letter spacing (tracking)
+    letterSpacing: {
+      ...range(-5, 20).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
+      ...range1(0.1, 2, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem !important` }), {}),
+      'tighter': '-0.05em',
+      'tight': '-0.025em',
+      'normal': '0em',
+      'wide': '0.025em',
+      'wider': '0.05em',
+      'widest': '0.1em',
+    },
+
+    // Custom line height (leading)
+    lineHeight: {
+      ...range(10, 200).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
+      ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem !important` }), {}),
+      'none': '1',
+      'tight': '1.25',
+      'snug': '1.375',
+      'normal': '1.5',
+      'relaxed': '1.625',
+      'loose': '2',
+      '3': '.75rem',
+      '4': '1rem',
+      '5': '1.25rem',
+      '6': '1.5rem',
+      '7': '1.75rem',
+      '8': '2rem',
+      '9': '2.25rem',
+      '10': '2.5rem',
     },
   },
 

@@ -7,8 +7,8 @@ const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const navigationItems = [
-    { label: "企業文化", href: "#" },
-    { label: "仕事内容", href: "#" },
+    { label: "企業文化", href: "/corporate-culture" },
+    { label: "仕事内容", href: "/corporate-intelligence" },
     { label: "インタビュー", href: "#" },
     { label: "採用情報", href: "#" }
   ];
@@ -27,11 +27,11 @@ const Header = () => {
         <div className="flex justify-between items-center py-15 sm:py-25 lg:py-20">
           {/* Left Section - Brand */}
           <div className="flex flex-col flex-column group">
-            <div className="flex flex-row">
-              <img src={logo} className="h-30 sm:h-35 lg:h-55 w-auto" />
-            </div>
+            <a href="/" className="flex flex-row">
+              <img src={logo} className="h-30 sm:h-35 lg:h-55 w-auto" alt="Sinmido Home" />
+            </a>
 
-            <p className="font-400 text-10 lg:text-15 text-white">
+            <p className="font-400 text-10 lg:text-15 text-white select-none">
               Copyright © 2024 Sinmido. All Rights Reserved.
             </p>
           </div>

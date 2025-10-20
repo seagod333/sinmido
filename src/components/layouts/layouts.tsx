@@ -12,18 +12,26 @@ export const GlobalSpacing = ({ children, className }: any) => {
     >
       {children}
     </div>
-  );
-};
+  )
+}
 
 export const HeaderSpacing = ({ children, className }: any) => {
   return (
     <div className={`pt-75 sm:pt-100 lg:pt-120 ${typeof (className) === "string" ? className : ""}`}>
       {children}
     </div>
-  );
-};
+  )
+}
 
-export const Layouts = ({ children, topPage = false }: { children: React.ReactNode, topPage?: boolean }) => {
+export const ComponentsSpacing = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => {
+  return (
+    <div className={`px-30 sm:px-35 lg:px-300 py-20 sm:py-30 lg:py-90 w-full ${className}`}>
+      {children}
+    </div>
+  )
+}
+
+export const Layouts = ({ children, topPage = false }: { children?: React.ReactNode, topPage?: boolean }) => {
   const [videoLoaded, setVideoLoaded] = useState(false);
 
   const handleVideoLoad = () => {
@@ -54,9 +62,7 @@ export const Layouts = ({ children, topPage = false }: { children: React.ReactNo
 
       <div className="flex-1 flex flex-col relative z-10">{children}</div>
 
-      {topPage && (
-        <Footer />
-      )}
+      <Footer />
     </div>
   )
 }

@@ -238,7 +238,7 @@ const Hero = () => {
                                 />
                             </div>
                         ) : (
-                            <div className={`text-background w-full h-full overflow-hidden flex flex-col gap-10 sm:gap-20 lg:gap-30`}>
+                            <div className="text-background w-full h-full overflow-hidden flex flex-col gap-10 sm:gap-20 lg:gap-30">
                                 <h3 className="text-20 sm:text-25 lg:text-35 font-600">
                                     {item.title}
                                 </h3>

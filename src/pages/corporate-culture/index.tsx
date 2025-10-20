@@ -1,4 +1,4 @@
-import { HeaderSpacing, Layouts } from "../../components/layouts/layouts";
+import { ComponentsSpacing, HeaderSpacing, Layouts } from "../../components/layouts/layouts";
 import corporateCultureImage from "../../assets/image/corporate-culture/background.png";
 
 const texts = [
@@ -57,14 +57,6 @@ const aboutTexts = [
         "それが私たちの存在価値であり、存在意義です。"
     ]
 ]
-
-const ComponentsSpacing = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => {
-    return (
-        <div className={`px-30 sm:px-35 lg:px-300 py-20 sm:py-30 lg:py-90 w-full ${className}`}>
-            {children}
-        </div>
-    )
-}
 
 const ComponentsHeader = ({ title }: { title: string }) => {
     return (
@@ -240,7 +232,7 @@ const CorporateCulture = () => {
                     地域を、社会を、企業を、未来を豊かにする。
                 </div>
 
-                <div className="w-full sm:max-w-95% lg:max-w-900 mx-auto flex flex-col items-center gap-20">
+                <div className="w-full sm:max-w-95% lg:max-w-900 mx-auto flex flex-col items-center gap-15 lg:gap-20">
                     {aboutTexts.map((textGroup, index) => (
                         <div key={index} className="relative flex flex-col items-center w-full group">
                             <div className="flex min-h-140 lg:min-h-200 bg-secondary group-hover:bg-secondary/80 px-20 py-20 lg:px-30 lg:py-25 w-full cursor-pointer transition-colors duration-200 flex flex-col justify-center items-center h-full"
@@ -255,11 +247,11 @@ const CorporateCulture = () => {
                             </div>
 
                             {index !== 0 && (
-                                <div className="absolute w-0 h-0 left-1/2 -translate-x-1/2 border-l-45 border-transparent border-r-45  border-t-20 border-t-fifth" />
+                                <div className="absolute w-0 h-0 left-1/2 -translate-x-1/2 border-l-30 lg:border-l-45 border-transparent border-r-30 lg:border-r-45  border-t-15 lg:border-t-20 border-t-fifth" />
                             )}
 
                             {index < aboutTexts.length - 1 && (
-                                <div className="absolute w-0 h-0 -bottom-20 left-1/2 -translate-x-1/2 border-l-40 border-transparent border-r-40 border-t-20 group-hover:border-t-secondary/80 group-hover:border-t transition-colors duration-200 border-t-secondary" />
+                                <div className="absolute w-0 h-0 -bottom-15 lg:-bottom-20 left-1/2 -translate-x-1/2 border-l-30 lg:border-l-40 border-transparent border-r-30 lg:border-r-40 border-t-15 lg:border-t-20 group-hover:border-t-secondary/80 group-hover:border-t transition-colors duration-200 border-t-secondary" />
                             )}
                         </div>
                     ))}
