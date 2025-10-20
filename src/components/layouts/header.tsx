@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { GlobalSpacing } from "./layouts";
 import DropdownMenu from "../DropdownMenu";
 import logo from "../../assets/image/logo.png";
@@ -27,9 +28,9 @@ const Header = () => {
         <div className="flex justify-between items-center py-15 sm:py-25 lg:py-20">
           {/* Left Section - Brand */}
           <div className="flex flex-col flex-column group">
-            <a href="/" className="flex flex-row">
+            <Link to="/" className="flex flex-row">
               <img src={logo} className="h-30 sm:h-35 lg:h-55 w-auto" alt="Sinmido Home" />
-            </a>
+            </Link>
 
             <p className="font-400 text-10 lg:text-15 text-white select-none">
               Copyright © 2024 Sinmido. All Rights Reserved.
@@ -41,13 +42,13 @@ const Header = () => {
             {/* Desktop Navigation Menu */}
             <nav className="hidden lg:flex items-center gap-x-55">
               {navigationItems.map((item, index) => (
-                <a key={index}
-                  href={item.href}
+                <Link key={index}
+                  to={item.href}
                   className="text-white text-15 font-600 cursor-pointer"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
             </nav>
 

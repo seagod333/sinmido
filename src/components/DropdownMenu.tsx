@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
-import "./dropdownMenu.scss";
 import { sleep } from "../utils/utils";
+import "./dropdownMenu.scss";
 
 interface DropdownMenuProps {
     items: Array<{
@@ -63,15 +64,15 @@ const DropdownMenu = ({ items, isOpen, onClose, className = "" }: DropdownMenuPr
             ref={dropdownRef}
         >
             {items.map((item, index) => (
-                <a key={index}
-                    href={item.href}
+                <Link key={index}
+                    to={item.href}
                     className={`dropdown-item block px-12 sm:px-16 lg:px-20 text-black/90 hover:text-black rounded-lg transition-all duration-200`}
                     onClick={handleItemClick}
                 >
                     <span className="text-10 sm:text-15 lg:text-18 group-hover:text-gradient transition-all duration-300 font-medium">
                         {item.label}
                     </span>
-                </a>
+                </Link>
             ))}
         </div>
     );
