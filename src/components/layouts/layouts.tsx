@@ -39,7 +39,7 @@ export const Layouts = ({ children, topPage = false }: { children?: React.ReactN
   };
 
   return (
-    <div className="layouts-wrapper flex flex-col">
+    <div className="layouts-wrapper flex flex-col overflow-x-hidden">
       {topPage && (
         <React.Fragment>
           {/* Background Thumbnail - shown until video loads */}
