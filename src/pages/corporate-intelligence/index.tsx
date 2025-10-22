@@ -225,37 +225,41 @@ const CorporateIntelligence = () => {
 
         <div className="w-full max-w-1200 mx-auto mb-30 lg:mb-100">
           <div className="relative w-full group">
-            <ScaleUp className="w-full h-auto" duration={0.7} amount={0.6}>
-              <img src={ceoImage} className="w-full h-auto object-cover" alt="CEO" />
-            </ScaleUp>
+            <div className="w-full relative">
+              <ScaleUp className="w-full h-auto" duration={0.7} amount={0.6}>
+                <img src={ceoImage} className="w-full h-auto object-cover" alt="CEO" />
+              </ScaleUp>
 
-            <SlideUp
-              className="absolute bottom-0 w-full flex items-center justify-center group-hover:hidden transition-all duration-200"
-              duration={0.7}
-              delay={0.4}
-              amount={0.6}
-            >
-              <div className="relative translate-y-1/2 bg-secondary px-3 py-6 lg:px-40 lg:py-40">
-                <SlideUp
-                  className="text-white text-10 lg:text-30"
-                  duration={0.6}
-                  delay={0.55}
-                >
-                  地域から、職場から、日本を元気にしていく。
-                </SlideUp>
-              </div>
-            </SlideUp>
+              <SlideUp
+                className="absolute bottom-0 w-full flex items-center justify-center lg:group-hover:hidden transition-all duration-200"
+                duration={0.7}
+                delay={0.4}
+                amount={0.6}
+              >
+                <div className="relative translate-y-1/2 bg-secondary px-2vw py-[1.5vw]">
+                  <SlideUp className="text-white text-10 md:text-15 lg:text-[1.5vw]"
+                    duration={0.6}
+                    delay={0.55}
+                  >
+                    地域から、職場から、日本を元気にしていく。
+                  </SlideUp>
+                </div>
+              </SlideUp>
+            </div>
 
-            <div className="absolute top-0 left-0 w-full h-full bg-tenth/90 opacity-0 group-hover:opacity-100 transition-opacity duration-200 overflow-hidden">
-              <div className="relative flex flex-col py-20 sm:py-30 lg:py-90 px-20 lg:px-50">
+            <div className="lg:absolute lg:top-0 lg:left-0 w-full h-full lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-200 pt-35 md:pt-50 lg:pt-0">
+              <div className="relative min-h-full bg-tenth/90 flex flex-col justify-center pt-30 sx:pt-40 lg:pt-[3.5vw] px-25 sx:px-30 lg:px-[3vw] pb-15 sx:pb-20 md:pb-0">
                 {ceoMessage.map((message, index) => (
-                  <div key={index} className="text-white text-12 lg:text-20 font-500 leading-25 lg:leading-35">
+                  <p key={index}
+                    className="text-white text-8 sm:text-10 md:text-15 lg:text-[0.95vw] xl:text-[1.04vw] lg:leading-[2rem] xl:leading-[2.4rem] font-500"
+                    style={{ maxWidth: '100%', wordBreak: 'break-word' }}
+                  >
                     {message}
-                  </div>
+                  </p>
                 ))}
 
-                <div className="flex justify-end">
-                  <img src={signImg} className="w-auto h-80 object-contain" />
+                <div className="relative flex justify-end md:bottom-20 lg:bottom-[2vw] xl:bottom-[1vw]">
+                  <img src={signImg} className="w-50% min-w-120 lg:w-auto md:h-80 object-contain" />
                 </div>
               </div>
             </div>

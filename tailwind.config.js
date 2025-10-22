@@ -215,125 +215,125 @@ module.exports = {
 
       borderRadius: {
         DEFAULT: '5px',
-        ...range(0, 100).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
+        ...range(0, 100).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
       },
 
       // Positioning utilities
       inset: {
-        ...range(-200, 200).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
-        ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem !important` }), {}),
-        'auto': 'auto !important',
-        'full': '100% !important',
-        '1/2': '50% !important',
-        '1/3': '33.333333% !important',
-        '2/3': '66.666667% !important',
-        '1/4': '25% !important',
-        '3/4': '75% !important',
+        ...range(-200, 200).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
+        ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem` }), {}),
+        'auto': 'auto',
+        'full': '100%',
+        '1/2': '50%',
+        '1/3': '33.333333%',
+        '2/3': '66.666667%',
+        '1/4': '25%',
+        '3/4': '75%',
       },
 
       top: {
-        ...range(-200, 200).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
-        ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem !important` }), {}),
-        'auto': 'auto !important',
-        'full': '100% !important',
-        '1/2': '50% !important',
-        '1/3': '33.333333% !important',
-        '2/3': '66.666667% !important',
-        '1/4': '25% !important',
-        '3/4': '75% !important',
+        ...range(-200, 200).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
+        ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem` }), {}),
+        'auto': 'auto',
+        'full': '100%',
+        '1/2': '50%',
+        '1/3': '33.333333%',
+        '2/3': '66.666667%',
+        '1/4': '25%',
+        '3/4': '75%',
       },
 
       right: {
-        ...range(-200, 200).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
-        ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem !important` }), {}),
-        'auto': 'auto !important',
-        'full': '100% !important',
-        '1/2': '50% !important',
-        '1/3': '33.333333% !important',
-        '2/3': '66.666667% !important',
-        '1/4': '25% !important',
-        '3/4': '75% !important',
+        ...range(-200, 200).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
+        ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem` }), {}),
+        'auto': 'auto',
+        'full': '100%',
+        '1/2': '50%',
+        '1/3': '33.333333%',
+        '2/3': '66.666667%',
+        '1/4': '25%',
+        '3/4': '75%',
       },
 
       bottom: {
-        ...range(-200, 200).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
-        ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem !important` }), {}),
-        'auto': 'auto !important',
-        'full': '100% !important',
-        '1/2': '50% !important',
-        '1/3': '33.333333% !important',
-        '2/3': '66.666667% !important',
-        '1/4': '25% !important',
-        '3/4': '75% !important',
+        ...range(-200, 200).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
+        ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem` }), {}),
+        'auto': 'auto',
+        'full': '100%',
+        '1/2': '50%',
+        '1/3': '33.333333%',
+        '2/3': '66.666667%',
+        '1/4': '25%',
+        '3/4': '75%',
       },
 
       left: {
-        ...range(-200, 200).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
-        ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem !important` }), {}),
-        'auto': 'auto !important',
-        'full': '100% !important',
-        '1/2': '50% !important',
-        '1/3': '33.333333% !important',
-        '2/3': '66.666667% !important',
-        '1/4': '25% !important',
-        '3/4': '75% !important',
+        ...range(-200, 200).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
+        ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem` }), {}),
+        'auto': 'auto',
+        'full': '100%',
+        '1/2': '50%',
+        '1/3': '33.333333%',
+        '2/3': '66.666667%',
+        '1/4': '25%',
+        '3/4': '75%',
       }
     },
 
     fontSize: {
-      ...range(minFont, maxFont).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
-      ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem !important` }), {})
+      ...range(minFont, maxFont).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
+      ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem` }), {})
     },
 
     spacing: {
-      ...range(minPixel, maxPixel).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
-      ...range(1, 100).reduce((merged, f) => ({ ...merged, [f + 'vw']: `${f}vw !important` }), {}),
-      ...range(1, 100).reduce((merged, f) => ({ ...merged, [f + 'vh']: `${f}vh !important` }), {}),
-      ...range(1, 500).reduce((merged, f) => ({ ...merged, [f + '%']: `${f}% !important` }), {}),
-      ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem !important` }), {})
+      ...range(minPixel, maxPixel).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
+      ...range(1, 100).reduce((merged, f) => ({ ...merged, [f + 'vw']: `${f}vw` }), {}),
+      ...range(1, 100).reduce((merged, f) => ({ ...merged, [f + 'vh']: `${f}vh` }), {}),
+      ...range(1, 500).reduce((merged, f) => ({ ...merged, [f + '%']: `${f}%` }), {}),
+      ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem` }), {})
     },
 
     width: {
-      ...range(1, 1000).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
-      ...range(1, 100).reduce((merged, f) => ({ ...merged, [f + 'vw']: `${f}vw !important` }), {}),
-      ...range(1, 500).reduce((merged, f) => ({ ...merged, [f + '%']: `${f}% !important` }), {}),
-      ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem !important` }), {}),
+      ...range(1, 1000).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
+      ...range(1, 100).reduce((merged, f) => ({ ...merged, [f + 'vw']: `${f}vw` }), {}),
+      ...range(1, 500).reduce((merged, f) => ({ ...merged, [f + '%']: `${f}%` }), {}),
+      ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem` }), {}),
       ...screens,
     },
 
     height: {
-      ...range(1, 1000).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
-      ...range(1, 100).reduce((merged, f) => ({ ...merged, [f + 'vh']: `${f}vh !important` }), {}),
-      ...range(1, 500).reduce((merged, f) => ({ ...merged, [f + '%']: `${f}% !important` }), {}),
-      ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem !important` }), {}),
+      ...range(1, 1000).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
+      ...range(1, 100).reduce((merged, f) => ({ ...merged, [f + 'vh']: `${f}vh` }), {}),
+      ...range(1, 500).reduce((merged, f) => ({ ...merged, [f + '%']: `${f}%` }), {}),
+      ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem` }), {}),
       ...screens,
     },
 
     maxWidth: {
-      ...range(minPixel, maxPixel).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
-      ...range(1, 100).reduce((merged, f) => ({ ...merged, [f + 'vw']: `${f}vw !important` }), {}),
-      ...range(1, 500).reduce((merged, f) => ({ ...merged, [f + '%']: `${f}% !important` }), {}),
+      ...range(minPixel, maxPixel).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
+      ...range(1, 100).reduce((merged, f) => ({ ...merged, [f + 'vw']: `${f}vw` }), {}),
+      ...range(1, 500).reduce((merged, f) => ({ ...merged, [f + '%']: `${f}%` }), {}),
       ...screens,
     },
 
     minWidth: {
-      ...range(minPixel, maxPixel).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
-      ...range(1, 100).reduce((merged, f) => ({ ...merged, [f + 'vw']: `${f}vw !important` }), {}),
-      ...range(1, 500).reduce((merged, f) => ({ ...merged, [f + '%']: `${f}% !important` }), {}),
+      ...range(minPixel, maxPixel).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
+      ...range(1, 100).reduce((merged, f) => ({ ...merged, [f + 'vw']: `${f}vw` }), {}),
+      ...range(1, 500).reduce((merged, f) => ({ ...merged, [f + '%']: `${f}%` }), {}),
       ...screens,
     },
 
     maxHeight: {
-      ...range(minPixel, maxPixel).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
-      ...range(1, 100).reduce((merged, f) => ({ ...merged, [f + 'vh']: `${f}vh !important` }), {}),
-      ...range(1, 500).reduce((merged, f) => ({ ...merged, [f + '%']: `${f}% !important` }), {}),
+      ...range(minPixel, maxPixel).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
+      ...range(1, 100).reduce((merged, f) => ({ ...merged, [f + 'vh']: `${f}vh` }), {}),
+      ...range(1, 500).reduce((merged, f) => ({ ...merged, [f + '%']: `${f}%` }), {}),
       ...screens,
     },
 
     minHeight: {
-      ...range(minPixel, maxPixel).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
-      ...range(1, 100).reduce((merged, f) => ({ ...merged, [f + 'vh']: `${f}vh !important` }), {}),
-      ...range(1, 500).reduce((merged, f) => ({ ...merged, [f + '%']: `${f}% !important` }), {}),
+      ...range(minPixel, maxPixel).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
+      ...range(1, 100).reduce((merged, f) => ({ ...merged, [f + 'vh']: `${f}vh` }), {}),
+      ...range(1, 500).reduce((merged, f) => ({ ...merged, [f + '%']: `${f}%` }), {}),
       ...screens,
     },
 
@@ -345,7 +345,7 @@ module.exports = {
 
     borderWidth: {
       DEFAULT: '1px',
-      ...range(0, 50).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
+      ...range(0, 50).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
     },
 
     // Custom backdrop blur values
@@ -385,8 +385,8 @@ module.exports = {
 
     // Custom letter spacing (tracking)
     letterSpacing: {
-      ...range(-5, 20).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
-      ...range1(0.1, 2, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem !important` }), {}),
+      ...range(-5, 20).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
+      ...range1(0.1, 2, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem` }), {}),
       'tighter': '-0.05em',
       'tight': '-0.025em',
       'normal': '0em',
@@ -397,8 +397,8 @@ module.exports = {
 
     // Custom line height (leading)
     lineHeight: {
-      ...range(10, 200).reduce((merged, f) => ({ ...merged, [f]: `${f}px !important` }), {}),
-      ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem !important` }), {}),
+      ...range(10, 200).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
+      ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem` }), {}),
       'none': '1',
       'tight': '1.25',
       'snug': '1.375',
