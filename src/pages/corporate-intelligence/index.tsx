@@ -1,6 +1,12 @@
 import React from "react";
 import CountUp from "react-countup";
-import { motion} from "framer-motion";
+import {
+  SlideUp,
+  BackgroundImage,
+  PageHeader,
+  ScaleUp,
+  CounterAnimation
+} from "../../components/animation/index";
 import { ComponentsSpacing, HeaderSpacing, Layouts } from "../../components/layouts/layouts";
 import signImg from "../../assets/image/corporate-intelligence/sign.png";
 
@@ -123,14 +129,13 @@ const ceoMessage = [
 
 const ComponentsHeader = ({ title, className = "" }: { title: string, className?: string }) => {
   return (
-    <motion.div
+    <SlideUp
       className={`text-sixth text-18 sm:text-20 lg:text-50 font-600 text-center ${className}`}
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
+      delay={0}
+      duration={0.7}
     >
       {title}
-    </motion.div>
+    </SlideUp>
   )
 }
 
@@ -138,25 +143,18 @@ const CorporateIntelligence = () => {
   return (
     <Layouts>
       <HeaderSpacing className="relative w-full h-full flex items-center justify-center h-180 sm:h-210 lg:h-500 select-none">
-        <motion.img
-          src={corporateIntelligenceImage}
-          className="w-full h-full object-cover absolute top-0 left-0 pointer-events-none select-none"
-          alt="Corporate Culture"
-          initial={{ opacity: 0, scale: 1.08 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        />
+        <BackgroundImage className="w-full h-full absolute top-0 left-0 pointer-events-none select-none">
+          <img src={corporateIntelligenceImage}
+            className="w-full h-full object-cover"
+            alt="Corporate Culture"
+          />
+        </BackgroundImage>
 
-        <motion.div
-          className="relative z-10 pb-20 sm:pb-30 lg:pb-40"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-        >
+        <PageHeader className="relative z-10 pb-20 sm:pb-30 lg:pb-40">
           <span className="text-white text-18 sm:text-20 lg:text-60 font-600 text-center">
             企業情報
           </span>
-        </motion.div>
+        </PageHeader>
       </HeaderSpacing>
 
       <ComponentsSpacing className="flex flex-col gap-30 sm:gap-50 lg:gap-100 bg-primary">
@@ -165,13 +163,11 @@ const CorporateIntelligence = () => {
         <div className="w-full max-w-1200 mx-auto">
           <div className="flex flex-col gap-12 lg:gap-15">
             {companyProfile.map((item, index) => (
-              <motion.div
+              <SlideUp
                 key={index}
                 className="flex flex-col lg:flex-row"
-                initial={{ opacity: 0, y: 32 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                viewport={{ once: true, amount: 0.2 }}
+                duration={0.5}
+                amount={0.2}
               >
                 <div className="w-full lg:w-30% bg-secondary p-10 lg:p-20 flex items-center justify-center">
                   <h3 className="text-white text-12 lg:text-26 font-500 text-center">
@@ -218,7 +214,7 @@ const CorporateIntelligence = () => {
                     </div>
                   )}
                 </div>
-              </motion.div>
+              </SlideUp>
             ))}
           </div>
         </div>
@@ -229,44 +225,38 @@ const CorporateIntelligence = () => {
 
         <div className="w-full max-w-1200 mx-auto mb-30 lg:mb-100">
           <div className="relative w-full group">
-            <motion.img src={ceoImage}
-              className="w-full h-auto object-cover"
-              initial={{ opacity: 0, scale: 0.92 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-              viewport={{ once: true, amount: 0.6 }}
-            />
+            <ScaleUp className="w-full h-auto" duration={0.7} amount={0.6}>
+              <img src={ceoImage} className="w-full h-auto object-cover" alt="CEO" />
+            </ScaleUp>
 
-            <motion.div className="absolute bottom-0 w-full flex items-center justify-center group-hover:hidden transition-all duration-200"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
-              viewport={{ once: true, amount: 0.6 }}
+            <SlideUp
+              className="absolute bottom-0 w-full flex items-center justify-center group-hover:hidden transition-all duration-200"
+              duration={0.7}
+              delay={0.4}
+              amount={0.6}
             >
               <div className="relative translate-y-1/2 bg-secondary px-3 py-6 lg:px-40 lg:py-40">
-                <motion.span
+                <SlideUp
                   className="text-white text-10 lg:text-30"
-                  initial={{ opacity: 0, scale: 1.04 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 0.55, ease: "easeOut" }}
-                  viewport={{ once: true }}
+                  duration={0.6}
+                  delay={0.55}
                 >
                   地域から、職場から、日本を元気にしていく。
-                </motion.span>
+                </SlideUp>
               </div>
-            </motion.div>
+            </SlideUp>
 
             <div className="absolute top-0 left-0 w-full h-full bg-tenth/90 opacity-0 group-hover:opacity-100 transition-opacity duration-200 overflow-hidden">
-                <div className="relative flex flex-col py-20 sm:py-30 lg:py-90 px-20 lg:px-50">
-                  {ceoMessage.map((message, index) => (
-                    <div key={index} className="text-white text-12 lg:text-20 font-500 leading-25 lg:leading-35">
-                      {message}
-                    </div>
-                  ))}
-
-                  <div className="flex justify-end">
-                    <img src={signImg} className="w-auto h-80 object-contain"/>
+              <div className="relative flex flex-col py-20 sm:py-30 lg:py-90 px-20 lg:px-50">
+                {ceoMessage.map((message, index) => (
+                  <div key={index} className="text-white text-12 lg:text-20 font-500 leading-25 lg:leading-35">
+                    {message}
                   </div>
+                ))}
+
+                <div className="flex justify-end">
+                  <img src={signImg} className="w-auto h-80 object-contain" />
+                </div>
               </div>
             </div>
           </div>
@@ -279,13 +269,11 @@ const CorporateIntelligence = () => {
         <div className="flex flex-col px-20 sm:px-75 lg:px-170 py-20 py-30 sm:py-75 lg:py-130 bg-secondary">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20 lg:gap-40">
             {statisticData.map((stat, idx) => (
-              <motion.div
-                key={idx}
+              <CounterAnimation key={idx}
                 className={`relative w-full aspect-square ${idx === 4 ? 'lg:col-start-3' : ''}`}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
-                viewport={{ once: true, amount: 0.3 }}
+                duration={0.6}
+                delay={idx * 0.1}
+                amount={0.3}
               >
                 <img src={stat.image} className="w-full h-auto object-cover select-none" alt={stat.title} />
 
@@ -390,7 +378,7 @@ const CorporateIntelligence = () => {
                     </span>
                   </div>
                 )}
-              </motion.div>
+              </CounterAnimation>
             ))}
           </div>
         </div>
