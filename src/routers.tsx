@@ -1,6 +1,6 @@
 import React, { Suspense, lazy, memo } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { NotFound, Loading, ErrorBoundary } from './components/pages';
+import { NotFound, Loading, ErrorBoundary } from './components/common';
 import { Layouts } from './components/layouts/layouts';
 
 // TypeScript interfaces

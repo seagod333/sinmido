@@ -7,7 +7,7 @@ export { default as Footer } from './layouts/footer';
 export * from './animation';
 
 // Common page components
-export * from './pages';
+export * from './common';
 
 // UI components
 export { default as DropdownMenu } from './drop-menu/dropdown-menu';

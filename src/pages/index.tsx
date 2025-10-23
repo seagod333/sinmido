@@ -1,6 +1,6 @@
 import { memo, Suspense, lazy } from 'react';
 import { HeaderSpacing, Layouts } from '../components/layouts/layouts';
-import { Loading } from '../components/pages';
+import { Loading } from '../components/common';
 
 // Lazy load dashboard components for better performance
 const Hero = lazy(() => import('./dashboard/hero'));
