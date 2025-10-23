@@ -15,9 +15,11 @@ import news10 from '../../assets/image/dashboard/news-10.png';
 import news11 from '../../assets/image/dashboard/news-11.png';
 import news12 from '../../assets/image/dashboard/news-12.png';
 import './hero.scss';
+import { Link } from 'react-router-dom';
 
 const heroNews = [
     {
+        link: "#",
         center: false,
         reactAnimation: false,
         size: { w: 3, h: 2, response: { w: 2, h: 1.5 } },
@@ -25,6 +27,7 @@ const heroNews = [
         videoThumb: heroVideoThumb,
     },
     {
+        link: "/corporate-culture",
         center: false,
         reactAnimation: true,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
@@ -38,6 +41,7 @@ const heroNews = [
         reverseColor: 'third'
     },
     {
+        link: "/corporate-intelligence",
         center: true,
         reactAnimation1: true,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
@@ -52,6 +56,7 @@ const heroNews = [
         color: 'primary',
     },
     {
+        link: "/interview",
         center: false,
         reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
@@ -61,6 +66,7 @@ const heroNews = [
         color: 'primary',
     },
     {
+        link: "/interview/details",
         center: true,
         reactAnimation: true,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
@@ -72,6 +78,7 @@ const heroNews = [
         color: 'secondary',
     },
     {
+        link: "/work-environment",
         center: true,
         reactAnimation: true,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
@@ -83,6 +90,7 @@ const heroNews = [
         color: 'secondary',
     },
     {
+        link: "/requirements",
         center: true,
         reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
@@ -93,6 +101,7 @@ const heroNews = [
         color: 'primary',
     },
     {
+        link: "#",
         center: false,
         reactAnimation: false,
         size: { w: 1, h: 2, response: { w: 2, h: 1 } },
@@ -115,6 +124,7 @@ const heroNews = [
         color: 'primary',
     },
     {
+        link: "#",
         center: true,
         reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
@@ -125,6 +135,7 @@ const heroNews = [
         color: 'primary',
     },
     {
+        link: "#",
         center: true,
         reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
@@ -135,12 +146,14 @@ const heroNews = [
         color: 'primary',
     },
     {
+        link: "#",
         center: true,
         reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
         img: news9,
     },
     {
+        link: "#",
         center: true,
         reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
@@ -151,6 +164,7 @@ const heroNews = [
         color: 'primary',
     },
     {
+        link: "#",
         center: true,
         reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
@@ -161,6 +175,7 @@ const heroNews = [
         color: 'primary',
     },
     {
+        link: "#",
         center: true,
         reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
@@ -177,7 +192,7 @@ const Hero = () => {
         <GlobalSpacing>
             <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-20 lg:gap-40">
                 {heroNews.map((item, index) => (
-                    <div key={index}
+                    <Link to={item.link} key={index}
                         className={`${item?.color ? `text-${item.color}` : ``} ${item?.reverseColor ? `hover:text-${item.reverseColor}` : ``} rounded-xl overflow-hidden cursor-pointer aspect-[${item.size.response.w}/${item.size.response.h}] lg:aspect-[${item.size.w}/${item.size.h}] col-span-${item.size.response.w} row-span-${item.size.response.h} lg:col-span-${item.size.w} lg:row-span-${item.size.h} ${item.reactAnimation ? 'react-animation' : item.reactAnimation1 ? 'react-animation-1' : ''} ${item?.reverseColor ? `bg-${item?.reverseColor} hover:bg-${item.color}` : ``} ${!item?.img && !item?.video ? `aspect-auto` : ''}`}
                     >
                         {item.img ? (
@@ -259,7 +274,7 @@ const Hero = () => {
                                 )}
                             </div>
                         )}
-                    </div>
+                    </Link>
                 ))}
             </div>
         </GlobalSpacing>
