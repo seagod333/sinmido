@@ -251,7 +251,7 @@ const CorporateCulture = () => {
                             )}
 
                             {index < aboutTexts.length - 1 && (
-                                <div className="absolute w-0 h-0 -bottom-15 lg:-bottom-20 left-1/2 -translate-x-1/2 border-l-30 lg:border-l-40 border-transparent border-r-30 lg:border-r-40 border-t-15 lg:border-t-20 group-hover:border-t-secondary/80 group-hover:border-t transition-colors duration-200 border-t-secondary" />
+                                <div className="absolute w-0 h-0 -bottom-15 lg:-bottom-20 left-1/2 -translate-x-1/2 border-l-30 lg:border-l-40 border-transparent border-r-30 lg:border-r-40 border-t-15 lg:border-t-20 group-hover:border-t-secondary/80 transition-colors duration-200 border-t-secondary" />
                             )}
                         </div>
                     ))}

@@ -10,8 +10,8 @@ const Header = () => {
   const navigationItems = [
     { label: "企業文化", href: "/corporate-culture" },
     { label: "仕事内容", href: "/corporate-intelligence" },
-    { label: "インタビュー", href: "#" },
-    { label: "採用情報", href: "#" }
+    { label: "インタビュー", href: "/interview" },
+    { label: "採用情報", href: "/work-environment" }
   ];
 
   const toggleDropdown = () => {

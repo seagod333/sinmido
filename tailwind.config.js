@@ -21,13 +21,13 @@ const maxFontWeight = 1000;
 
 const screens = {
   xs: '320px',
-  sx: '450px',
-  sm: '600px',
-  md: '900px',
-  lg: '1200px',
-  xl: '1536px',
-  '2xl': '1920px',
-  '3xl': '2560px',
+  sx: '375px',
+  sm: '425px',
+  md: '768px',
+  lg: '1024px',
+  xl: '1440px',
+  '2xl': '2560px',
+  '3xl': '3840px',
   'full': '100%',
   'screen': '100vh',
   'auto': 'auto',
@@ -197,6 +197,13 @@ module.exports = {
         eighth: '#0061A0',
         ninth: '#139486',
         tenth: '#345CA7',
+        eleventh: "#28C5DE",
+        twelfth: "#00CCA2",
+        thirteenth: "#FE717A",
+        fourteenth: "#8EADB9",
+        sixteenth: "#257594",
+        seventeenth: "#C7C1C1",
+        eightteenth: "#1180FF",
       },
 
       fontFamily: {
@@ -345,7 +352,7 @@ module.exports = {
 
     borderWidth: {
       DEFAULT: '1px',
-      ...range(0, 50).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
+      ...range(0, 100).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
     },
 
     // Custom backdrop blur values

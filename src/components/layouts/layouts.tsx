@@ -31,7 +31,23 @@ export const ComponentsSpacing = ({ children, className = "" }: { children: Reac
   )
 }
 
-export const Layouts = ({ children, topPage = false }: { children?: React.ReactNode, topPage?: boolean }) => {
+export const ComponentsSpacing1 = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => {
+  return (
+    <div className={`px-20 lg:px-180 py-40 lg:py-180 w-full ${className}`}>
+      {children}
+    </div>
+  )
+}
+
+export const ComponentsSpacing2 = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => {
+  return (
+    <div className={`px-0 lg:px-150 w-full ${className}`}>
+      {children}
+    </div>
+  )
+}
+
+export const Layouts = ({ children, className = "", topPage = false, overflowX = false }: { children?: React.ReactNode, className?: string, topPage?: boolean, overflowX?: boolean }) => {
   const [videoLoaded, setVideoLoaded] = useState(false);
 
   const handleVideoLoad = () => {
@@ -39,7 +55,7 @@ export const Layouts = ({ children, topPage = false }: { children?: React.ReactN
   };
 
   return (
-    <div className="layouts-wrapper flex flex-col overflow-x-hidden">
+    <div className={`layouts-wrapper flex flex-col ${overflowX ? '' : 'overflow-x-hidden'}`}>
       {topPage && (
         <React.Fragment>
           {/* Background Thumbnail - shown until video loads */}
@@ -60,7 +76,7 @@ export const Layouts = ({ children, topPage = false }: { children?: React.ReactN
 
       <Header />
 
-      <div className="flex-1 flex flex-col relative z-10">{children}</div>
+      <div className={`flex-1 flex flex-col relative z-10 ${className}`}>{children}</div>
 
       <Footer />
     </div>
