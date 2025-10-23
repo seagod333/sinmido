@@ -1,87 +1,124 @@
-import React from 'react';
+import { memo, useMemo } from 'react';
 import { motion, MotionProps, Variants } from 'framer-motion';
 
-// Common animation variants
+// Optimized animation variants with better performance
 export const fadeInVariants: Variants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1 }
-};
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+}
 
 export const slideUpVariants: Variants = {
   hidden: { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0 }
-};
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+}
 
 export const slideDownVariants: Variants = {
   hidden: { opacity: 0, y: -32 },
-  visible: { opacity: 1, y: 0 }
-};
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+}
 
 export const slideLeftVariants: Variants = {
   hidden: { opacity: 0, x: 32 },
-  visible: { opacity: 1, x: 0 }
-};
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+}
 
 export const slideRightVariants: Variants = {
   hidden: { opacity: 0, x: -32 },
-  visible: { opacity: 1, x: 0 }
-};
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+}
 
 export const scaleInVariants: Variants = {
   hidden: { opacity: 0, scale: 0.8 },
-  visible: { opacity: 1, scale: 1 }
-};
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+}
 
 export const scaleUpVariants: Variants = {
   hidden: { opacity: 0, scale: 0.92 },
-  visible: { opacity: 1, scale: 1 }
-};
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.7, ease: "easeOut" }
+  }
+}
 
 export const rotateInVariants: Variants = {
   hidden: { opacity: 0, rotate: -10 },
-  visible: { opacity: 1, rotate: 0 }
-};
+  visible: {
+    opacity: 1,
+    rotate: 0,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+}
 
-// Stagger container variants
+// Optimized stagger container variants
 export const staggerContainerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.1
+      delayChildren: 0.1,
+      duration: 0.6,
+      ease: "easeOut"
     }
   }
-};
+}
 
 export const staggerItemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 }
-};
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+}
 
-// Common transition configurations
+// Optimized transition configurations
 export const defaultTransition = {
   duration: 0.6,
   ease: "easeOut" as const
-};
+}
 
 export const fastTransition = {
   duration: 0.3,
   ease: "easeOut" as const
-};
+}
 
 export const slowTransition = {
   duration: 1,
   ease: "easeOut" as const
-};
+}
 
 export const springTransition = {
   type: "spring" as const,
   stiffness: 100,
   damping: 15
-};
+}
 
-// Base motion component props interface
+// Enhanced TypeScript interfaces
 interface BaseMotionProps extends Omit<MotionProps, 'variants' | 'initial' | 'animate' | 'transition'> {
   children: React.ReactNode;
   className?: string;
@@ -89,261 +126,266 @@ interface BaseMotionProps extends Omit<MotionProps, 'variants' | 'initial' | 'an
   duration?: number;
   once?: boolean;
   amount?: number;
+  threshold?: number;
 }
 
-// FadeIn Component
-export const FadeIn: React.FC<BaseMotionProps> = ({
+interface CustomMotionProps extends BaseMotionProps {
+  variants: Variants;
+}
+
+// Animation configuration interface
+interface AnimationConfig {
+  delay?: number;
+  duration?: number;
+  once?: boolean;
+  amount?: number;
+  threshold?: number;
+}
+
+// Optimized FadeIn Component
+export const FadeIn = memo<BaseMotionProps>(({
   children,
   className = "",
   delay = 0,
   duration = 0.6,
   once = true,
   amount = 0.2,
+  threshold = 0.1,
   ...props
 }) => {
+  const viewportConfig = useMemo(() => ({
+    once,
+    amount,
+    margin: "-50px"
+  }), [once, amount])
+
+  const transitionConfig = useMemo(() => ({
+    duration,
+    delay,
+    ease: "easeOut" as const
+  }), [duration, delay])
+
   return (
     <motion.div
       className={className}
       variants={fadeInVariants}
       initial="hidden"
       whileInView="visible"
-      transition={{ duration, delay, ease: "easeOut" }}
-      viewport={{ once, amount }}
+      transition={transitionConfig}
+      viewport={viewportConfig}
       {...props}
     >
       {children}
     </motion.div>
-  );
-};
+  )
+})
 
-// SlideUp Component
-export const SlideUp: React.FC<BaseMotionProps> = ({
+// Optimized SlideUp Component
+export const SlideUp = memo<BaseMotionProps>(({
   children,
   className = "",
   delay = 0,
   duration = 0.6,
   once = true,
   amount = 0.2,
+  threshold = 0.1,
   ...props
 }) => {
+  const viewportConfig = useMemo(() => ({
+    once,
+    amount,
+    margin: "-50px"
+  }), [once, amount])
+
+  const transitionConfig = useMemo(() => ({
+    duration,
+    delay,
+    ease: "easeOut" as const
+  }), [duration, delay])
+
   return (
     <motion.div
       className={className}
       variants={slideUpVariants}
       initial="hidden"
       whileInView="visible"
-      transition={{ duration, delay, ease: "easeOut" }}
-      viewport={{ once, amount }}
+      transition={transitionConfig}
+      viewport={viewportConfig}
       {...props}
     >
       {children}
     </motion.div>
-  );
-};
+  )
+})
 
-// SlideDown Component
-export const SlideDown: React.FC<BaseMotionProps> = ({
+// Base Animation Component for reusability
+const BaseAnimation = memo<BaseMotionProps & { variants: Variants }>(({
   children,
   className = "",
   delay = 0,
   duration = 0.6,
   once = true,
   amount = 0.2,
+  threshold = 0.1,
+  variants,
   ...props
 }) => {
+  const viewportConfig = useMemo(() => ({
+    once,
+    amount,
+    margin: "-50px"
+  }), [once, amount])
+
+  const transitionConfig = useMemo(() => ({
+    duration,
+    delay,
+    ease: "easeOut" as const
+  }), [duration, delay])
+
   return (
     <motion.div
       className={className}
-      variants={slideDownVariants}
+      variants={variants}
       initial="hidden"
       whileInView="visible"
-      transition={{ duration, delay, ease: "easeOut" }}
-      viewport={{ once, amount }}
+      transition={transitionConfig}
+      viewport={viewportConfig}
       {...props}
     >
       {children}
     </motion.div>
-  );
-};
+  )
+})
 
-// SlideLeft Component
-export const SlideLeft: React.FC<BaseMotionProps> = ({
-  children,
-  className = "",
-  delay = 0,
-  duration = 0.6,
-  once = true,
-  amount = 0.2,
-  ...props
-}) => {
-  return (
-    <motion.div
-      className={className}
-      variants={slideLeftVariants}
-      initial="hidden"
-      whileInView="visible"
-      transition={{ duration, delay, ease: "easeOut" }}
-      viewport={{ once, amount }}
-      {...props}
-    >
-      {children}
-    </motion.div>
-  );
-};
+// Optimized SlideDown Component
+export const SlideDown = memo<BaseMotionProps>((props) => (
+  <BaseAnimation {...props} variants={slideDownVariants} />
+))
 
-// SlideRight Component
-export const SlideRight: React.FC<BaseMotionProps> = ({
-  children,
-  className = "",
-  delay = 0,
-  duration = 0.6,
-  once = true,
-  amount = 0.2,
-  ...props
-}) => {
-  return (
-    <motion.div
-      className={className}
-      variants={slideRightVariants}
-      initial="hidden"
-      whileInView="visible"
-      transition={{ duration, delay, ease: "easeOut" }}
-      viewport={{ once, amount }}
-      {...props}
-    >
-      {children}
-    </motion.div>
-  );
-};
+// Optimized SlideLeft Component
+export const SlideLeft = memo<BaseMotionProps>((props) => (
+  <BaseAnimation {...props} variants={slideLeftVariants} />
+))
 
-// ScaleIn Component
-export const ScaleIn: React.FC<BaseMotionProps> = ({
-  children,
-  className = "",
-  delay = 0,
-  duration = 0.6,
-  once = true,
-  amount = 0.2,
-  ...props
-}) => {
-  return (
-    <motion.div
-      className={className}
-      variants={scaleInVariants}
-      initial="hidden"
-      whileInView="visible"
-      transition={{ duration, delay, ease: "easeOut" }}
-      viewport={{ once, amount }}
-      {...props}
-    >
-      {children}
-    </motion.div>
-  );
-};
+// Optimized SlideRight Component
+export const SlideRight = memo<BaseMotionProps>((props) => (
+  <BaseAnimation {...props} variants={slideRightVariants} />
+))
 
-// ScaleUp Component (for images)
-export const ScaleUp: React.FC<BaseMotionProps> = ({
+// Optimized ScaleIn Component
+export const ScaleIn = memo<BaseMotionProps>((props) => (
+  <BaseAnimation {...props} variants={scaleInVariants} />
+))
+
+// Optimized ScaleUp Component (for images)
+export const ScaleUp = memo<BaseMotionProps>(({
   children,
   className = "",
   delay = 0,
   duration = 0.7,
   once = true,
   amount = 0.6,
+  threshold = 0.1,
   ...props
 }) => {
+  const viewportConfig = useMemo(() => ({
+    once,
+    amount,
+    margin: "-100px"
+  }), [once, amount])
+
+  const transitionConfig = useMemo(() => ({
+    duration,
+    delay,
+    ease: "easeOut" as const
+  }), [duration, delay])
+
   return (
     <motion.div
       className={className}
       variants={scaleUpVariants}
       initial="hidden"
       whileInView="visible"
-      transition={{ duration, delay, ease: "easeOut" }}
-      viewport={{ once, amount }}
+      transition={transitionConfig}
+      viewport={viewportConfig}
       {...props}
     >
       {children}
     </motion.div>
-  );
-};
+  )
+})
 
-// RotateIn Component
-export const RotateIn: React.FC<BaseMotionProps> = ({
+// Optimized RotateIn Component
+export const RotateIn = memo<BaseMotionProps>((props) => (
+  <BaseAnimation {...props} variants={rotateInVariants} />
+))
+
+// Optimized StaggerContainer Component
+export const StaggerContainer = memo<BaseMotionProps>(({
   children,
   className = "",
   delay = 0,
   duration = 0.6,
   once = true,
   amount = 0.2,
+  threshold = 0.1,
   ...props
 }) => {
-  return (
-    <motion.div
-      className={className}
-      variants={rotateInVariants}
-      initial="hidden"
-      whileInView="visible"
-      transition={{ duration, delay, ease: "easeOut" }}
-      viewport={{ once, amount }}
-      {...props}
-    >
-      {children}
-    </motion.div>
-  );
-};
+  const viewportConfig = useMemo(() => ({
+    once,
+    amount,
+    margin: "-50px"
+  }), [once, amount])
 
-// StaggerContainer Component
-export const StaggerContainer: React.FC<BaseMotionProps> = ({
-  children,
-  className = "",
-  delay = 0,
-  duration = 0.6,
-  once = true,
-  amount = 0.2,
-  ...props
-}) => {
+  const transitionConfig = useMemo(() => ({
+    duration,
+    delay,
+    ease: "easeOut" as const
+  }), [duration, delay])
+
   return (
     <motion.div
       className={className}
       variants={staggerContainerVariants}
       initial="hidden"
       whileInView="visible"
-      transition={{ duration, delay, ease: "easeOut" }}
-      viewport={{ once, amount }}
+      transition={transitionConfig}
+      viewport={viewportConfig}
       {...props}
     >
       {children}
     </motion.div>
-  );
-};
+  )
+})
 
-// StaggerItem Component
-export const StaggerItem: React.FC<BaseMotionProps> = ({
+// Optimized StaggerItem Component
+export const StaggerItem = memo<BaseMotionProps>(({
   children,
   className = "",
   delay = 0,
   duration = 0.6,
-  once = true,
-  amount = 0.2,
   ...props
 }) => {
+  const transitionConfig = useMemo(() => ({
+    duration,
+    delay,
+    ease: "easeOut" as const
+  }), [duration, delay])
+
   return (
     <motion.div
       className={className}
       variants={staggerItemVariants}
-      transition={{ duration, delay, ease: "easeOut" }}
+      transition={transitionConfig}
       {...props}
     >
       {children}
     </motion.div>
-  );
-};
+  )
+})
 
-// Custom Motion Component with flexible variants
-interface CustomMotionProps extends BaseMotionProps {
-  variants: Variants;
-}
-
-export const CustomMotion: React.FC<CustomMotionProps> = ({
+// Optimized Custom Motion Component with flexible variants
+export const CustomMotion = memo<CustomMotionProps>(({
   children,
   className = "",
   variants,
@@ -351,97 +393,149 @@ export const CustomMotion: React.FC<CustomMotionProps> = ({
   duration = 0.6,
   once = true,
   amount = 0.2,
+  threshold = 0.1,
   ...props
 }) => {
+  const viewportConfig = useMemo(() => ({
+    once,
+    amount,
+    margin: "-50px"
+  }), [once, amount])
+
+  const transitionConfig = useMemo(() => ({
+    duration,
+    delay,
+    ease: "easeOut" as const
+  }), [duration, delay])
+
   return (
     <motion.div
       className={className}
       variants={variants}
       initial="hidden"
       whileInView="visible"
-      transition={{ duration, delay, ease: "easeOut" }}
-      viewport={{ once, amount }}
+      transition={transitionConfig}
+      viewport={viewportConfig}
       {...props}
     >
       {children}
     </motion.div>
-  );
-};
+  )
+})
 
-// Page Header Animation Component
-export const PageHeader: React.FC<BaseMotionProps> = ({
+// Optimized Page Header Animation Component
+export const PageHeader = memo<BaseMotionProps>(({
   children,
   className = "",
   delay = 0.3,
   duration = 1,
   once = true,
   amount = 0.2,
+  threshold = 0.1,
   ...props
 }) => {
+  const viewportConfig = useMemo(() => ({
+    once,
+    amount,
+    margin: "-50px"
+  }), [once, amount])
+
+  const transitionConfig = useMemo(() => ({
+    duration,
+    delay,
+    ease: "easeOut" as const
+  }), [duration, delay])
+
   return (
     <motion.div
       className={className}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration, delay, ease: "easeOut" }}
-      viewport={{ once, amount }}
+      transition={transitionConfig}
+      viewport={viewportConfig}
       {...props}
     >
       {children}
     </motion.div>
-  );
-};
+  )
+})
 
-// Background Image Animation Component
-export const BackgroundImage: React.FC<BaseMotionProps> = ({
+// Optimized Background Image Animation Component
+export const BackgroundImage = memo<BaseMotionProps>(({
   children,
   className = "",
   delay = 0,
   duration = 1,
   once = true,
   amount = 0.2,
+  threshold = 0.1,
   ...props
 }) => {
+  const viewportConfig = useMemo(() => ({
+    once,
+    amount,
+    margin: "-100px"
+  }), [once, amount])
+
+  const transitionConfig = useMemo(() => ({
+    duration,
+    delay,
+    ease: "easeOut" as const
+  }), [duration, delay])
+
   return (
     <motion.div
       className={className}
       initial={{ opacity: 0, scale: 1.08 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      transition={{ duration, delay, ease: "easeOut" }}
-      viewport={{ once, amount }}
+      transition={transitionConfig}
+      viewport={viewportConfig}
       {...props}
     >
       {children}
     </motion.div>
-  );
-};
+  )
+})
 
-// Counter Animation Component (for statistics)
-export const CounterAnimation: React.FC<BaseMotionProps> = ({
+// Optimized Counter Animation Component (for statistics)
+export const CounterAnimation = memo<BaseMotionProps>(({
   children,
   className = "",
   delay = 0,
   duration = 0.6,
   once = true,
   amount = 0.3,
+  threshold = 0.1,
   ...props
 }) => {
+  const viewportConfig = useMemo(() => ({
+    once,
+    amount,
+    margin: "-50px"
+  }), [once, amount])
+
+  const transitionConfig = useMemo(() => ({
+    duration,
+    delay,
+    ease: "easeOut" as const
+  }), [duration, delay])
+
   return (
     <motion.div
       className={className}
       initial={{ opacity: 0, scale: 0.8 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      transition={{ duration, delay, ease: "easeOut" }}
-      viewport={{ once, amount }}
+      transition={transitionConfig}
+      viewport={viewportConfig}
       {...props}
     >
       {children}
     </motion.div>
-  );
-};
+  )
+})
 
-// Hover Animation Component
-export const HoverScale: React.FC<BaseMotionProps> = ({
+// Optimized Hover Animation Component
+export const HoverScale = memo<BaseMotionProps>(({
   children,
   className = "",
   delay = 0,
@@ -450,21 +544,48 @@ export const HoverScale: React.FC<BaseMotionProps> = ({
   amount = 0.2,
   ...props
 }) => {
+  const transitionConfig = useMemo(() => ({
+    duration,
+    ease: "easeOut" as const
+  }), [duration])
+
   return (
     <motion.div
       className={className}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      transition={{ duration, ease: "easeOut" }}
+      transition={transitionConfig}
       {...props}
     >
       {children}
     </motion.div>
-  );
-};
+  )
+})
 
-// Export all components
-export default {
+// Utility functions for animation configuration
+export const createAnimationConfig = (config: Partial<AnimationConfig> = {}): AnimationConfig => ({
+  delay: 0,
+  duration: 0.6,
+  once: true,
+  amount: 0.2,
+  threshold: 0.1,
+  ...config
+})
+
+export const createViewportConfig = (config: Partial<AnimationConfig> = {}) => ({
+  once: config.once ?? true,
+  amount: config.amount ?? 0.2,
+  margin: "-50px"
+})
+
+export const createTransitionConfig = (config: Partial<AnimationConfig> = {}) => ({
+  duration: config.duration ?? 0.6,
+  delay: config.delay ?? 0,
+  ease: "easeOut" as const
+})
+
+// Optimized export structure
+export const AnimationComponents = {
   FadeIn,
   SlideUp,
   SlideDown,
@@ -479,8 +600,10 @@ export default {
   PageHeader,
   BackgroundImage,
   CounterAnimation,
-  HoverScale,
-  // Variants
+  HoverScale
+} as const;
+
+export const AnimationVariants = {
   fadeInVariants,
   slideUpVariants,
   slideDownVariants,
@@ -490,10 +613,22 @@ export default {
   scaleUpVariants,
   rotateInVariants,
   staggerContainerVariants,
-  staggerItemVariants,
-  // Transitions
+  staggerItemVariants
+} as const;
+
+export const AnimationTransitions = {
   defaultTransition,
   fastTransition,
   slowTransition,
   springTransition
-};
+} as const;
+
+// Default export with all components
+export default {
+  ...AnimationComponents,
+  ...AnimationVariants,
+  ...AnimationTransitions,
+  createAnimationConfig,
+  createViewportConfig,
+  createTransitionConfig
+}
