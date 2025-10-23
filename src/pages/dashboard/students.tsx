@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { GlobalSpacing } from '../../components/layouts/layouts';
 import student1 from '../../assets/image/dashboard/student-1.png';
 import student2 from '../../assets/image/dashboard/student-2.png';
@@ -8,10 +8,18 @@ import studentBg2 from '../../assets/image/dashboard/student-bg-2.png';
 import studentBg3 from '../../assets/image/dashboard/student-bg-3.png';
 import arrowNext from '../../assets/image/icons/arrow-next.svg';
 import arrowPrev from '../../assets/image/icons/arrow-prev.svg';
-
 import './students.scss';
 
-const slideData = [
+// TypeScript interfaces
+interface SlideData {
+    image: string;
+    image1: string;
+    subTitle?: string;
+    title: string[];
+    desc: string;
+}
+
+const slideData: SlideData[] = [
     {
         image: student1,
         image1: studentBg1,
@@ -32,7 +40,123 @@ const slideData = [
         title: ['シンミの心で', '未来を創る仲間たち'],
         desc: 'Sinmidoには、想いをもって行動し、挑戦を楽しむ仲間が集まっています。「親身・真實・新観」を胸に、人と地域の未来を創っています。',
     },
-]
+];
+
+// Slide Image Component
+const SlideImage = ({ slide, index, currentSlide, isTransitioning, animationKey }: {
+    slide: SlideData;
+    index: number;
+    currentSlide: number;
+    isTransitioning: boolean;
+    animationKey: number;
+}) => {
+    const isActive = index === currentSlide;
+    const shouldAnimate = isActive && isTransitioning;
+
+    return (
+        <div className="student-image-container max-w-85% lg:max-w-50% w-650 aspect-[3/4] relative left-[-5px] lg:left-[-20px]">
+            <img
+                src={slide.image1}
+                key={`bg-${index}-${animationKey}`}
+                className="student-bg-image w-full aspect-3/4 rounded-2xl rotate-3"
+                style={{
+                    transform: shouldAnimate ? 'none' : 'rotate(-3deg)',
+                    transition: 'transform 0.5s ease-in-out'
+                }}
+                alt={`Background ${index + 1}`}
+            />
+            <img
+                src={slide.image}
+                key={`img-${index}-${animationKey}`}
+                className="student-image absolute w-full top-0 right-[-5px] lg:right-[-20px] aspect-3/4 rounded-2xl rotate-3"
+                style={{
+                    transform: shouldAnimate ? 'none' : 'rotate(3deg)',
+                    right: shouldAnimate ? 'none' : '-20px',
+                    transition: 'all 0.5s ease-in-out',
+                }}
+                alt={`Student ${index + 1}`}
+            />
+        </div>
+    );
+};
+
+// Slide Content Component
+const SlideContent = ({ slide }: { slide: SlideData }) => (
+    <div className="student-content absolute h-full w-full max-w-100% lg:max-w-60% w-870 flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center gap-10 lg:gap-80 z-10 text-white">
+            {slide.subTitle && (
+                <span className="text-15 lg:text-25">
+                    {slide.subTitle}
+                </span>
+            )}
+
+            <h2 className="text-30 sm:text-35 lg:text-80 font-500 text-center tracking-0 lg:tracking-15">
+                {slide.title.map((line, idx) => (
+                    <span key={idx} className="block">
+                        {line}
+                    </span>
+                ))}
+            </h2>
+
+            <p className="text-12 lg:text-16 max-w-70% lg:max-w-50% text-center leading-20 lg:leading-35">
+                {slide.desc}
+            </p>
+        </div>
+    </div>
+);
+
+// Navigation Button Component
+const NavigationButton = ({ onClick, direction, className, icon, alt }: { onClick: () => void; direction: 'prev' | 'next'; className: string; icon: string; alt: string; }) => (
+    <button onClick={onClick} className={className}>
+        <img src={icon} alt={alt} className="w-40 lg:w-57" />
+    </button>
+);
+
+// Slide Indicator Component
+const SlideIndicator = ({ index, isActive, onClick }: { index: number; isActive: boolean; onClick: () => void; }) => (
+    <button
+        onClick={onClick}
+        className={`slide-indicator text-base text-15 sm:text-20 ${isActive ? 'text-white' : 'text-white/60 hover:text-white'
+            }`}
+    >
+        {String(index + 1).padStart(2, '0')}
+    </button>
+);
+
+// Mobile Navigation Controls Component
+const MobileNavigationControls = ({ onPrev, onNext, indicators }: {
+    onPrev: () => void;
+    onNext: () => void;
+    indicators: React.ReactNode;
+}) => (
+    <div className="navigation-controls md:hidden flex flex-row items-center justify-center gap-30 sm:gap-35 lg:gap-55">
+        <button
+            onClick={onPrev}
+            className="navigation-button w-40 sm:w-50 h-40 sm:h-50 text-white rounded-full border-1 border-white flex items-center justify-center"
+        >
+            <img src={arrowPrev} alt="Previous" className="w-18 sm:w-20" />
+        </button>
+
+        <div className="flex gap-15 items-center justify-center">
+            {indicators}
+        </div>
+
+        <button
+            onClick={onNext}
+            className="navigation-button w-40 sm:w-50 h-40 sm:h-50 text-white rounded-full border-1 border-white flex items-center justify-center"
+            style={{ zIndex: 20 }}
+        >
+            <img src={arrowNext} alt="Next" className="w-18 sm:w-20" />
+        </button>
+    </div>
+);
+
+// Desktop Slide Indicators Component
+const DesktopSlideIndicators = ({ indicators }: { indicators: React.ReactNode }) => (
+    <div className="navigation-controls hidden md:flex w-full flex flex-row items-center justify-center gap-35 lg:gap-45">
+        {indicators}
+    </div>
+);
 
 const Students = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -48,150 +172,104 @@ const Students = () => {
         return () => clearTimeout(timer);
     }, []);
 
-    const nextSlide = () => {
-        if (isTransitioning) return;
+    const handleSlideChange = useCallback((newSlide: number) => {
+        if (isTransitioning || newSlide === currentSlide) return;
         setIsTransitioning(true);
         setAnimationKey(prev => prev + 1);
-        setCurrentSlide((prev) => (prev + 1) % slideData.length);
+        setCurrentSlide(newSlide);
         setTimeout(() => setIsTransitioning(false), 700);
-    };
+    }, [isTransitioning, currentSlide]);
 
-    const prevSlide = () => {
-        if (isTransitioning) return;
-        setIsTransitioning(true);
-        setAnimationKey(prev => prev + 1);
-        setCurrentSlide((prev) => (prev - 1 + slideData.length) % slideData.length);
-        setTimeout(() => setIsTransitioning(false), 700);
-    };
+    const nextSlide = useCallback(() => {
+        const nextIndex = (currentSlide + 1) % slideData.length;
+        handleSlideChange(nextIndex);
+    }, [currentSlide, handleSlideChange]);
 
-    const goToSlide = (index: number) => {
-        if (isTransitioning || index === currentSlide) return;
-        setIsTransitioning(true);
-        setAnimationKey(prev => prev + 1);
-        setCurrentSlide(index);
-        setTimeout(() => setIsTransitioning(false), 700);
-    };
+    const prevSlide = useCallback(() => {
+        const prevIndex = (currentSlide - 1 + slideData.length) % slideData.length;
+        handleSlideChange(prevIndex);
+    }, [currentSlide, handleSlideChange]);
+
+    const goToSlide = useCallback((index: number) => {
+        handleSlideChange(index);
+    }, [handleSlideChange]);
+
+    // Memoized slide items
+    const memoizedSlides = useMemo(() =>
+        slideData.map((slide, index) => (
+            <div key={`${index}-${currentSlide}`} className="relative flex flex-row items-center justify-center min-w-full">
+                <SlideImage
+                    slide={slide}
+                    index={index}
+                    currentSlide={currentSlide}
+                    isTransitioning={isTransitioning}
+                    animationKey={animationKey}
+                />
+                <SlideContent slide={slide} />
+            </div>
+        )), [currentSlide, isTransitioning, animationKey]
+    );
+
+    // Memoized indicators
+    const memoizedIndicators = useMemo(() =>
+        slideData.map((_, index) => (
+            <SlideIndicator
+                key={index}
+                index={index}
+                isActive={index === currentSlide}
+                onClick={() => goToSlide(index)}
+            />
+        )), [currentSlide, goToSlide]
+    );
+
+    const containerClasses = [
+        'students-container relative rounded-2xl',
+        isPageLoaded ? 'page-load' : '',
+        isTransitioning ? 'slide-transition' : ''
+    ].filter(Boolean).join(' ');
 
     return (
         <GlobalSpacing>
-            <div className={`students-container relative rounded-2xl ${isPageLoaded ? 'page-load' : ''} ${isTransitioning ? 'slide-transition' : ''}`}>
+            <div className={containerClasses}>
                 {/* Slide Container */}
                 <div className="slide-container overflow-hidden">
-                    <div className="flex flex-row transition-transform pb-30 sm:pb-40 lg:pb-80 pt-20"
+                    <div
+                        className="flex flex-row transition-transform pb-30 sm:pb-40 lg:pb-80 pt-20"
                         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
                     >
-                        {slideData.map((slide, index) => (
-                            <div key={`${index}-${currentSlide}`} className="relative flex flex-row items-center justify-center min-w-full">
-                                <div className="student-image-container max-w-85% lg:max-w-50% w-650 aspect-[3/4] relative left-[-5px] lg:left-[-20px]">
-                                    <img src={slide.image1}
-                                        key={`bg-${index}-${animationKey}`}
-                                        className={`student-bg-image w-full aspect-3/4 rounded-2xl rotate-3`}
-                                        style={{
-                                            transform: index === currentSlide && isTransitioning ? 'none' : 'rotate(-3deg)',
-                                            transition: 'transform 0.5s ease-in-out'
-                                        }}
-                                    />
-
-                                    <img src={slide.image}
-                                        key={`img-${index}-${animationKey}`}
-                                        className={`student-image absolute w-full top-0 right-[-5px] lg:right-[-20px] aspect-3/4 rounded-2xl rotate-3`}
-                                        style={{
-                                            transform: index === currentSlide && isTransitioning ? 'none' : 'rotate(3deg)',
-                                            right: index === currentSlide && isTransitioning ? 'none' : '-20px',
-                                            transition: 'all 0.5s ease-in-out',
-                                        }}
-                                    />
-                                </div>
-
-
-                                <div className="student-content absolute h-full w-full max-w-100% lg:max-w-60% w-870 flex flex-col items-center justify-center">
-                                    <div className="flex flex-col items-center justify-center gap-10 lg:gap-80 z-10 text-white">
-                                        <span className="text-15 lg:text-25">
-                                            {slide?.subTitle || ''}
-                                        </span>
-
-                                        <h2 className="text-30 sm:text-35 lg:text-80 font-500 text-center tracking-0 lg:tracking-15">
-                                            {Array.isArray(slide.title) && (
-                                                slide.title.map((line, idx) => (
-                                                    <span key={idx} className="block">
-                                                        {line}
-                                                    </span>
-                                                ))
-                                            )}
-                                        </h2>
-
-                                        <p className="text-12 lg:text-16 max-w-70% lg:max-w-50% text-center leading-20 lg:leading-35">
-                                            {slide.desc}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
+                        {memoizedSlides}
                     </div>
                 </div>
 
-                {/* Prev Button - Desktop only */}
-                <button onClick={prevSlide}
+                {/* Desktop Navigation Buttons */}
+                <NavigationButton
+                    onClick={prevSlide}
+                    direction="prev"
                     className="navigation-button hidden md:flex justify-center items-center absolute left-80 top-1/2 -translate-y-1/2 w-150 h-150 lg:w-200 lg:h-200 text-white rounded-full border-1 border-white"
-                    style={{ zIndex: 20 }}
-                >
-                    <img src={arrowPrev} alt="Previous" className="w-40 lg:w-57" />
-                </button>
+                    icon={arrowPrev}
+                    alt="Previous"
+                />
 
-                {/* Next Button - Desktop only */}
-                <button
+                <NavigationButton
                     onClick={nextSlide}
+                    direction="next"
                     className="navigation-button hidden md:flex justify-center items-center absolute right-80 top-1/2 -translate-y-1/2 w-150 h-150 lg:w-200 lg:h-200 text-white rounded-full border-1 border-white"
-                    style={{ zIndex: 20 }}
-                >
-                    <img src={arrowNext} alt="Previous" className="w-40 lg:w-57" />
-                </button>
+                    icon={arrowNext}
+                    alt="Next"
+                />
 
                 {/* Mobile Navigation Controls */}
-                <div className="navigation-controls md:hidden flex flex-row items-center justify-center gap-30 sm:gap-35 lg:gap-55">
-                    {/* Prev Button - Mobile */}
-                    <button onClick={prevSlide}
-                        className="navigation-button w-40 sm:w-50 h-40 sm:h-50 text-white rounded-full border-1 border-white flex items-center justify-center"
-                    >
-                        <img src={arrowPrev} alt="Previous" className="w-18 sm:w-20" />
-                    </button>
-
-                    {/* Slide Indicators */}
-                    <div className="flex gap-15 items-center justify-center">
-                        {slideData.map((_, index) => (
-                            <button key={index}
-                                onClick={() => goToSlide(index)}
-                                className={`slide-indicator text-base text-15 sm:text-20 ${index === currentSlide ? 'text-white' : 'text-white/60 hover:text-white'}`}
-                            >
-                                {String(index + 1).padStart(2, '0')}
-                            </button>
-                        ))}
-                    </div>
-
-                    {/* Next Button - Mobile */}
-                    <button
-                        onClick={nextSlide}
-                        className="navigation-button w-40 sm:w-50 h-40 sm:h-50 text-white rounded-full border-1 border-white flex items-center justify-center"
-                        style={{ zIndex: 20 }}
-                    >
-                        <img src={arrowNext} alt="Next" className="w-18 sm:w-20" />
-                    </button>
-                </div>
+                <MobileNavigationControls
+                    onPrev={prevSlide}
+                    onNext={nextSlide}
+                    indicators={memoizedIndicators}
+                />
 
                 {/* Desktop Slide Indicators */}
-                <div className="navigation-controls hidden md:flex w-full flex flex-row items-center justify-center gap-35 lg:gap-45">
-                    {slideData.map((_, index) => (
-                        <button key={index}
-                            onClick={() => goToSlide(index)}
-                            className={`slide-indicator text-base text-20 ${index === currentSlide ? 'text-white' : 'text-white/60 hover:text-white'}`}
-                        >
-                            {String(index + 1).padStart(2, '0')}
-                        </button>
-                    ))}
-                </div>
+                <DesktopSlideIndicators indicators={memoizedIndicators} />
             </div>
         </GlobalSpacing>
-    )
+    );
 }
 
 export default Students;
