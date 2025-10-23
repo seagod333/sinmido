@@ -142,7 +142,7 @@ const ComponentsHeader = ({ title, className = "" }: { title: string, className?
 const CorporateIntelligence = () => {
   return (
     <Layouts>
-      <HeaderSpacing className="relative w-full h-full flex items-center justify-center h-180 sm:h-210 lg:h-500 select-none">
+      <HeaderSpacing className="relative w-full h-full flex items-center justify-center aspect-[2/1] lg:aspect-[7/2] select-none">
         <BackgroundImage className="w-full h-full absolute top-0 left-0 pointer-events-none select-none">
           <img src={corporateIntelligenceImage}
             className="w-full h-full object-cover"

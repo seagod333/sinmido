@@ -6,7 +6,6 @@ import interviewFooter from "../../assets/image/interview/interview-footer.png";
 import serviceImg1 from "../../assets/image/interview/service-1.png";
 import serviceImg2 from "../../assets/image/interview/service-2.png";
 import serviceImg3 from "../../assets/image/interview/service-3.png";
-import menuIcon from "../../assets/image/icons/menu.png";
 import arrowPrev from "../../assets/image/icons/arrow-prev-1.png";
 import arrowNext from "../../assets/image/icons/arrow-next-1.png";
 import interviewImg1 from "../../assets/image/interview/interview-1.png";

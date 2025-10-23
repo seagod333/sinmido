@@ -89,7 +89,7 @@ const ComponentsItem = ({ title, description }: { title: string, description: st
 const CorporateCulture = () => {
     return (
         <Layouts>
-            <HeaderSpacing className="relative w-full h-full flex items-center justify-center h-160 sm:h-180 lg:h-400 select-none">
+            <HeaderSpacing className="relative w-full h-full flex items-center justify-center aspect-[5/2] lg:aspect-[9/2] select-none">
                 <img src={corporateCultureImage}
                     className="w-full h-full object-cover absolute top-0 left-0 pointer-events-none select-none"
                     alt="Corporate Culture"
