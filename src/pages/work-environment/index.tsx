@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { ComponentsSpacing, HeaderSpacing, Layouts } from "../../components/layouts/layouts";
 import { BackgroundImage, PageHeader, SlideUp } from "../../components/animation";
 import backgroundImg from "../../assets/image/environment/background.png";
@@ -17,7 +18,26 @@ import trainingBgImg from "../../assets/image/environment/training-bg.png";
 import trainingViewImg from "../../assets/image/environment/training-view.png";
 import workStyle from "../../assets/image/environment/work-style.png";
 
-const introData = [
+interface IntroData {
+    img: string;
+}
+
+interface EmployeeData {
+    img: string;
+    title: string;
+    desc: string[];
+}
+
+interface TrainingProgram {
+    id: number;
+    title: string;
+    description: string;
+    points: string[];
+    bgColor: string;
+    maxWidth: string;
+}
+
+const introData: IntroData[] = [
     {
         img: introImg1,
     }, {
@@ -31,9 +51,9 @@ const introData = [
     }, {
         img: introImg6,
     }
-]
+];
 
-const employeeDatas = [
+const employeeDatas: EmployeeData[] = [
     {
         img: employeeImg1,
         title: "～休日・休暇制度～",
@@ -95,9 +115,47 @@ const employeeDatas = [
             "・ ブルックリン調のオフィス（遊び心満載のデザイン）"
         ]
     }
-]
+];
 
-const ComponentsHeader = ({ title, className = "" }: { title: string, className?: string }) => {
+const trainingPrograms: TrainingProgram[] = [
+    {
+        id: 1,
+        title: "新入社員研修",
+        description: "新入社員研修は、新入社員が企業や業務環境に迅速に適応し、社会人としての基礎を築くことを目的としたプログラムです。シンミドウでは、以下のような内容に重点を置いています。",
+        points: [
+            "1.社会人としてのマインドチェンジ 学生から社会人への意識の切り替えを支援し、プロフェッショナルとしての自覚を養います。",
+            "2.ビジネスマナーの習得 社会人として必要な礼儀作法やコミュニケーションスキル（敬語、名刺交換、電話対応など）を学びます。"
+        ],
+        bgColor: "bg-twentyth",
+        maxWidth: "max-w-80% lg:max-w-100%"
+    },
+    {
+        id: 2,
+        title: "内定者研修",
+        description: "内定者研修は、内定者が入社前に自社や事業の理解を深め、入社後の適応をスムーズにすること を目的とした取り組みです。",
+        points: [
+            "1.自社・事業理解の促進　企業理念や事業内容、業界の特性について学び、自社への理解と共感を深めます。",
+            "2.不安の払拭　社会人になることや新しい環境に対する不安を軽減するため、研修や交流機会を通じて安心感を醸成します。",
+            "3.早期馴染みの促進　同期や先輩社員との関係構築を図り、入社後の人間関係や職場環境への適応をサポートします。"
+        ],
+        bgColor: "bg-twentyfirst",
+        maxWidth: "max-w-90% lg:max-w-100%"
+    },
+    {
+        id: 3,
+        title: "内定者研修",
+        description: "OJTは、職場における実践的な訓練です。研修で学んだ知識やスキルを、実際の業務を通して実践的に習得する機会を提供します。単に業務をこなすだけでなく、先輩社員による指導やフィードバックを通じて、より深い理解とスキル向上を目指します。効果的なOJTのためには、明確な目標設定、定期的な進捗確認、そして適切な指導体制の構築が不可欠です。",
+        points: [
+            "1.目標設定　具体的な目標を設定することで、研修内容と業務の繋がりを明確にし、学習意欲を高めます。",
+            "2.進捗確認　定期的な面談を通して、業務の進捗状況や課題を把握し、適切なサポートを提供します。",
+            "3.指導体制　経験豊富で指導能力の高い先輩社員をメンターとして配置することで、効果的なOJTを実現できます"
+        ],
+        bgColor: "bg-twentysecond",
+        maxWidth: "max-w-100%"
+    }
+];
+
+const ComponentsHeader = memo(({ title, className = "" }: { title: string, className?: string }) => {
     return (
         <SlideUp
             className={`text-sixth text-18 sm:text-20 lg:text-50 font-600 text-center ${className}`}
@@ -106,10 +164,10 @@ const ComponentsHeader = ({ title, className = "" }: { title: string, className?
         >
             {title}
         </SlideUp>
-    )
-}
+    );
+});
 
-const EmployeeCard = ({ data, index }: { data: any, index: number }) => {
+const EmployeeCard = memo(({ data, index }: { data: EmployeeData, index: number }) => {
     return (
         <SlideUp delay={index * 0.1} duration={0.7}
             className="bg-white border border-nineteenth rounded-10 overflow-hidden py-8 lg:py-15"
@@ -136,10 +194,32 @@ const EmployeeCard = ({ data, index }: { data: any, index: number }) => {
                 </ul>
             </div>
         </SlideUp>
-    )
-}
+    );
+});
 
-const WorkEnvironment = () => {
+const TrainingProgramCard = memo(({ program }: { program: TrainingProgram }) => (
+    <div className="text-primary">
+        <div className={`${program.bgColor} ${program.maxWidth} m-auto flex flex-col gap-30 lg:gap-50 px-20 lg:px-35 py-15 lg:py-70`}>
+            <div className="text-20 lg:text-25 font-500 text-center">
+                {program.title}
+            </div>
+
+            <div className="text-10 lg:text-20 font-400">
+                {program.description}
+            </div>
+
+            <div className="flex flex-col gap-15 lg:gap-30">
+                {program.points.map((point, index) => (
+                    <div key={index} className="text-10 lg:text-20 font-400">
+                        {point}
+                    </div>
+                ))}
+            </div>
+        </div>
+    </div>
+));
+
+const WorkEnvironment = memo(() => {
     return (
         <Layouts>
             <HeaderSpacing className="relative w-full h-full flex items-center justify-center aspect-[5/2] select-none">
@@ -189,83 +269,13 @@ const WorkEnvironment = () => {
                 <ComponentsHeader title="研修制度" className="z-10" />
 
                 <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-45 items-end z-10">
-                    <div className="text-primary">
-                        <div className="bg-twentyth max-w-80% lg:max-w-100% m-auto flex flex-col gap-30 lg:gap-50 px-20 lg:px-35 py-15 lg:py-70">
-                            <div className="text-20 lg:text-25 font-500 text-center">
-                                新入社員研修
-                            </div>
-
-                            <div className="text-10 lg:text-20 font-400">
-                                新入社員研修は、新入社員が企業や業務環境に迅速に適応し、社会人としての基礎を築くことを目的としたプログラムです。シンミドウでは、以下のような内容に重点を置いています。
-                            </div>
-
-                            <div className="flex flex-col gap-15 lg:gap-30">
-                                <div className="text-10 lg:text-20 font-400">
-                                    1.社会人としてのマインドチェンジ 学生から社会人への意識の切り替えを支援し、プロフェッショナルとしての自覚を養います。
-                                </div>
-
-                                <div className="text-10 lg:text-20 font-400">
-                                    2.ビジネスマナーの習得 社会人として必要な礼儀作法やコミュニケーションスキル（敬語、名刺交換、電話対応など）を学びます。
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="text-primary">
-                        <div className="bg-twentyfirst max-w-90% lg:max-w-100% m-auto flex flex-col gap-30 lg:gap-50 px-20 lg:px-35 py-15 lg:py-70">
-                            <div className="text-20 lg:text-25 font-500 text-center">
-                                内定者研修
-                            </div>
-
-                            <div className="text-10 lg:text-20 font-400">
-                                内定者研修は、内定者が入社前に自社や事業の理解を深め、入社後の適応をスムーズにすること を目的とした取り組みです。
-                            </div>
-
-                            <div className="flex flex-col gap-15 lg:gap-30">
-                                <div className="text-10 lg:text-20 font-400">
-                                    1.自社・事業理解の促進　企業理念や事業内容、業界の特性について学び、自社への理解と共感を深めます。
-                                </div>
-
-                                <div className="text-10 lg:text-20 font-400">
-                                    2.不安の払拭　社会人になることや新しい環境に対する不安を軽減するため、研修や交流機会を通じて安心感を醸成します。
-                                </div>
-
-                                <div className="text-10 lg:text-20 font-400">
-                                    3.早期馴染みの促進　同期や先輩社員との関係構築を図り、入社後の人間関係や職場環境への適応をサポートします。
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="text-primary">
-                        <div className="bg-twentysecond flex flex-col gap-30 lg:gap-50 px-20 lg:px-35 py-15 lg:py-70">
-                            <div className="text-20 lg:text-25 font-500 text-center">
-                                内定者研修
-                            </div>
-
-                            <div className="text-10 lg:text-20 font-400">
-                                OJTは、職場における実践的な訓練です。研修で学んだ知識やスキルを、実際の業務を通して実践的に習得する機会を提供します。単に業務をこなすだけでなく、先輩社員による指導やフィードバックを通じて、より深い理解とスキル向上を目指します。効果的なOJTのためには、明確な目標設定、定期的な進捗確認、そして適切な指導体制の構築が不可欠です。
-                            </div>
-
-                            <div className="flex flex-col gap-15 lg:gap-30">
-                                <div className="text-10 lg:text-20 font-400">
-                                    1.目標設定　具体的な目標を設定することで、研修内容と業務の繋がりを明確にし、学習意欲を高めます。
-                                </div>
-
-                                <div className="text-10 lg:text-20 font-400">
-                                    2.進捗確認　定期的な面談を通して、業務の進捗状況や課題を把握し、適切なサポートを提供します。
-                                </div>
-
-                                <div className="text-10 lg:text-20 font-400">
-                                    3.指導体制　経験豊富で指導能力の高い先輩社員をメンターとして配置することで、効果的なOJTを実現できます
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {trainingPrograms.map((program) => (
+                        <TrainingProgramCard key={program.id} program={program} />
+                    ))}
                 </div>
             </ComponentsSpacing>
         </Layouts>
-    )
-}
+    );
+});
 
 export default WorkEnvironment;

@@ -1,3 +1,5 @@
+import { memo } from "react";
+import { Link } from "react-router-dom";
 import { ComponentsSpacing1, HeaderSpacing, Layouts } from "../../components/layouts/layouts";
 import { BackgroundImage, PageHeader, SlideUp } from "../../components/animation";
 
@@ -9,19 +11,20 @@ import jobRoleImg1 from "../../assets/image/interview/job-role-1.png";
 import jobRoleImg2 from "../../assets/image/interview/job-role-2.png";
 import jobRoleImg3 from "../../assets/image/interview/job-role-3.png";
 import jobRoleImg4 from "../../assets/image/interview/job-role-4.png";
-import { Link } from "react-router-dom";
+
+interface InterviewData {
+    id: number;
+    image: string;
+    name: string;
+    nameEn: string;
+    department: string;
+    joinYear: string;
+    quote: string;
+    bg: string;
+}
 
 interface InterviewCardProps {
-    data: {
-        id: number;
-        image: string;
-        name: string;
-        nameEn: string;
-        department: string;
-        joinYear: string;
-        quote: string;
-        bg: string
-    };
+    data: InterviewData;
     index: number;
 }
 
@@ -29,13 +32,13 @@ interface JobRole {
     id: number;
     image: string;
     title: string;
-    desc: string; // short description
-    detail: string; // longer description/detail
-};
+    desc: string;
+    detail: string;
+}
 
 
 // Mock data for interview voices
-const interviewData = [
+const interviewData: InterviewData[] = [
     {
         id: 1,
         bg: "bg-twelfth",
@@ -66,7 +69,7 @@ const interviewData = [
         joinYear: "2024年入社",
         quote: "マーケティング"
     },
-]
+];
 
 const jobRolesData: JobRole[] = [
     {
@@ -75,38 +78,31 @@ const jobRolesData: JobRole[] = [
         title: "コンサルタント",
         desc: "企業の経営層向けに経営上の課題解決をサポートしたり、人事制度や労務問題についてアドバイスを提供したりします。",
         detail: "(株)シンミドウは、コンサルティング業を中心に、中小企業や地方自治体向けに人材紹介、人材派遣、採用支援、アウトソーシングサービスなどを提供しています。提供している職種には、コンサルタント職種（経営、人事、IT、業務など）、営業、人事、管理職などが含まれると考えられます。",
-    }, {
+    },
+    {
         id: 2,
         image: jobRoleImg2,
         title: "営業",
         desc: "顧客企業や自治体へのコンサルティング営業を担当します。",
         detail: "(株)シンミドウは、コンサルティング業を中心に、中小企業や地方自治体向けに人材紹介、人材派遣、採用支援、アウトソーシングサービスなどを提供しています。提供している職種には、コンサルタント職種（経営、人事、IT、業務など）、営業、人事、管理職などが含まれると考えられます。",
-    }, {
+    },
+    {
         id: 3,
         image: jobRoleImg3,
         title: "人事",
         desc: "人事制度の設計や労務管理などの業務に携わります。",
         detail: "(株)シンミドウは、コンサルティング業を中心に、中小企業や地方自治体向けに人材紹介、人材派遣、採用支援、アウトソーシングサービスなどを提供しています。提供している職種には、コンサルタント職種（経営、人事、IT、業務など）、営業、人事、管理職などが含まれると考えられます。",
-    }, {
+    },
+    {
         id: 4,
         image: jobRoleImg4,
         title: "管理職",
-        desc: "チームや組織のマネジメントを行います。 ",
+        desc: "チームや組織のマネジメントを行います。",
         detail: "(株)シンミドウは、コンサルティング業を中心に、中小企業や地方自治体向けに人材紹介、人材派遣、採用支援、アウトソーシングサービスなどを提供しています。提供している職種には、コンサルタント職種（経営、人事、IT、業務など）、営業、人事、管理職などが含まれると考えられます。",
     },
-]
+];
 
-const ComponentsHeader = ({ title, className = "" }: { title: string, className?: string }) => {
-    return (
-        <SlideUp delay={0} duration={0.7}
-            className={`text-sixth/70 text-20 sm:text-24 lg:text-50 font-600 text-center ${className}`}
-        >
-            {title}
-        </SlideUp>
-    )
-}
-
-const InterviewCard = ({ data, index }: InterviewCardProps) => {
+const InterviewCard = memo(({ data, index }: InterviewCardProps) => {
     return (
         <SlideUp delay={index * 0.1} duration={0.7} className="w-full">
             <Link to="/interview/details" className="relative bg-white flex flex-col max-w-460 m-auto">
@@ -148,9 +144,9 @@ const InterviewCard = ({ data, index }: InterviewCardProps) => {
             </Link>
         </SlideUp>
     );
-}
+});
 
-const JobRoleCard = ({ role, index }: { role: JobRole, index: number }) => {
+const JobRoleCard = memo(({ role, index }: { role: JobRole, index: number }) => {
     return (
         <SlideUp delay={index * 0.08} duration={0.7} className="w-full">
             <div className="flex flex-col gap-15 lg:gap-50 py-15 lg:py-80 px-15 lg:px-75 bg-white">
@@ -177,13 +173,13 @@ const JobRoleCard = ({ role, index }: { role: JobRole, index: number }) => {
                 </div>
             </div>
         </SlideUp>
-    )
-}
+    );
+});
 
-const Interview = () => {
+const Interview = memo(() => {
     return (
         <Layouts overflowX>
-            <HeaderSpacing className="relative w-full h-full flex items-center justify-center aspect-[2/1] lg:aspect-[3/1] select-none overflow-x-hidden">
+            <HeaderSpacing className="relative w-full h-full flex items-center justify-center aspect-[2/1] lg:aspect-[3/1] select-none overflow-hidden">
                 <BackgroundImage className="w-full h-full absolute top-0 left-0 pointer-events-none select-none">
                     <img src={interviewBackgroundImg}
                         className="w-full h-full object-cover"
@@ -198,8 +194,10 @@ const Interview = () => {
                 </PageHeader>
             </HeaderSpacing>
 
-            <ComponentsSpacing1 className="flex flex-col gap-30 sm:gap-50 lg:gap-100 bg-primary overflow-x-hidden">
-                <ComponentsHeader title="シンミドウで働く人たちの声" />
+            <ComponentsSpacing1 className="flex flex-col gap-30 sm:gap-50 lg:gap-100 bg-primary overflow-hidden">
+                <SlideUp delay={0} duration={0.7} className="text-sixth/70 text-20 sm:text-24 lg:text-50 font-600 text-center">
+                    シンミドウで働く人たちの声
+                </SlideUp>
 
                 {/* Interview Cards Grid */}
                 <div className="w-full">
@@ -216,7 +214,9 @@ const Interview = () => {
             </ComponentsSpacing1>
 
             <ComponentsSpacing1 className="flex flex-col gap-30 sm:gap-50 lg:gap-100 bg-primary">
-                <ComponentsHeader className="hidden lg:block" title="職種紹介" />
+                <SlideUp delay={0} duration={0.7} className="hidden lg:block text-sixth/70 text-20 sm:text-24 lg:text-50 font-600 text-center">
+                    職種紹介
+                </SlideUp>
 
                 <div className="w-full flex flex-row gap-10 lg:gap-80">
                     <div className="block w-20 lg:w-84 bg-fourteenth">
@@ -239,7 +239,7 @@ const Interview = () => {
                 </div>
             </ComponentsSpacing1>
         </Layouts>
-    )
-}
+    );
+});
 
 export default Interview;

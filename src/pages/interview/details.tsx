@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { BackgroundImage, PageHeader } from "../../components/animation";
 import { ComponentsSpacing2, HeaderSpacing, Layouts } from "../../components/layouts/layouts";
 import interviewCover1 from "../../assets/image/interview/interview-cover-1.png";
@@ -11,7 +12,125 @@ import arrowNext from "../../assets/image/icons/arrow-next-1.png";
 import interviewImg1 from "../../assets/image/interview/interview-1.png";
 import interviewImg2 from "../../assets/image/interview/interview-2.png";
 
-const InterviewDetails = () => {
+interface InterviewContent {
+    id: number;
+    image: string;
+    title: string;
+    paragraphs: string[];
+    imageOrder?: 'left' | 'right';
+    gridCols?: 'lg:grid-cols-5' | 'lg:grid-cols-2';
+    imageAspect?: 'aspect-[9/7]' | 'aspect-[9/8]';
+    contentPadding?: string;
+}
+
+interface NavigationProfile {
+    id: number;
+    image: string;
+    name: string;
+    position: string;
+}
+
+const interviewContent: InterviewContent[] = [
+    {
+        id: 1,
+        image: serviceImg1,
+        title: "♦入社のきっかけと現在の仕事内容♦",
+        paragraphs: [
+            "私はこれまで、インターネット広告代理店やメーカーでのEC担当として、Webマーケティングに長く携わってきました。転職を考えたタイミングでは、子育てとの両立を重視し、保育園や自宅に近い職場を探していた中で、シンミドウと出会いました。勤務地が大宮であること、そして自身のこれまでのスキルを活かせる環境が整っていると感じ、入社を決めました。",
+            "現在は、クライアント様のWeb広告の運用代行や、自社サイトの改善提案・実行を担当しています。これまでの経験を活かしながら、広告効果の最大化に取り組んでいます。"
+        ],
+        gridCols: 'lg:grid-cols-5',
+        imageAspect: 'aspect-[9/7]'
+    },
+    {
+        id: 2,
+        image: serviceImg2,
+        title: "♦入社のきっかけと現在の仕事内容♦",
+        paragraphs: [
+            "私はこれまで、インターネット広告代理店やメーカーでのEC担当として、Webマーケティングに長く携わってきました。転職を考えたタイミングでは、子育てとの両立を重視し、保育園や自宅に近い職場を探していた中で、シンミドウと出会いました。勤務地が大宮であること、そして自身のこれまでのスキルを活かせる環境が整っていると感じ、入社を決めました。",
+            "現在は、クライアント様のWeb広告の運用代行や、自社サイトの改善提案・実行を担当しています。これまでの経験を活かしながら、広告効果の最大化に取り組んでいます。"
+        ],
+        imageOrder: 'right',
+        gridCols: 'lg:grid-cols-2',
+        imageAspect: 'aspect-[9/8]'
+    },
+    {
+        id: 3,
+        image: serviceImg3,
+        title: "♦今後の目標と求職者へのメッセージ♦",
+        paragraphs: [
+            "現在は、1時間の時短勤務という形で働かせてもらっています。今後はこの環境の中で、自分なりの仕事と育児の両立スタイルを確立し、限られた時間でもしっかり会社に貢献できる存在になりたいと考えています。",
+            "「仕事が好きだけど、家庭との両立に悩んでいる」そんな方にこそ、シンミドウを知ってほしいと思います。私自身も時短での転職でしたが、在宅勤務も柔軟に対応してくれるなど、働き方に理解のある会社です。選考を通じて、自分の希望やライフスタイルについて相談できる環境なので、ぜひ一歩を踏み出してみてください。"
+        ],
+        imageOrder: 'right',
+        gridCols: 'lg:grid-cols-5',
+        imageAspect: 'aspect-[9/7]',
+        contentPadding: 'pt-20 lg:pt-50 lg:pb-50'
+    }
+];
+
+const navigationProfiles: NavigationProfile[] = [
+    {
+        id: 1,
+        image: interviewImg2,
+        name: "仲世古 隆臣",
+        position: "常務取締役"
+    },
+    {
+        id: 2,
+        image: interviewImg1,
+        name: "赤井律子",
+        position: "マーケティング"
+    }
+];
+
+const InterviewContentSection = memo(({ content }: { content: InterviewContent }) => {
+    const isImageRight = content.imageOrder === 'right';
+    const gridCols = content.gridCols || 'lg:grid-cols-5';
+    const imageAspect = content.imageAspect || 'aspect-[9/7]';
+    const contentPadding = content.contentPadding || 'py-20 lg:py-50';
+
+    return (
+        <div className={`grid grid-cols-1 ${gridCols}`}>
+            <div className={`${gridCols === 'lg:grid-cols-2' ? 'col-span-1' : 'col-span-2'} ${isImageRight ? 'lg:order-2' : ''}`}>
+                <img src={content.image} className={`w-full ${imageAspect}`} />
+            </div>
+
+            <div className={`${gridCols === 'lg:grid-cols-2' ? 'col-span-1' : 'col-span-3'} ${isImageRight ? 'lg:order-1' : ''} flex flex-col justify-center gap-15 sx:gap-20 lg:gap-50 px-10 sx:px-20 lg:px-50 ${contentPadding}`}>
+                <div className="text-16 sx:text-19 lg:text-30 text-center text-eightteenth font-500">
+                    {content.title}
+                </div>
+
+                <div className="flex flex-col gap-5 lg:gap-30 px-20 lg:px-30 text-center">
+                    {content.paragraphs.map((paragraph, index) => (
+                        <div key={index} className="text-10 sx:text-12 lg:text-20 font-500">
+                            {paragraph}
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+});
+
+const NavigationProfile = memo(({ profile, isLeft = false }: { profile: NavigationProfile, isLeft?: boolean }) => (
+    <div className={`flex ${isLeft ? 'flex-col lg:flex-row' : 'flex-col lg:flex-row-reverse'} items-center gap-10 lg:gap-20`}>
+        <div className="w-100 lg:w-150 h-100 lg:h-150 rounded-full overflow-hidden">
+            <img src={profile.image} className="w-full h-full object-cover" />
+        </div>
+
+        <div className="flex flex-col items-center">
+            <div className="text-15 sx:text-20 lg:text-30 text-black font-600">
+                {profile.name}
+            </div>
+            <div className="text-10 sx:text-12 lg:text-18 text-black font-500">
+                {profile.position}
+            </div>
+        </div>
+    </div>
+));
+
+const InterviewDetails = memo(() => {
     return (
         <Layouts className="gap-30 sx:gap-40 lg:gap-120 pb-30 sx:pb-40 lg:pb-120">
             <div className="flex flex-col gap-0 lg:gap-120">
@@ -67,71 +186,9 @@ const InterviewDetails = () => {
             </div>
 
             <ComponentsSpacing2 className="flex flex-col gap-15 sx:gap-25 lg:gap-115">
-                <div className="grid grid-cols-1 lg:grid-cols-5">
-                    <div className="col-span-2">
-                        <img src={serviceImg1} className="w-full aspect-[9/7]" />
-                    </div>
-
-                    <div className="col-span-3 flex flex-col justify-center gap-15 sx:gap-20 lg:gap-50 px-10 sx:px-20 lg:px-50 py-20 lg:py-50">
-                        <div className="text-16 sx:text-19 lg:text-30 text-center text-eightteenth font-500">
-                            ♦入社のきっかけと現在の仕事内容♦
-                        </div>
-
-                        <div className="flex flex-col gap-5 lg:gap-30 px-20 lg:px-30 text-center">
-                            <div className="text-10 sx:text-12 lg:text-20 font-500">
-                                私はこれまで、インターネット広告代理店やメーカーでのEC担当として、Webマーケティングに長く携わってきました。転職を考えたタイミングでは、子育てとの両立を重視し、保育園や自宅に近い職場を探していた中で、シンミドウと出会いました。勤務地が大宮であること、そして自身のこれまでのスキルを活かせる環境が整っていると感じ、入社を決めました。
-                            </div>
-
-                            <div className="text-10 sx:text-12 lg:text-20 font-500">
-                                現在は、クライアント様のWeb広告の運用代行や、自社サイトの改善提案・実行を担当しています。これまでの経験を活かしながら、広告効果の最大化に取り組んでいます。
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-2">
-                    <div className="col-span-1 lg:order-2">
-                        <img src={serviceImg2} className="w-full aspect-[9/8]" />
-                    </div>
-
-                    <div className="col-span-1 lg:order-1 flex flex-col justify-center gap-15 sx:gap-20 lg:gap-50 px-10 sx:px-20 lg:px-50 py-20 lg:py-50">
-                        <div className="text-16 sx:text-19 lg:text-30 text-center text-eightteenth font-500">
-                            ♦入社のきっかけと現在の仕事内容♦
-                        </div>
-
-                        <div className="flex flex-col gap-5 lg:gap-30 px-20 lg:px-30 text-center">
-                            <div className="text-10 sx:text-12 lg:text-20 font-500">
-                                私はこれまで、インターネット広告代理店やメーカーでのEC担当として、Webマーケティングに長く携わってきました。転職を考えたタイミングでは、子育てとの両立を重視し、保育園や自宅に近い職場を探していた中で、シンミドウと出会いました。勤務地が大宮であること、そして自身のこれまでのスキルを活かせる環境が整っていると感じ、入社を決めました。
-                            </div>
-
-                            <div className="text-10 sx:text-12 lg:text-20 font-500">
-                                現在は、クライアント様のWeb広告の運用代行や、自社サイトの改善提案・実行を担当しています。これまでの経験を活かしながら、広告効果の最大化に取り組んでいます。
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-5">
-                    <div className="col-span-2 lg:order-2">
-                        <img src={serviceImg3} className="w-full aspect-[9/7]" />
-                    </div>
-
-                    <div className="col-span-3 lg:order-1 flex flex-col justify-center gap-15 sx:gap-20 lg:gap-50 px-10 sx:px-20 lg:px-50 pt-20 lg:pt-50 lg:pb-50">
-                        <div className="text-16 sx:text-19 lg:text-30 text-center text-eightteenth font-500">
-                            ♦今後の目標と求職者へのメッセージ♦
-                        </div>
-
-                        <div className="flex flex-col gap-5 lg:gap-30 px-20 lg:px-30 text-center">
-                            <div className="text-10 sx:text-12 lg:text-20 font-500">
-                                現在は、1時間の時短勤務という形で働かせてもらっています。今後はこの環境の中で、自分なりの仕事と育児の両立スタイルを確立し、限られた時間でもしっかり会社に貢献できる存在になりたいと考えています。
-                            </div>
-
-                            <div className="text-10 sx:text-12 lg:text-20 font-500">
-                                「仕事が好きだけど、家庭との両立に悩んでいる」そんな方にこそ、シンミドウを知ってほしいと思います。私自身も時短での転職でしたが、在宅勤務も柔軟に対応してくれるなど、働き方に理解のある会社です。選考を通じて、自分の希望やライフスタイルについて相談できる環境なので、ぜひ一歩を踏み出してみてください。
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {interviewContent.map((content) => (
+                    <InterviewContentSection key={content.id} content={content} />
+                ))}
             </ComponentsSpacing2>
 
             <div className="">
@@ -159,19 +216,7 @@ const InterviewDetails = () => {
                         </div>
 
                         {/* Left Profile Section */}
-                        <div className="flex flex-col lg:flex-row items-center gap-15 lg:gap-20">
-                            <div className="w-100 lg:w-150 h-100 lg:h-150 rounded-full overflow-hidden">
-                                <img src={interviewImg2} className="w-full h-full object-cover" />
-                            </div>
-                            <div className="flex flex-col items-center">
-                                <div className="text-15 sx:text-20 lg:text-30 text-black font-600">
-                                    仲世古 隆臣
-                                </div>
-                                <div className="text-10 sx:text-12 lg:text-18 text-black font-500">
-                                    常務取締役
-                                </div>
-                            </div>
-                        </div>
+                        <NavigationProfile profile={navigationProfiles[0]} isLeft />
                     </div>
 
                     {/* Central Interview Section */}
@@ -189,20 +234,7 @@ const InterviewDetails = () => {
 
                     <div className="flex items-end lg:items-center justify-center gap-10 lg:gap-20">
                         {/* Right Profile Section */}
-                        <div className="flex flex-col-reverse lg:flex-row items-center gap-10 lg:gap-20">
-                            <div className="flex flex-col items-center">
-                                <div className="text-15 sx:text-20 lg:text-30 text-black font-600">
-                                    赤井律子
-                                </div>
-                                <div className="text-10 sx:text-12 lg:text-18 text-black font-500">
-                                    マーケティング
-                                </div>
-                            </div>
-
-                            <div className="w-100 lg:w-150 h-100 lg:h-150 rounded-full overflow-hidden">
-                                <img src={interviewImg1} className="w-full h-full object-cover" />
-                            </div>
-                        </div>
+                        <NavigationProfile profile={navigationProfiles[1]} />
 
                         {/* Right Navigation Arrow */}
                         <div className="cursor-pointer pb-10 lg:pb-0">
@@ -212,7 +244,7 @@ const InterviewDetails = () => {
                 </div>
             </ComponentsSpacing2>
         </Layouts>
-    )
-}
+    );
+});
 
 export default InterviewDetails;

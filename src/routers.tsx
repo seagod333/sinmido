@@ -8,7 +8,6 @@ interface RouteConfig {
   path: string;
   component: React.LazyExoticComponent<React.ComponentType<any>>;
   exact?: boolean;
-  topPage?: boolean;
 }
 
 // Lazy load components for better performance
@@ -22,7 +21,7 @@ const AppRequirements = lazy(() => import('./pages/requirements'));
 
 // Route configuration
 const routeConfigs: RouteConfig[] = [
-  { path: '/', component: Dashboard, exact: true, topPage: true },
+  { path: '/', component: Dashboard, exact: true },
   { path: '/corporate-culture', component: CorporateCulture },
   { path: '/corporate-intelligence', component: CorporateIntelligence },
   { path: '/interview', component: Interview },
@@ -38,16 +37,8 @@ export const Routers = memo(() => {
       <ErrorBoundary>
         <Suspense fallback={<Loading />}>
           <Routes>
-            {routeConfigs.map(({ path, component: Component, topPage }) => (
-              <Route
-                key={path}
-                path={path}
-                element={
-                  <Layouts topPage={topPage}>
-                    <Component />
-                  </Layouts>
-                }
-              />
+            {routeConfigs.map(({ path, component: Component }) => (
+              <Route key={path} path={path} element={<Component />} />
             ))}
 
             {/* 404 Route */}
