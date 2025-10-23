@@ -360,7 +360,7 @@ module.exports = {
 
     borderWidth: {
       DEFAULT: '1px',
-      ...range(0, 100).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
+      ...range(0, 1000).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
     },
 
     // Custom backdrop blur values

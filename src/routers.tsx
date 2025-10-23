@@ -6,6 +6,7 @@ import CorporateIntelligence from './pages/corporate-intelligence';
 import Interview from './pages/interview';
 import InterviewDetails from './pages/interview/details';
 import WorkEnvironment from './pages/work-environment';
+import AppRequirements from './pages/requirements';
 // import { useGlobalContext } from './provider';
 
 export const Routers = () => {
@@ -20,6 +21,7 @@ export const Routers = () => {
         <Route path="/interview" element={<Interview />} />
         <Route path='/interview/details' element={<InterviewDetails />} />
         <Route path='/work-environment' element={<WorkEnvironment />} />
+        <Route path='/requirements' element={<AppRequirements />} />
 
         <Route path="*" element={<Dashboard />} />
       </Routes>
