@@ -204,6 +204,14 @@ module.exports = {
         sixteenth: "#257594",
         seventeenth: "#C7C1C1",
         eightteenth: "#1180FF",
+        nineteenth: "#B49797",
+
+        twentyth: "#1284A3",
+        twentyfirst: "#0A6A93",
+        twentysecond: "#0A5A93",
+        twentythird: "",
+        twentyfourth: "",
+
       },
 
       fontFamily: {
