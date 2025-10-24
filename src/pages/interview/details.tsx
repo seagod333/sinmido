@@ -1,6 +1,8 @@
 import { memo } from "react";
+import { Layouts } from "../../components/layouts/layouts";
 import { BackgroundImage, PageHeader } from "../../components/animation";
-import { ComponentsSpacing2, HeaderSpacing, Layouts } from "../../components/layouts/layouts";
+import { HeaderSpacing, ComponentsSpacing2 } from "../../components/common/index";
+
 import interviewCover1 from "../../assets/image/interview/interview-cover-1.png";
 import interviewHero1 from "../../assets/image/interview/interview-hero-1.png";
 import interviewFooter from "../../assets/image/interview/interview-footer.png";

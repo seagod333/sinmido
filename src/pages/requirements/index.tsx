@@ -1,6 +1,7 @@
 import { memo } from "react";
+import { Layouts } from "../../components/layouts/layouts";
 import { BackgroundImage, PageHeader, SlideUp } from "../../components/animation";
-import { ComponentsSpacing, HeaderSpacing, Layouts } from "../../components/layouts/layouts";
+import { ComponentsSpacing, HeaderSpacing } from "../../components/common/index";
 import appRequirementsBgImg from "../../assets/image/requirements/background.png";
 import eventImg1 from "../../assets/image/requirements/event-1.png";
 import eventImg2 from "../../assets/image/requirements/event-2.png";

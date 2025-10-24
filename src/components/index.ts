@@ -13,5 +13,5 @@ export * from './common';
 export { default as DropdownMenu } from './drop-menu/dropdown-menu';
 
 // Re-export all types
-export type { SpacingProps, LayoutProps } from './layouts/layouts';
+export type { LayoutProps } from './layouts/layouts';
 export type { CustomMotion } from './animation';

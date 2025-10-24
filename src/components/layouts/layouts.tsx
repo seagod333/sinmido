@@ -6,59 +6,12 @@ import backgroundVideo from "../../assets/video/background.mp4";
 import backgroundThumb from "../../assets/video/background-thumb.jpg";
 import './layouts.scss';
 
-// TypeScript interfaces
-export interface SpacingProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
 export interface LayoutProps {
   children?: React.ReactNode;
   className?: string;
   topPage?: boolean;
   overflowX?: boolean;
 }
-
-// Optimized spacing components with React.memo
-export const GlobalSpacing = memo<SpacingProps>(({ children, className = "" }) => {
-  return (
-    <div className={`px-15 sm:px-30 lg:px-58 w-full ${className}`}>
-      {children}
-    </div>
-  )
-})
-
-export const HeaderSpacing = memo<SpacingProps>(({ children, className = "" }) => {
-  return (
-    <div className={`pt-75 sm:pt-100 lg:pt-120 ${className}`}>
-      {children}
-    </div>
-  )
-})
-
-export const ComponentsSpacing = memo<SpacingProps>(({ children, className = "" }) => {
-  return (
-    <div className={`px-30 sm:px-35 lg:px-300 py-30 sm:py-40 lg:py-90 w-full ${className}`}>
-      {children}
-    </div>
-  )
-})
-
-export const ComponentsSpacing1 = memo<SpacingProps>(({ children, className = "" }) => {
-  return (
-    <div className={`px-20 lg:px-180 py-40 lg:py-180 w-full ${className}`}>
-      {children}
-    </div>
-  )
-})
-
-export const ComponentsSpacing2 = memo<SpacingProps>(({ children, className = "" }) => {
-  return (
-    <div className={`px-0 lg:px-150 w-full ${className}`}>
-      {children}
-    </div>
-  )
-})
 
 // Optimized main layout component
 export const Layouts = memo<LayoutProps>(({

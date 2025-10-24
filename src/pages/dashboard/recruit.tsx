@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { GlobalSpacing } from '../../components/layouts/layouts';
+import { GlobalSpacing } from '../../components/common/index';
 import recruit1 from '../../assets/image/dashboard/recruit-1.png';
 import recruit2 from '../../assets/image/dashboard/recruit-2.png';
 

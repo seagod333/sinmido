@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { GlobalSpacing } from '../../components/layouts/layouts';
+import { GlobalSpacing } from '../../components/common/index';
 import student1 from '../../assets/image/dashboard/student-1.png';
 import student2 from '../../assets/image/dashboard/student-2.png';
 import student3 from '../../assets/image/dashboard/student-3.png';

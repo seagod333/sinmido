@@ -1,7 +1,7 @@
-import { useState, memo, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { GlobalSpacing } from "./layouts";
+import { useState, memo, useCallback } from "react";
 import DropdownMenu from "../drop-menu/dropdown-menu";
+import { GlobalSpacing } from "../common/Spacing";
 import logo from "../../assets/image/logo.png";
 
 // TypeScript interfaces
@@ -41,10 +41,10 @@ const Header = memo<HeaderProps>(({ className = "" }) => {
           {/* Left Section - Brand */}
           <div className="flex flex-col flex-column group">
             <Link to="/" className="flex flex-row">
-              <img 
-                src={logo} 
-                className="h-30 sm:h-35 lg:h-55 w-auto" 
-                alt="Sinmido Home" 
+              <img
+                src={logo}
+                className="h-30 sm:h-35 lg:h-55 w-auto"
+                alt="Sinmido Home"
                 loading="eager"
               />
             </Link>
@@ -59,7 +59,7 @@ const Header = memo<HeaderProps>(({ className = "" }) => {
             {/* Desktop Navigation Menu */}
             <nav className="hidden lg:flex items-center gap-x-55">
               {NAVIGATION_ITEMS.map((item, index) => (
-                <Link 
+                <Link
                   key={`nav-${item.href}`}
                   to={item.href}
                   className="text-white text-15 font-600 cursor-pointer transition-colors duration-200 hover:text-third"
@@ -72,7 +72,7 @@ const Header = memo<HeaderProps>(({ className = "" }) => {
 
             {/* Enhanced Hamburger Button */}
             <div className="relative">
-              <button 
+              <button
                 onClick={toggleDropdown}
                 className="relative w-40 sm:w-50 lg:w-64 h-40 sm:h-50 lg:h-64 rounded-100 flex items-center justify-center group hover-lift border-1 border-white transition-all duration-200 hover:bg-white/10"
                 aria-label="Toggle navigation menu"

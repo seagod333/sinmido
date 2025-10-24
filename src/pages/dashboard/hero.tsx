@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { GlobalSpacing } from '../../components/layouts/layouts';
+import { GlobalSpacing } from '../../components/common/index';
 import heroVideo from "../../assets/video/名称未設定のデザイン.mp4";
 import heroVideoThumb from "../../assets/video/名称未設定のデザイン-thumb.png";
 import news1 from '../../assets/image/dashboard/news-1.png';

@@ -1,4 +1,5 @@
-import { ComponentsSpacing, HeaderSpacing, Layouts } from "../../components/layouts/layouts";
+import { Layouts } from "../../components/layouts/layouts";
+import { ComponentsSpacing, HeaderSpacing } from "../../components/common/index";
 import corporateCultureImage from "../../assets/image/corporate-culture/background.png";
 import { useMemo } from 'react';
 

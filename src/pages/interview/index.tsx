@@ -1,6 +1,7 @@
 import { memo } from "react";
 import { Link } from "react-router-dom";
-import { ComponentsSpacing1, HeaderSpacing, Layouts } from "../../components/layouts/layouts";
+import { Layouts } from "../../components/layouts/layouts";
+import { ComponentsSpacing1, HeaderSpacing } from "../../components/common/index";
 import { BackgroundImage, PageHeader, SlideUp } from "../../components/animation";
 
 import interviewBackgroundImg from "../../assets/image/interview/background.png";

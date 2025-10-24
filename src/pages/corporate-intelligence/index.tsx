@@ -1,9 +1,11 @@
-import React, { useMemo } from "react";
+import React from "react";
+import { useMemo } from "react";
 import CountUp from "react-countup";
+import { Layouts } from "../../components/layouts/layouts";
+import { ComponentsSpacing, HeaderSpacing } from "../../components/common/index";
 import { SlideUp, BackgroundImage, PageHeader, ScaleUp, CounterAnimation } from "../../components/animation/index";
-import { ComponentsSpacing, HeaderSpacing, Layouts } from "../../components/layouts/layouts";
-import signImg from "../../assets/image/corporate-intelligence/sign.png";
 
+import signImg from "../../assets/image/corporate-intelligence/sign.png";
 import ceoImage from "../../assets/image/corporate-intelligence/ceo.png";
 import corporateIntelligenceImage from "../../assets/image/corporate-intelligence/background.png";
 import statisticImg1 from "../../assets/image/corporate-intelligence/statistic-1.png";
