@@ -121,6 +121,7 @@ export const springTransition = {
 // Enhanced TypeScript interfaces
 interface BaseMotionProps extends Omit<MotionProps, 'variants' | 'initial' | 'animate' | 'transition'> {
   children: React.ReactNode;
+  onClick?: () => void;
   className?: string;
   delay?: number;
   duration?: number;
@@ -148,7 +149,7 @@ export const FadeIn = memo<BaseMotionProps>(({
   className = "",
   delay = 0,
   duration = 0.6,
-  once = true,
+  once = false,
   amount = 0.2,
   threshold = 0.1,
   ...props
@@ -156,7 +157,6 @@ export const FadeIn = memo<BaseMotionProps>(({
   const viewportConfig = useMemo(() => ({
     once,
     amount,
-    margin: "-50px"
   }), [once, amount])
 
   const transitionConfig = useMemo(() => ({
@@ -186,7 +186,7 @@ export const SlideUp = memo<BaseMotionProps>(({
   className = "",
   delay = 0,
   duration = 0.6,
-  once = true,
+  once = false,
   amount = 0.2,
   threshold = 0.1,
   ...props
@@ -194,7 +194,6 @@ export const SlideUp = memo<BaseMotionProps>(({
   const viewportConfig = useMemo(() => ({
     once,
     amount,
-    margin: "-50px"
   }), [once, amount])
 
   const transitionConfig = useMemo(() => ({
@@ -224,7 +223,7 @@ const BaseAnimation = memo<BaseMotionProps & { variants: Variants }>(({
   className = "",
   delay = 0,
   duration = 0.6,
-  once = true,
+  once = false,
   amount = 0.2,
   threshold = 0.1,
   variants,
@@ -233,7 +232,6 @@ const BaseAnimation = memo<BaseMotionProps & { variants: Variants }>(({
   const viewportConfig = useMemo(() => ({
     once,
     amount,
-    margin: "-50px"
   }), [once, amount])
 
   const transitionConfig = useMemo(() => ({
@@ -283,7 +281,7 @@ export const ScaleUp = memo<BaseMotionProps>(({
   className = "",
   delay = 0,
   duration = 0.7,
-  once = true,
+  once = false,
   amount = 0.6,
   threshold = 0.1,
   ...props
@@ -291,7 +289,6 @@ export const ScaleUp = memo<BaseMotionProps>(({
   const viewportConfig = useMemo(() => ({
     once,
     amount,
-    margin: "-100px"
   }), [once, amount])
 
   const transitionConfig = useMemo(() => ({
@@ -326,7 +323,7 @@ export const StaggerContainer = memo<BaseMotionProps>(({
   className = "",
   delay = 0,
   duration = 0.6,
-  once = true,
+  once = false,
   amount = 0.2,
   threshold = 0.1,
   ...props
@@ -334,7 +331,6 @@ export const StaggerContainer = memo<BaseMotionProps>(({
   const viewportConfig = useMemo(() => ({
     once,
     amount,
-    margin: "-50px"
   }), [once, amount])
 
   const transitionConfig = useMemo(() => ({
@@ -391,7 +387,7 @@ export const CustomMotion = memo<CustomMotionProps>(({
   variants,
   delay = 0,
   duration = 0.6,
-  once = true,
+  once = false,
   amount = 0.2,
   threshold = 0.1,
   ...props
@@ -399,7 +395,6 @@ export const CustomMotion = memo<CustomMotionProps>(({
   const viewportConfig = useMemo(() => ({
     once,
     amount,
-    margin: "-50px"
   }), [once, amount])
 
   const transitionConfig = useMemo(() => ({
@@ -429,7 +424,7 @@ export const PageHeader = memo<BaseMotionProps>(({
   className = "",
   delay = 0.3,
   duration = 1,
-  once = true,
+  once = false,
   amount = 0.2,
   threshold = 0.1,
   ...props
@@ -437,7 +432,6 @@ export const PageHeader = memo<BaseMotionProps>(({
   const viewportConfig = useMemo(() => ({
     once,
     amount,
-    margin: "-50px"
   }), [once, amount])
 
   const transitionConfig = useMemo(() => ({
@@ -466,7 +460,7 @@ export const BackgroundImage = memo<BaseMotionProps>(({
   className = "",
   delay = 0,
   duration = 1,
-  once = true,
+  once = false,
   amount = 0.2,
   threshold = 0.1,
   ...props
@@ -474,7 +468,6 @@ export const BackgroundImage = memo<BaseMotionProps>(({
   const viewportConfig = useMemo(() => ({
     once,
     amount,
-    margin: "-100px"
   }), [once, amount])
 
   const transitionConfig = useMemo(() => ({
@@ -503,7 +496,7 @@ export const CounterAnimation = memo<BaseMotionProps>(({
   className = "",
   delay = 0,
   duration = 0.6,
-  once = true,
+  once = false,
   amount = 0.3,
   threshold = 0.1,
   ...props
@@ -511,7 +504,6 @@ export const CounterAnimation = memo<BaseMotionProps>(({
   const viewportConfig = useMemo(() => ({
     once,
     amount,
-    margin: "-50px"
   }), [once, amount])
 
   const transitionConfig = useMemo(() => ({
@@ -566,16 +558,15 @@ export const HoverScale = memo<BaseMotionProps>(({
 export const createAnimationConfig = (config: Partial<AnimationConfig> = {}): AnimationConfig => ({
   delay: 0,
   duration: 0.6,
-  once: true,
+  once: false,
   amount: 0.2,
   threshold: 0.1,
   ...config
 })
 
 export const createViewportConfig = (config: Partial<AnimationConfig> = {}) => ({
-  once: config.once ?? true,
+  once: config.once ?? false,
   amount: config.amount ?? 0.2,
-  margin: "-50px"
 })
 
 export const createTransitionConfig = (config: Partial<AnimationConfig> = {}) => ({

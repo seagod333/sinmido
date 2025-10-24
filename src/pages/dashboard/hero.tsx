@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { GlobalSpacing } from '../../components/common/index';
+import { FadeIn, SlideUp, ScaleIn, HoverScale } from '../../components/animation/index';
 import heroVideo from "../../assets/video/名称未設定のデザイン.mp4";
 import heroVideoThumb from "../../assets/video/名称未設定のデザイン-thumb.png";
 import news1 from '../../assets/image/dashboard/news-1.png';
@@ -259,47 +260,47 @@ const ImageCard = ({ item, index }: { item: HeroNewsItem; index: number }) => {
             )}
 
             {item?.headerTitle && (
-                <span className="relative z-10 text-10 sm:text-12 lg:text-15 font-600">
+                <FadeIn delay={0.4} duration={0.6} className='relative z-10 text-10 sm:text-12 lg:text-15 font-600'>
                     {item.headerTitle}
-                </span>
+                </FadeIn>
             )}
 
             {item.bodyTitle && (
-                <div className={`relative z-10 ${item.center ? 'text-center' : ''}`}>
+                <div className={`flex-1 relative flex flex-col justify-center z-10 ${item.center ? 'text-center' : ''}`}>
                     {item.bodyTitle.title && (
-                        <div className="space-y-2">
+                        <SlideUp delay={0.6} duration={0.7} className='space-y-2'>
                             {item.bodyTitle.title.map((title, idx) => (
                                 <div key={idx} className="text-15 sm:text-20 lg:text-40 font-600">
                                     {title}
                                 </div>
                             ))}
-                        </div>
+                        </SlideUp>
                     )}
                     {item.bodyTitle.desc && (
-                        <div className="space-y-1 mt-2">
+                        <FadeIn delay={0.8} duration={0.6} className='space-y-1 mt-2'>
                             {item.bodyTitle.desc.map((desc, idx) => (
                                 <div key={idx} className="text-10 sm:text-12 lg:text-15 font-400">
                                     {desc}
                                 </div>
                             ))}
-                        </div>
+                        </FadeIn>
                     )}
                     {item.bodyTitle.subTitle && (
-                        <div className="space-y-1">
+                        <SlideUp delay={1.0} duration={0.7} className='space-y-1'>
                             {item.bodyTitle.subTitle.map((subTitle, idx) => (
                                 <div key={idx} className="text-15 sm:text-20 lg:text-30 font-500">
                                     {subTitle}
                                 </div>
                             ))}
-                        </div>
+                        </SlideUp>
                     )}
                 </div>
             )}
 
             {item?.footerTitle && (
-                <span className="relative z-10 text-10 sm:text-15 lg:text-25 font-500">
+                <FadeIn delay={1.2} duration={0.6} className='relative z-10 text-10 sm:text-15 lg:text-25 font-500'>
                     {item.footerTitle}
-                </span>
+                </FadeIn>
             )}
         </div>
     );
@@ -307,13 +308,8 @@ const ImageCard = ({ item, index }: { item: HeroNewsItem; index: number }) => {
 
 // Video Card Component
 const VideoCard = ({ item }: { item: HeroNewsItem }) => (
-    <div className="relative w-full h-full overflow-hidden flex flex-col">
-        <video
-            src={item.video}
-            poster={item.videoThumb}
-            autoPlay
-            muted
-            loop
+    <div className='relative w-full h-full overflow-hidden flex flex-col rounded-xl'>
+        <video autoPlay muted loop poster={item.videoThumb} src={item.video}
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-fill scale-x-[113%] scale-y-[105%]"
         />
     </div>
@@ -322,21 +318,22 @@ const VideoCard = ({ item }: { item: HeroNewsItem }) => (
 // News List Card Component
 const NewsListCard = ({ item }: { item: HeroNewsItem }) => (
     <div className="text-background w-full h-full overflow-hidden flex flex-col gap-10 sm:gap-20 lg:gap-30">
-        <h3 className="text-20 sm:text-25 lg:text-35 font-600">
+        <SlideUp delay={0.2} duration={0.7} className='text-20 sm:text-25 lg:text-35 font-600'>
             {item.title}
-        </h3>
+        </SlideUp>
 
         {item.items && (
             <div className="flex-1 flex flex-col gap-10 lg:gap-30">
                 {item.items.map((newsItem, idx) => (
-                    <div key={idx} className="flex flex-col gap-5 lg:gap-10">
+                    <FadeIn key={idx} delay={0.4 + (idx * 0.1)} duration={0.6} className='flex flex-col gap-5 lg:gap-10'>
                         <div className="text-10 lg:text-18 font-400">
                             {newsItem.subTitle}
                         </div>
+
                         <div className="text-15 lg:text-25 font-500">
                             {newsItem.title}
                         </div>
-                    </div>
+                    </FadeIn>
                 ))}
             </div>
         )}

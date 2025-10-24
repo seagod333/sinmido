@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import CountUp from "react-countup";
 import { Layouts } from "../../components/layouts/layouts";
 import { ComponentsSpacing, HeaderSpacing } from "../../components/common/index";
-import { SlideUp, BackgroundImage, PageHeader, ScaleUp, CounterAnimation } from "../../components/animation/index";
+import { SlideUp, BackgroundImage, PageHeader, ScaleUp, CounterAnimation, FadeIn, StaggerContainer, StaggerItem } from "../../components/animation/index";
 
 import signImg from "../../assets/image/corporate-intelligence/sign.png";
 import ceoImage from "../../assets/image/corporate-intelligence/ceo.png";
@@ -157,21 +157,22 @@ const CompanyProfileCard = ({ item, index }: { item: CompanyProfileItem; index: 
   <SlideUp
     key={index}
     className="flex flex-col lg:flex-row"
-    duration={0.5}
+    duration={0.8}
+    delay={index * 0.1}
     amount={0.2}
   >
     <div className="w-full lg:w-30% bg-secondary p-10 lg:p-20 flex items-center justify-center">
-      <h3 className="text-white text-12 lg:text-26 font-500 text-center">
+      <FadeIn delay={0.2} duration={0.6} className="text-white text-12 lg:text-26 font-500 text-center">
         {item.headerTitle}
-      </h3>
+      </FadeIn>
     </div>
     <div className="w-full lg:w-70% bg-primary border border-seventh flex flex-col justify-center">
       {item.title.length > 0 && (
         <div className="p-10 lg:p-20">
           {item.title.map((title, titleIndex) => (
-            <div key={titleIndex} className="text-10 lg:text-26 text-seventh text-center">
+            <FadeIn key={titleIndex} delay={0.3 + (titleIndex * 0.1)} duration={0.6} className="text-10 lg:text-26 text-seventh text-center">
               {title}
-            </div>
+            </FadeIn>
           ))}
         </div>
       )}
@@ -179,12 +180,12 @@ const CompanyProfileCard = ({ item, index }: { item: CompanyProfileItem; index: 
         <div className="px-20 lg:px-30 py-25 lg:py-55">
           {item.desc.map((desc, descIndex) => (
             <React.Fragment key={descIndex}>
-              <div className="text-10 lg:text-20 text-seventh">
+              <FadeIn delay={0.4 + (descIndex * 0.05)} duration={0.6} className="text-10 lg:text-20 text-seventh">
                 {desc}
-              </div>
+              </FadeIn>
               {desc === "• Google Map" && (
                 <div className="mt-20 lg:mt-45">
-                  <div className="w-full aspect-square">
+                  <FadeIn delay={0.6} duration={0.8} className="w-full aspect-square">
                     <iframe
                       title="Google Map - 〒330-0854 埼玉県さいたま市大宮区桜木町4-244-1 都築ビル"
                       src="https://www.google.com/maps?q=%E5%9F%BC%E7%8E%89%E7%9C%8C%E3%81%95%E3%81%84%E3%81%9F%E3%81%BE%E5%B8%82%E5%A4%A7%E5%AE%AE%E5%8C%BA%E6%A1%9C%E6%9C%A8%E7%94%BA4-244-1%20%E9%83%BD%E7%AF%89%E3%83%93%E3%83%AB&output=embed"
@@ -193,7 +194,7 @@ const CompanyProfileCard = ({ item, index }: { item: CompanyProfileItem; index: 
                       referrerPolicy="no-referrer-when-downgrade"
                       allowFullScreen
                     />
-                  </div>
+                  </FadeIn>
                 </div>
               )}
             </React.Fragment>
@@ -214,9 +215,9 @@ const StatisticCard = ({ stat, idx }: { stat: StatisticData; idx: number }) => (
     <img src={stat.image} className="w-full h-auto object-cover select-none" alt={stat.title} />
 
     <div className="absolute top-5% left-0 w-full flex items-center justify-center px-10">
-      <span className="text-black text-20 lg:text-40 font-600 text-center">
+      <FadeIn delay={0.2} duration={0.6} className="text-black text-20 lg:text-40 font-600 text-center">
         {stat.title}
-      </span>
+      </FadeIn>
     </div>
 
     {idx === 0 && (
@@ -332,12 +333,12 @@ const CorporateIntelligence = () => {
 
   const memoizedCEOMessages = useMemo(() =>
     ceoMessage.messages.map((message, index) => (
-      <p key={index}
+      <FadeIn key={index} delay={0.2 + (index * 0.1)} duration={0.6}
         className="text-white text-8 sm:text-10 md:text-15 lg:text-[0.95vw] xl:text-[1.04vw] lg:leading-[2rem] xl:leading-[2.4rem] font-500"
         style={{ maxWidth: '100%', wordBreak: 'break-word' }}
       >
         {message}
-      </p>
+      </FadeIn>
     )), []
   );
 
@@ -345,16 +346,15 @@ const CorporateIntelligence = () => {
     <Layouts>
       <HeaderSpacing className="relative w-full h-full flex items-center justify-center aspect-[2/1] lg:aspect-[7/2] select-none">
         <BackgroundImage className="w-full h-full absolute top-0 left-0 pointer-events-none select-none">
-          <img
-            src={corporateIntelligenceImage}
+          <img src={corporateIntelligenceImage}
             className="w-full h-full object-cover"
             alt="Corporate Intelligence"
           />
         </BackgroundImage>
-        <PageHeader className="relative z-10 pb-20 sm:pb-30 lg:pb-40">
-          <span className="text-white text-18 sm:text-20 lg:text-60 font-600 text-center">
+        <PageHeader delay={0.5} duration={1} className="relative z-10 pb-20 sm:pb-30 lg:pb-40">
+          <FadeIn delay={0.7} duration={0.8} className="text-white text-18 sm:text-20 lg:text-60 font-600 text-center">
             企業情報
-          </span>
+          </FadeIn>
         </PageHeader>
       </HeaderSpacing>
 
@@ -372,9 +372,9 @@ const CorporateIntelligence = () => {
         <div className="w-full max-w-1200 mx-auto mb-30 lg:mb-100">
           <div className="relative w-full group">
             <div className="w-full relative">
-              <ScaleUp className="w-full h-auto" duration={0.7} amount={0.6}>
+              <div className="w-full h-auto">
                 <img src={ceoImage} className="w-full h-auto object-cover" alt="CEO" />
-              </ScaleUp>
+              </div>
               <SlideUp
                 className="absolute bottom-0 w-full flex items-center justify-center lg:group-hover:hidden transition-all duration-200"
                 duration={0.7}
@@ -405,11 +405,11 @@ const CorporateIntelligence = () => {
 
       <div className="flex flex-col gap-40 sm:gap-50 lg:gap-100">
         <SectionHeader title="数字でみる" className="pt-40 sm:pt-50 lg:pt-120" />
-        <div className="flex flex-col px-20 sm:px-75 lg:px-170 py-20 py-30 sm:py-75 lg:py-130 bg-secondary">
+        <StaggerContainer className="flex flex-col px-20 sm:px-75 lg:px-170 py-20 py-30 sm:py-75 lg:py-130 bg-secondary">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20 lg:gap-40">
             {memoizedStatistics}
           </div>
-        </div>
+        </StaggerContainer>
       </div>
     </Layouts>
   );

@@ -1,5 +1,6 @@
 import { Layouts } from "../../components/layouts/layouts";
 import { ComponentsSpacing, HeaderSpacing } from "../../components/common/index";
+import { FadeIn, SlideUp, ScaleIn, StaggerContainer, StaggerItem, PageHeader, BackgroundImage } from "../../components/animation/index";
 import corporateCultureImage from "../../assets/image/corporate-culture/background.png";
 import { useMemo } from 'react';
 
@@ -123,52 +124,52 @@ const companyValues: CompanyValue[] = [
 
 // Reusable Components
 const SectionHeader = ({ title }: { title: string }) => (
-    <div className="text-fourth/10 text-25 sm:text-30 lg:text-96 font-600 text-start">
+    <PageHeader delay={0} duration={0.5} className="text-fourth/10 text-25 sm:text-30 lg:text-96 font-600 text-start">
         {title}
-    </div>
+    </PageHeader>
 );
 
 const CompanyValueCard = ({ title, description }: CompanyValue) => (
-    <div className="max-w-90% md:max-w-full flex flex-row mx-auto">
+    <ScaleIn className="max-w-90% md:max-w-full flex flex-row mx-auto">
         <div className="px-15 lg:px-20 py-25 lg:py-50 bg-secondary rounded-l-5 lg:rounded-l-8 flex flex-col items-center justify-center">
             {title.split('').map((char, idx) => (
-                <div key={idx} className="text-center text-primary text-25 lg:text-40 font-500 leading-tight">
+                <FadeIn key={idx} delay={idx * 0.1} duration={0.6} className="text-center text-primary text-25 lg:text-40 font-500 leading-tight">
                     {char}
-                </div>
+                </FadeIn>
             ))}
         </div>
 
         <div className="flex-1 flex items-center justify-center bg-fifth border-fourth border border-l-0 border-fifth rounded-r-5 lg:rounded-r-8 flex flex-col px-30 py-25 h-full align-center">
-            <div className="text-black text-center text-12 lg:text-24">
+            <SlideUp delay={0.3} duration={0.8} className="text-black text-center text-12 lg:text-24">
                 {description}
-            </div>
+            </SlideUp>
         </div>
-    </div>
+    </ScaleIn>
 );
 
 const ValueStatementCard = ({ texts, index }: { texts: string[]; index: number }) => (
-    <div className="flex flex-row items-center gap-20 lg:gap-30 py-20 lg:py-30 border-b border-black">
-        <div className="text-20 lg:text-30 text-secondary">
+    <SlideUp delay={index * 0.1} duration={0.8} className="flex flex-row items-center gap-20 lg:gap-30 py-20 lg:py-30 border-b border-black">
+        <FadeIn delay={0.2} duration={0.6} className="text-20 lg:text-30 text-secondary">
             {index + 1}.
-        </div>
+        </FadeIn>
         <div className="flex flex-col gap-8 lg:gap-15 text-black">
             {texts.map((line, i) => (
-                <div key={i} className="text-10 lg:text-20">
+                <FadeIn key={i} delay={0.4 + (i * 0.1)} duration={0.6} className="text-10 lg:text-20">
                     {line}
-                </div>
+                </FadeIn>
             ))}
         </div>
-    </div>
+    </SlideUp>
 );
 
 const AboutSectionCard = ({ texts, index, isLast }: { texts: string[]; index: number; isLast: boolean }) => (
-    <div className="relative flex flex-col items-center w-full group">
+    <ScaleIn delay={index * 0.2} duration={0.8} className="relative flex flex-col items-center w-full group">
         <div className="flex min-h-140 lg:min-h-200 bg-secondary group-hover:bg-secondary/80 px-20 py-20 lg:px-30 lg:py-25 w-full cursor-pointer transition-colors duration-200 flex flex-col justify-center items-center h-full">
             <div className="text-white text-12 lg:text-20 leading-relaxed transition-colors duration-200 flex flex-col justify-center h-full">
                 {texts.map((line, lineIndex) => (
-                    <div key={lineIndex}>
+                    <FadeIn key={lineIndex} delay={0.3 + (lineIndex * 0.1)} duration={0.6}>
                         {line}
-                    </div>
+                    </FadeIn>
                 ))}
             </div>
         </div>
@@ -180,30 +181,30 @@ const AboutSectionCard = ({ texts, index, isLast }: { texts: string[]; index: nu
         {!isLast && (
             <div className="absolute w-0 h-0 -bottom-15 lg:-bottom-20 left-1/2 -translate-x-1/2 border-l-30 lg:border-l-40 border-transparent border-r-30 lg:border-r-40 border-t-15 lg:border-t-20 group-hover:border-t-secondary/80 transition-colors duration-200 border-t-secondary" />
         )}
-    </div>
+    </ScaleIn>
 );
 
 const CorporateCulture = () => {
     // Memoized components for better performance
-    const memoizedCompanyValues = useMemo(() => 
+    const memoizedCompanyValues = useMemo(() =>
         companyValues.map((value, index) => (
             <CompanyValueCard key={index} {...value} />
         )), []
     );
 
-    const memoizedValueStatements = useMemo(() => 
+    const memoizedValueStatements = useMemo(() =>
         companyValuesTexts.map((value, index) => (
             <ValueStatementCard key={index} texts={value.texts} index={index} />
         )), []
     );
 
-    const memoizedAboutCards = useMemo(() => 
+    const memoizedAboutCards = useMemo(() =>
         aboutTexts.map((textGroup, index) => (
-            <AboutSectionCard 
-                key={index} 
-                texts={textGroup.texts} 
-                index={index} 
-                isLast={index === aboutTexts.length - 1} 
+            <AboutSectionCard
+                key={index}
+                texts={textGroup.texts}
+                index={index}
+                isLast={index === aboutTexts.length - 1}
             />
         )), []
     );
@@ -211,76 +212,109 @@ const CorporateCulture = () => {
     return (
         <Layouts>
             <HeaderSpacing className="relative w-full h-full flex items-center justify-center aspect-[5/2] lg:aspect-[9/2] select-none">
-                <img 
-                    src={corporateCultureImage}
-                    className="w-full h-full object-cover absolute top-0 left-0 pointer-events-none select-none"
-                    alt="Corporate Culture"
-                />
+                <BackgroundImage className="w-full h-full object-cover absolute top-0 left-0 pointer-events-none select-none">
+                    <img src={corporateCultureImage} className="w-full h-full object-cover" />
+                </BackgroundImage>
                 <div className="relative z-10 pb-20 sm:pb-30 lg:pb-40">
-                    <span className="text-white text-18 sm:text-20 lg:text-60 font-600 text-center">
+                    <FadeIn delay={0.5} duration={1} className="text-white text-18 sm:text-20 lg:text-60 font-600 text-center">
                         企業理念
-                    </span>
+                    </FadeIn>
                 </div>
             </HeaderSpacing>
 
             <ComponentsSpacing className="flex flex-col gap-20 sm:gap-25 lg:gap-60">
                 <SectionHeader title="Our Identity" />
-                <div className="text-fourth text-15 sm:text-16 lg:text-40 text-center font-600">
+
+                <SlideUp delay={0.3} duration={0.8} className="text-fourth text-15 sm:text-16 lg:text-40 text-center font-600">
                     ３つのシンミで、ひとつのSinmido
-                </div>
-                <div className="max-w-90% mx-auto flex flex-col gap-10 lg:gap-20 text-12 lg:text-20 text-black">
-                    <div>Sinmido の「シンミ」には、3つの意味があります。</div>
-                    <div>私たちらしさをあらわすキーワードであり、経営理念でもある 3 つのシンミ。</div>
-                    <div>それを、社員一人ひとりの個性と人間力をもって実現します。</div>
-                </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-20 lg:gap-50">
+                </SlideUp>
+                <StaggerContainer className="max-w-90% mx-auto flex flex-col gap-10 lg:gap-20 text-12 lg:text-20 text-black">
+                    <StaggerItem>
+                        <FadeIn delay={0.2} duration={0.6}>Sinmido の「シンミ」には、3つの意味があります。</FadeIn>
+                    </StaggerItem>
+                    <StaggerItem>
+                        <FadeIn delay={0.3} duration={0.6}>私たちらしさをあらわすキーワードであり、経営理念でもある 3 つのシンミ。</FadeIn>
+                    </StaggerItem>
+                    <StaggerItem>
+                        <FadeIn delay={0.4} duration={0.6}>それを、社員一人ひとりの個性と人間力をもって実現します。</FadeIn>
+                    </StaggerItem>
+                </StaggerContainer>
+                <StaggerContainer className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-20 lg:gap-50">
                     {memoizedCompanyValues}
-                </div>
+                </StaggerContainer>
             </ComponentsSpacing>
 
             <ComponentsSpacing className="flex flex-col gap-20 sm:gap-25 lg:gap-60 bg-fifth">
                 <SectionHeader title="Retono" />
-                <div className="text-fourth text-15 sm:text-16 lg:text-40 text-center font-600">
+                <SlideUp delay={0.3} duration={0.8} className="text-fourth text-15 sm:text-16 lg:text-40 text-center font-600">
                     シンミドウの価値基準
-                </div>
-                <div className="max-w-90% mx-auto flex flex-col gap-10 lg:gap-20 text-black">
-                    <div className="text-12 lg:text-20">Retono(レトノ)とは、ラテン語で「響く・反響する」を意味する言葉です。</div>
-                    <div className="text-12 lg:text-20">多くの言語の語源となったラテン語にちなみ、</div>
-                    <div className="text-12 lg:text-20">Sinmido の根底に響いている「価値の基準」として、12 のレトノを掲げています。</div>
-                    <div className="text-12 lg:text-20">あらゆる場面において、私たちの思考や判断の基準となっています。</div>
-                </div>
-                <div className="max-w-90% mx-auto">
+                </SlideUp>
+                <StaggerContainer className="max-w-90% mx-auto flex flex-col gap-10 lg:gap-20 text-black">
+                    <StaggerItem>
+                        <FadeIn delay={0.2} duration={0.6} className="text-12 lg:text-20">Retono(レトノ)とは、ラテン語で「響く・反響する」を意味する言葉です。</FadeIn>
+                    </StaggerItem>
+                    <StaggerItem>
+                        <FadeIn delay={0.3} duration={0.6} className="text-12 lg:text-20">多くの言語の語源となったラテン語にちなみ、</FadeIn>
+                    </StaggerItem>
+                    <StaggerItem>
+                        <FadeIn delay={0.4} duration={0.6} className="text-12 lg:text-20">Sinmido の根底に響いている「価値の基準」として、12 のレトノを掲げています。</FadeIn>
+                    </StaggerItem>
+                    <StaggerItem>
+                        <FadeIn delay={0.5} duration={0.6} className="text-12 lg:text-20">あらゆる場面において、私たちの思考や判断の基準となっています。</FadeIn>
+                    </StaggerItem>
+                </StaggerContainer>
+                <StaggerContainer className="max-w-90% mx-auto">
                     {memoizedValueStatements}
-                </div>
+                </StaggerContainer>
             </ComponentsSpacing>
 
             <ComponentsSpacing className="flex flex-col gap-20 sm:gap-25 lg:gap-60 bg-primary">
                 <SectionHeader title="Our Vision" />
-                <div className="text-fourth text-15 sm:text-16 lg:text-40 text-center font-600">
+                <SlideUp delay={0.3} duration={0.8} className="text-fourth text-15 sm:text-16 lg:text-40 text-center font-600">
                     採用・育成と業界特化でワクワクする地域をつくる
-                </div>
-                <div className="max-w-90% mx-auto flex flex-col gap-10 lg:gap-20 text-black">
-                    <div className="text-12 lg:text-20">ヒトと組織の可能性を、拡げ、高める。</div>
-                    <div className="text-12 lg:text-20">そして、そこに再現性を持たせること。</div>
-                    <div className="text-12 lg:text-20">それが私たちのビジョンです。</div>
-                    <div className="text-12 lg:text-20">私たちがいることで、学生や、組織にいるヒトの可能性が拡がる。</div>
-                    <div className="text-12 lg:text-20">私たちが関わることで、組織の強みや、成長の可能性が高まる。</div>
-                    <div className="text-12 lg:text-20">そういう存在であることを目指しています。</div>
-                    <div className="text-12 lg:text-20">それを具体的に行う手段が、</div>
-                    <div className="text-12 lg:text-20">採用・育成の支援や、地域や業界に特化した支援であり、</div>
-                    <div className="text-12 lg:text-20">そこに再現性を持たせることが、</div>
-                    <div className="text-12 lg:text-20">私たちの存在価値であり存在意義であると考えています。</div>
-                </div>
+                </SlideUp>
+                <StaggerContainer className="max-w-90% mx-auto flex flex-col gap-10 lg:gap-20 text-black">
+                    <StaggerItem>
+                        <FadeIn delay={0.2} duration={0.6} className="text-12 lg:text-20">ヒトと組織の可能性を、拡げ、高める。</FadeIn>
+                    </StaggerItem>
+                    <StaggerItem>
+                        <FadeIn delay={0.3} duration={0.6} className="text-12 lg:text-20">そして、そこに再現性を持たせること。</FadeIn>
+                    </StaggerItem>
+                    <StaggerItem>
+                        <FadeIn delay={0.4} duration={0.6} className="text-12 lg:text-20">それが私たちのビジョンです。</FadeIn>
+                    </StaggerItem>
+                    <StaggerItem>
+                        <FadeIn delay={0.5} duration={0.6} className="text-12 lg:text-20">私たちがいることで、学生や、組織にいるヒトの可能性が拡がる。</FadeIn>
+                    </StaggerItem>
+                    <StaggerItem>
+                        <FadeIn delay={0.6} duration={0.6} className="text-12 lg:text-20">私たちが関わることで、組織の強みや、成長の可能性が高まる。</FadeIn>
+                    </StaggerItem>
+                    <StaggerItem>
+                        <FadeIn delay={0.7} duration={0.6} className="text-12 lg:text-20">そういう存在であることを目指しています。</FadeIn>
+                    </StaggerItem>
+                    <StaggerItem>
+                        <FadeIn delay={0.8} duration={0.6} className="text-12 lg:text-20">それを具体的に行う手段が、</FadeIn>
+                    </StaggerItem>
+                    <StaggerItem>
+                        <FadeIn delay={0.9} duration={0.6} className="text-12 lg:text-20">採用・育成の支援や、地域や業界に特化した支援であり、</FadeIn>
+                    </StaggerItem>
+                    <StaggerItem>
+                        <FadeIn delay={1.0} duration={0.6} className="text-12 lg:text-20">そこに再現性を持たせることが、</FadeIn>
+                    </StaggerItem>
+                    <StaggerItem>
+                        <FadeIn delay={1.1} duration={0.6} className="text-12 lg:text-20">私たちの存在価値であり存在意義であると考えています。</FadeIn>
+                    </StaggerItem>
+                </StaggerContainer>
             </ComponentsSpacing>
 
             <ComponentsSpacing className="flex flex-col gap-20 sm:gap-25 lg:gap-60 bg-fifth">
                 <SectionHeader title="About Sinmido" />
-                <div className="max-w-200 md:max-w-100% mx-auto text-fourth text-15 sm:text-16 lg:text-40 text-center font-600">
+                <SlideUp delay={0.3} duration={0.8} className="max-w-200 md:max-w-100% mx-auto text-fourth text-15 sm:text-16 lg:text-40 text-center font-600">
                     地域を、社会を、企業を、未来を豊かにする。
-                </div>
-                <div className="w-full sm:max-w-95% lg:max-w-900 mx-auto flex flex-col items-center gap-15 lg:gap-20">
+                </SlideUp>
+                <StaggerContainer className="w-full sm:max-w-95% lg:max-w-900 mx-auto flex flex-col items-center gap-15 lg:gap-20">
                     {memoizedAboutCards}
-                </div>
+                </StaggerContainer>
             </ComponentsSpacing>
         </Layouts>
     );

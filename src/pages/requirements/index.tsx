@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { Layouts } from "../../components/layouts/layouts";
-import { BackgroundImage, PageHeader, SlideUp } from "../../components/animation";
+import { BackgroundImage, PageHeader, SlideUp, FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "../../components/animation";
 import { ComponentsSpacing, HeaderSpacing } from "../../components/common/index";
 import appRequirementsBgImg from "../../assets/image/requirements/background.png";
 import eventImg1 from "../../assets/image/requirements/event-1.png";
@@ -91,90 +91,92 @@ const fullTimePositions: JobPosition[] = [
 
 const ComponentsHeader = memo(({ title, className = "" }: { title: string, className?: string }) => {
     return (
-        <SlideUp
+        <SlideUp delay={0} duration={0.7}
             className={`text-sixth text-18 sm:text-20 lg:text-50 font-600 text-center ${className}`}
-            delay={0}
-            duration={0.7}
         >
             {title}
         </SlideUp>
     );
 });
 
-const RecruitmentContentItem = memo(({ content }: { content: RecruitmentContent }) => (
-    <div className="text-10 sx:text-12 lg:text-20 text-center">
+const RecruitmentContentItem = memo(({ content, index }: { content: RecruitmentContent, index: number }) => (
+    <FadeIn delay={index * 0.1} duration={0.6} className="text-10 sx:text-12 lg:text-20 text-center">
         {content.text}
-    </div>
+    </FadeIn>
 ));
 
-const JobPositionCard = memo(({ position, isPartTime }: { position: JobPosition, isPartTime: boolean }) => (
-    <div className="grid grid-cols-1 lg:grid-cols-8 gap-0 lg:gap-45 py-0 lg:py-35 lg:px-20 border-b border-primary">
+const JobPositionCard = memo(({ position, isPartTime, index }: { position: JobPosition, isPartTime: boolean, index: number }) => (
+    <ScaleIn delay={index * 0.1} duration={0.8} className="grid grid-cols-1 lg:grid-cols-8 gap-0 lg:gap-45 py-0 lg:py-35 lg:px-20 border-b border-primary">
         {isPartTime ? (
             <>
                 <div className="col-span-3 flex flex-col justify-center">
-                    <img src={position.image} className="w-full aspect-square cursor-pointer" />
+                    <FadeIn delay={0.2} duration={0.6} className="w-full">
+                        <img src={position.image} className="w-full aspect-square cursor-pointer" />
+                    </FadeIn>
                 </div>
                 <div className="col-span-5 flex flex-col justify-between gap-10 sx:gap-15 lg:gap-25 px-15 lg:px-10 py-15 lg:py-10">
-                    <div className="text-12 lg:text-24 text-primary">
+                    <FadeIn delay={0.3} duration={0.6} className="text-12 lg:text-24 text-primary">
                         {position.title}
-                    </div>
+                    </FadeIn>
                     <div className="flex">
-                        <div className="bg-primary px-25 lg:px-25 py-10 lg:py-15 text-12 lg:text-24 text-twentyth cursor-pointer">
+                        <FadeIn delay={0.4} duration={0.6} className="bg-primary px-25 lg:px-25 py-10 lg:py-15 text-12 lg:text-24 text-twentyth cursor-pointer">
                             {position.location}
-                        </div>
+                        </FadeIn>
                     </div>
                     <div className="flex flex-col gap-5">
-                        {position.benefits.map((benefit, index) => (
-                            <div key={index} className="text-12 lg:text-24 text-primary">
+                        {position.benefits.map((benefit, benefitIndex) => (
+                            <FadeIn key={benefitIndex} delay={0.5 + (benefitIndex * 0.1)} duration={0.6} className="text-12 lg:text-24 text-primary">
                                 {benefit}
-                            </div>
+                            </FadeIn>
                         ))}
-                        <div className="text-12 lg:text-24 text-primary">
+                        <FadeIn delay={0.6} duration={0.6} className="text-12 lg:text-24 text-primary">
                             {position.salary}
-                        </div>
+                        </FadeIn>
                     </div>
                 </div>
             </>
         ) : (
             <>
                 <div className="col-span-5 flex flex-col justify-between gap-10 sx:gap-15 lg:gap-25 px-15 lg:px-10 py-15 lg:py-10">
-                    <div className="text-12 lg:text-24 text-primary">
+                    <FadeIn delay={0.2} duration={0.6} className="text-12 lg:text-24 text-primary">
                         {position.title}
-                    </div>
+                    </FadeIn>
                     <div className="flex">
-                        <div className="bg-primary px-25 lg:px-25 py-10 lg:py-15 text-12 lg:text-24 text-twentyth cursor-pointer">
+                        <FadeIn delay={0.3} duration={0.6} className="bg-primary px-25 lg:px-25 py-10 lg:py-15 text-12 lg:text-24 text-twentyth cursor-pointer">
                             {position.location}
-                        </div>
+                        </FadeIn>
                     </div>
                     <div className="flex flex-col gap-5">
-                        {position.benefits.map((benefit, index) => (
-                            <div key={index} className="text-12 lg:text-24 text-primary">
+                        {position.benefits.map((benefit, benefitIndex) => (
+                            <FadeIn key={benefitIndex} delay={0.4 + (benefitIndex * 0.1)} duration={0.6} className="text-12 lg:text-24 text-primary">
                                 {benefit}
-                            </div>
+                            </FadeIn>
                         ))}
-                        <div className="text-12 lg:text-24 text-primary">
+                        <FadeIn delay={0.5} duration={0.6} className="text-12 lg:text-24 text-primary">
                             {position.salary}
-                        </div>
+                        </FadeIn>
                     </div>
                 </div>
                 <div className="col-span-3 flex flex-col justify-center">
-                    <img src={position.image} className="w-full aspect-square cursor-pointer" />
+                    <FadeIn delay={0.6} duration={0.6} className="w-full">
+                        <img src={position.image} className="w-full aspect-square cursor-pointer" />
+                    </FadeIn>
                 </div>
             </>
         )}
-    </div>
+    </ScaleIn>
 ));
 
 const SelectionProgressItem = memo(({ item, index }: { item: SelectionProgress, index: number }) => (
-    <div key={index} className="relative" style={{ backgroundColor: item.bgColor }}>
+    <div className="relative" style={{ backgroundColor: item.bgColor }}>
         <div className="relative top-15 lg:top-0 lg:left-13 w-full aspect-[9/4] lg:aspect-[2/5] max-h-300 lg:max-h-450 px-20 py-15 flex flex-col items-center justify-center">
-            <div className="text-white text-12 lg:text-30 font-500">
+            <FadeIn delay={0.2} duration={0.6} className="text-white text-12 lg:text-30 font-500">
                 {item.title}
-            </div>
+            </FadeIn>
             {item.subTitle && (
-                <div className="text-white text-12 lg:text-30 font-500">
+                <FadeIn delay={0.3} duration={0.6} className="text-white text-12 lg:text-30 font-500">
                     {item.subTitle}
-                </div>
+                </FadeIn>
             )}
         </div>
 
@@ -202,21 +204,21 @@ const AppRequirements = memo(() => {
                     <img src={appRequirementsBgImg} className="w-full h-full object-cover" />
                 </BackgroundImage>
 
-                <PageHeader className="relative flex flex-col z-10 pb-20 sm:pb-30 lg:pb-40">
-                    <div className="hidden lg:block max-w-1150 text-white text-18 sm:text-20 lg:text-60 font-500 text-center">
+                <PageHeader delay={0.5} duration={1} className="relative flex flex-col z-10 pb-20 sm:pb-30 lg:pb-40">
+                    <FadeIn delay={0.7} duration={0.8} className="hidden lg:block max-w-1150 text-white text-18 sm:text-20 lg:text-60 font-500 text-center">
                         募集要項
-                    </div>
+                    </FadeIn>
                 </PageHeader>
             </HeaderSpacing>
 
             <ComponentsSpacing className="flex flex-col gap-30 sx:gap-40 lg:gap-80">
                 <ComponentsHeader title="募集内容" />
 
-                <div className="flex flex-col gap-5 lg:gap-20">
+                <StaggerContainer className="flex flex-col gap-5 lg:gap-20">
                     {recruitmentContent.map((content, index) => (
-                        <RecruitmentContentItem key={index} content={content} />
+                        <RecruitmentContentItem key={index} content={content} index={index} />
                     ))}
-                </div>
+                </StaggerContainer>
             </ComponentsSpacing>
 
             <div className="flex flex-col gap-25 lg:gap-150 bg-fifth px-20 lg:px-85 py-35 lg:py-130">
@@ -224,25 +226,25 @@ const AppRequirements = memo(() => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-30 lg:gap-20">
                     <div className="flex flex-col gap-25 sx:gap-50 lg:gap-80 py-15 lg:py-40 px-20 sx:px-30 lg:px-40 bg-twentyth">
-                        <div className="text-15 sx:text-20 lg:text-34 text-center text-primary">
+                        <FadeIn delay={0.2} duration={0.6} className="text-15 sx:text-20 lg:text-34 text-center text-primary">
                             パート・アルバイト・業務委託
-                        </div>
+                        </FadeIn>
 
                         <div className="flex flex-col gap-20 sx:gap-25 lg:gap-0">
                             {([1, 2, 3, 4, 5]).map((key: number) => (
-                                <JobPositionCard key={key} position={partTimePositions[0]} isPartTime={true} />
+                                <JobPositionCard key={key} position={partTimePositions[0]} isPartTime={true} index={key} />
                             ))}
                         </div>
                     </div>
 
                     <div className="flex flex-col gap-25 sx:gap-50 lg:gap-80 py-15 lg:py-40 px-20 sx:px-30 lg:px-40 bg-twentysecond">
-                        <div className="text-15 sx:text-20 lg:text-34 text-center text-primary">
+                        <FadeIn delay={0.3} duration={0.6} className="text-15 sx:text-20 lg:text-34 text-center text-primary">
                             正社員
-                        </div>
+                        </FadeIn>
 
                         <div className="flex flex-col gap-20 sx:gap-25 lg:gap-0">
                             {([1, 2, 3, 4, 5]).map((key: number) => (
-                                <JobPositionCard key={key} position={fullTimePositions[0]} isPartTime={false} />
+                                <JobPositionCard key={key} position={fullTimePositions[0]} isPartTime={false} index={key} />
                             ))}
                         </div>
                     </div>
@@ -259,9 +261,9 @@ const AppRequirements = memo(() => {
                 </div>
             </div>
 
-            <div className="flex flex-col">
+            <FadeIn delay={0.3} duration={0.8} className="flex flex-col">
                 <img src={entryImg} className="w-full aspect-[9/4]" />
-            </div>
+            </FadeIn>
         </Layouts>
     );
 });

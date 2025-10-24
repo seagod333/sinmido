@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { Layouts } from "../../components/layouts/layouts";
-import { BackgroundImage, PageHeader } from "../../components/animation";
+import { BackgroundImage, PageHeader, FadeIn, SlideUp, ScaleIn, StaggerContainer, StaggerItem } from "../../components/animation";
 import { HeaderSpacing, ComponentsSpacing2 } from "../../components/common/index";
 
 import interviewCover1 from "../../assets/image/interview/interview-cover-1.png";
@@ -93,43 +93,47 @@ const InterviewContentSection = memo(({ content }: { content: InterviewContent }
     const contentPadding = content.contentPadding || 'py-20 lg:py-50';
 
     return (
-        <div className={`grid grid-cols-1 ${gridCols}`}>
+        <ScaleIn delay={content.id * 0.2} duration={0.8} className={`grid grid-cols-1 ${gridCols}`}>
             <div className={`${gridCols === 'lg:grid-cols-2' ? 'col-span-1' : 'col-span-2'} ${isImageRight ? 'lg:order-2' : ''}`}>
-                <img src={content.image} className={`w-full ${imageAspect}`} />
+                <FadeIn delay={0.2} duration={0.6} className="w-full">
+                    <img src={content.image} className={`w-full ${imageAspect}`} />
+                </FadeIn>
             </div>
 
             <div className={`${gridCols === 'lg:grid-cols-2' ? 'col-span-1' : 'col-span-3'} ${isImageRight ? 'lg:order-1' : ''} flex flex-col justify-center gap-15 sx:gap-20 lg:gap-50 px-10 sx:px-20 lg:px-50 ${contentPadding}`}>
-                <div className="text-16 sx:text-19 lg:text-30 text-center text-eightteenth font-500">
+                <FadeIn delay={0.3} duration={0.6} className="text-16 sx:text-19 lg:text-30 text-center text-eightteenth font-500">
                     {content.title}
-                </div>
+                </FadeIn>
 
                 <div className="flex flex-col gap-5 lg:gap-30 px-20 lg:px-30 text-center">
                     {content.paragraphs.map((paragraph, index) => (
-                        <div key={index} className="text-10 sx:text-12 lg:text-20 font-500">
+                        <FadeIn key={index} delay={0.4 + (index * 0.1)} duration={0.6} className="text-10 sx:text-12 lg:text-20 font-500">
                             {paragraph}
-                        </div>
+                        </FadeIn>
                     ))}
                 </div>
             </div>
-        </div>
+        </ScaleIn>
     );
 });
 
 const NavigationProfile = memo(({ profile, isLeft = false }: { profile: NavigationProfile, isLeft?: boolean }) => (
-    <div className={`flex ${isLeft ? 'flex-col lg:flex-row' : 'flex-col lg:flex-row-reverse'} items-center gap-10 lg:gap-20`}>
+    <ScaleIn delay={isLeft ? 0.2 : 0.4} duration={0.8} className={`flex ${isLeft ? 'flex-col lg:flex-row' : 'flex-col lg:flex-row-reverse'} items-center gap-10 lg:gap-20`}>
         <div className="w-100 lg:w-150 h-100 lg:h-150 rounded-full overflow-hidden">
-            <img src={profile.image} className="w-full h-full object-cover" />
+            <FadeIn delay={0.3} duration={0.6} className="w-full h-full">
+                <img src={profile.image} className="w-full h-full object-cover" />
+            </FadeIn>
         </div>
 
         <div className="flex flex-col items-center">
-            <div className="text-15 sx:text-20 lg:text-30 text-black font-600">
+            <FadeIn delay={0.4} duration={0.6} className="text-15 sx:text-20 lg:text-30 text-black font-600">
                 {profile.name}
-            </div>
-            <div className="text-10 sx:text-12 lg:text-18 text-black font-500">
+            </FadeIn>
+            <FadeIn delay={0.5} duration={0.6} className="text-10 sx:text-12 lg:text-18 text-black font-500">
                 {profile.position}
-            </div>
+            </FadeIn>
         </div>
-    </div>
+    </ScaleIn>
 ));
 
 const InterviewDetails = memo(() => {
@@ -141,110 +145,118 @@ const InterviewDetails = memo(() => {
                         <img src={interviewCover1} className="w-full h-full object-cover" />
                     </BackgroundImage>
 
-                    <PageHeader className="relative flex flex-col gap-20 z-10 pb-20 sm:pb-30 lg:pb-40">
-                        <div className="hidden lg:block max-w-1150 text-white text-18 sm:text-20 lg:text-60 font-500 text-center">
+                    <PageHeader delay={0.3} duration={0.8} className="relative flex flex-col gap-20 z-10 pb-20 sm:pb-30 lg:pb-40">
+                        <FadeIn delay={0.5} duration={0.6} className="hidden lg:block max-w-1150 text-white text-18 sm:text-20 lg:text-60 font-500 text-center">
                             Webマーケティングの経験を活かして、育児もキャリアも両立できる働き方を実現
-                        </div>
+                        </FadeIn>
 
-                        <div className="text-white text-18 sm:text-20 lg:text-60 font-500 text-center">
+                        <FadeIn delay={0.7} duration={0.6} className="text-white text-18 sm:text-20 lg:text-60 font-500 text-center">
                             Interview
-                        </div>
+                        </FadeIn>
                     </PageHeader>
                 </HeaderSpacing>
 
-                <div className="flex flex-col-reverse lg:grid lg:grid-cols-7 lg:px-120">
-                    <div className="col-span-3 text-primary flex flex-col justify-end z-20">
-                        <div className="relative -top-30 lg:top-0 lg:-right-30 w-80% lg:w-full max-w-350 mx-auto lg:max-w-full flex flex-col gap-20 sx:gap-25 lg:gap-40 px-30 sx:px-40 lg:px-65 py-25 sx:py-35 lg:py-40 bg-black">
+                <StaggerContainer className="flex flex-col-reverse lg:grid lg:grid-cols-7 lg:px-120">
+                    <StaggerItem className="col-span-3 text-primary flex flex-col justify-end z-20">
+                        <ScaleIn delay={0.3} duration={0.8} className="relative -top-30 lg:top-0 lg:-right-30 w-80% lg:w-full max-w-350 mx-auto lg:max-w-full flex flex-col gap-20 sx:gap-25 lg:gap-40 px-30 sx:px-40 lg:px-65 py-25 sx:py-35 lg:py-40 bg-black">
                             <div className="flex flex-col lg:flex-row flex-wrap justify-center lg:justify-between items-center gap-15 lg:gap-20 sx:gap-25 lg:gap-50">
                                 <div className="flex flex-col gap-5 sx:gap-15 lg:gap-25">
-                                    <div className="text-20 lg:text-20 font-500 text-seventeenth">
+                                    <FadeIn delay={0.4} duration={0.6} className="text-20 lg:text-20 font-500 text-seventeenth">
                                         2022年入社
-                                    </div>
+                                    </FadeIn>
 
-                                    <div className="text-20 lg:text-30 font-500">
+                                    <FadeIn delay={0.5} duration={0.6} className="text-20 lg:text-30 font-500">
                                         辻本 小春
-                                    </div>
+                                    </FadeIn>
 
-                                    <div className="text-12 lg:text-16 font-400">
+                                    <FadeIn delay={0.6} duration={0.6} className="text-12 lg:text-16 font-400">
                                         /マーケティング
-                                    </div>
+                                    </FadeIn>
                                 </div>
 
-                                <div className="text-12 lg:text-30 font-400 text-eightteenth">
+                                <FadeIn delay={0.7} duration={0.6} className="text-12 lg:text-30 font-400 text-eightteenth">
                                     TSUJIMOTO KOHARU
-                                </div>
+                                </FadeIn>
                             </div>
 
-                            <div className="text-12 lg:text-25 font-500 text-center">
+                            <FadeIn delay={0.8} duration={0.6} className="text-12 lg:text-25 font-500 text-center">
                                 育児をしながらでも、時短や在宅など自分に合った働き方ができます。
-                            </div>
-                        </div>
-                    </div>
+                            </FadeIn>
+                        </ScaleIn>
+                    </StaggerItem>
 
-                    <div className="col-span-4 lg:pb-60 z-10">
-                        <img src={interviewHero1} className="relative lg:-left-30 w-full aspect-[7/4]" />
-                    </div>
-                </div>
+                    <StaggerItem className="col-span-4 lg:pb-60 z-10">
+                        <FadeIn delay={0.2} duration={0.6} className="relative lg:-left-30 w-full">
+                            <img src={interviewHero1} className="w-full aspect-[7/4]" />
+                        </FadeIn>
+                    </StaggerItem>
+                </StaggerContainer>
             </div>
 
-            <ComponentsSpacing2 className="flex flex-col gap-15 sx:gap-25 lg:gap-115">
-                {interviewContent.map((content) => (
-                    <InterviewContentSection key={content.id} content={content} />
-                ))}
-            </ComponentsSpacing2>
+            <StaggerContainer>
+                <ComponentsSpacing2 className="flex flex-col gap-15 sx:gap-25 lg:gap-115">
+                    {interviewContent.map((content) => (
+                        <InterviewContentSection content={content} />
+                    ))}
+                </ComponentsSpacing2>
+            </StaggerContainer>
 
-            <div className="">
+            <FadeIn delay={0.3} duration={0.8} className="">
                 <img src={interviewFooter} className="w-full aspect-[9/4] object-cover" />
-            </div>
+            </FadeIn>
 
-            <ComponentsSpacing2 className="flex flex-col gap-15 sx:gap-20">
-                <div className="flex lg:hidden flex-col items-center gap-10 cursor-pointer">
-                    <div className="w-35 sx:w-45 h-35 sx:h-45 grid grid-cols-2 gap-1">
-                        <div className="bg-black w-full h-full"></div>
-                        <div className="bg-black w-full h-full"></div>
-                        <div className="bg-black w-full h-full"></div>
-                        <div className="bg-black w-full h-full"></div>
-                    </div>
-                    <div className="text-20 sx:text-25 text-black font-500">
-                        Interview
-                    </div>
-                </div>
+            <StaggerContainer>
+                <ComponentsSpacing2 className="flex flex-col gap-15 sx:gap-20">
+                    <StaggerItem>
+                        <FadeIn delay={0.2} duration={0.6} className="flex lg:hidden flex-col items-center gap-10 cursor-pointer">
+                            <div className="w-35 sx:w-45 h-35 sx:h-45 grid grid-cols-2 gap-1">
+                                <div className="bg-black w-full h-full"></div>
+                                <div className="bg-black w-full h-full"></div>
+                                <div className="bg-black w-full h-full"></div>
+                                <div className="bg-black w-full h-full"></div>
+                            </div>
+                            <div className="text-20 sx:text-25 text-black font-500">
+                                Interview
+                            </div>
+                        </FadeIn>
+                    </StaggerItem>
 
-                <div className="flex flex-row justify-center items-center gap-30 sx:gap-45 lg:gap-90 px-20">
-                    <div className="flex items-end lg:items-center justify-center gap-10 lg:gap-20">
-                        {/* Left Navigation Arrow */}
-                        <div className="cursor-pointer pb-10 lg:pb-0">
-                            <img src={arrowPrev} className="w-20 lg:w-30 h-20 lg:h-30" />
+                    <StaggerItem className="flex flex-row justify-center items-center gap-30 sx:gap-45 lg:gap-90 px-20">
+                        <div className="flex items-end lg:items-center justify-center gap-10 lg:gap-20">
+                            {/* Left Navigation Arrow */}
+                            <FadeIn delay={0.3} duration={0.6} className="cursor-pointer pb-10 lg:pb-0">
+                                <img src={arrowPrev} className="w-20 lg:w-30 h-20 lg:h-30" />
+                            </FadeIn>
+
+                            {/* Left Profile Section */}
+                            <NavigationProfile profile={navigationProfiles[0]} isLeft />
                         </div>
 
-                        {/* Left Profile Section */}
-                        <NavigationProfile profile={navigationProfiles[0]} isLeft />
-                    </div>
+                        {/* Central Interview Section */}
+                        <FadeIn delay={0.4} duration={0.6} className="hidden lg:flex flex-col items-center gap-10 cursor-pointer">
+                            <div className="w-55 h-55 grid grid-cols-2 gap-1">
+                                <div className="bg-black w-full h-full"></div>
+                                <div className="bg-black w-full h-full"></div>
+                                <div className="bg-black w-full h-full"></div>
+                                <div className="bg-black w-full h-full"></div>
+                            </div>
+                            <div className="text-30 text-black font-500">
+                                Interview
+                            </div>
+                        </FadeIn>
 
-                    {/* Central Interview Section */}
-                    <div className="hidden lg:flex flex-col items-center gap-10 cursor-pointer">
-                        <div className="w-55 h-55 grid grid-cols-2 gap-1">
-                            <div className="bg-black w-full h-full"></div>
-                            <div className="bg-black w-full h-full"></div>
-                            <div className="bg-black w-full h-full"></div>
-                            <div className="bg-black w-full h-full"></div>
-                        </div>
-                        <div className="text-30 text-black font-500">
-                            Interview
-                        </div>
-                    </div>
+                        <div className="flex items-end lg:items-center justify-center gap-10 lg:gap-20">
+                            {/* Right Profile Section */}
+                            <NavigationProfile profile={navigationProfiles[1]} />
 
-                    <div className="flex items-end lg:items-center justify-center gap-10 lg:gap-20">
-                        {/* Right Profile Section */}
-                        <NavigationProfile profile={navigationProfiles[1]} />
-
-                        {/* Right Navigation Arrow */}
-                        <div className="cursor-pointer pb-10 lg:pb-0">
-                            <img src={arrowNext} className="w-20 lg:w-30 h-20 lg:h-30" />
+                            {/* Right Navigation Arrow */}
+                            <FadeIn delay={0.5} duration={0.6} className="cursor-pointer pb-10 lg:pb-0">
+                                <img src={arrowNext} className="w-20 lg:w-30 h-20 lg:h-30" />
+                            </FadeIn>
                         </div>
-                    </div>
-                </div>
-            </ComponentsSpacing2>
+                    </StaggerItem>
+                </ComponentsSpacing2>
+            </StaggerContainer>
         </Layouts>
     );
 });

@@ -15,7 +15,7 @@ interface DashboardProps {
 // Loading fallback component for dashboard sections
 const DashboardSectionLoader = memo(() => (
   <div className="flex items-center justify-center py-20">
-    <Loading size="sm" message="Loading section..." />
+    <Loading size="sm" message="読み込み中です..." />
   </div>
 ))
 

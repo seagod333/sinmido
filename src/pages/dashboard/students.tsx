@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { GlobalSpacing } from '../../components/common/index';
+import { FadeIn, HoverScale, SlideUp } from '../../components/animation/index';
 import student1 from '../../assets/image/dashboard/student-1.png';
 import student2 from '../../assets/image/dashboard/student-2.png';
 import student3 from '../../assets/image/dashboard/student-3.png';
@@ -55,8 +56,7 @@ const SlideImage = ({ slide, index, currentSlide, isTransitioning, animationKey 
 
     return (
         <div className="student-image-container max-w-85% lg:max-w-50% w-650 aspect-[3/4] relative left-[-5px] lg:left-[-20px]">
-            <img
-                src={slide.image1}
+            <img src={slide.image1}
                 key={`bg-${index}-${animationKey}`}
                 className="student-bg-image w-full aspect-3/4 rounded-2xl rotate-3"
                 style={{
@@ -65,8 +65,7 @@ const SlideImage = ({ slide, index, currentSlide, isTransitioning, animationKey 
                 }}
                 alt={`Background ${index + 1}`}
             />
-            <img
-                src={slide.image}
+            <img src={slide.image}
                 key={`img-${index}-${animationKey}`}
                 className="student-image absolute w-full top-0 right-[-5px] lg:right-[-20px] aspect-3/4 rounded-2xl rotate-3"
                 style={{
@@ -82,45 +81,41 @@ const SlideImage = ({ slide, index, currentSlide, isTransitioning, animationKey 
 
 // Slide Content Component
 const SlideContent = ({ slide }: { slide: SlideData }) => (
-    <div className="student-content absolute h-full w-full max-w-100% lg:max-w-60% w-870 flex flex-col items-center justify-center">
+    <div className="student-content absolute h-full w-full max-w-100% lg:max-w-60% w-870 flex flex-col items-center justify-center cursor-pointer select-none">
         <div className="flex flex-col items-center justify-center gap-10 lg:gap-80 z-10 text-white">
             {slide.subTitle && (
-                <span className="text-15 lg:text-25">
+                <SlideUp className='text-15 lg:text-25'>
                     {slide.subTitle}
-                </span>
+                </SlideUp>
             )}
 
             <h2 className="text-30 sm:text-35 lg:text-80 font-500 text-center tracking-0 lg:tracking-15">
                 {slide.title.map((line, idx) => (
-                    <span key={idx} className="block">
+                    <SlideUp key={idx} className='block'>
                         {line}
-                    </span>
+                    </SlideUp>
                 ))}
             </h2>
 
-            <p className="text-12 lg:text-16 max-w-70% lg:max-w-50% text-center leading-20 lg:leading-35">
+            <SlideUp className='text-12 lg:text-16 max-w-70% lg:max-w-50% text-center leading-20 lg:leading-35'>
                 {slide.desc}
-            </p>
+            </SlideUp>
         </div>
     </div>
 );
 
 // Navigation Button Component
 const NavigationButton = ({ onClick, direction, className, icon, alt }: { onClick: () => void; direction: 'prev' | 'next'; className: string; icon: string; alt: string; }) => (
-    <button onClick={onClick} className={className}>
-        <img src={icon} alt={alt} className="w-40 lg:w-57" />
-    </button>
+    <FadeIn delay={0.2} duration={0.5} className={`${className} cursor-pointer hover:scale-110 transition-all duration-300`} onClick={onClick}>
+        <img src={icon} alt={alt} className="w-40 lg:w-57 pointer-events-none" />
+    </FadeIn>
 );
 
 // Slide Indicator Component
 const SlideIndicator = ({ index, isActive, onClick }: { index: number; isActive: boolean; onClick: () => void; }) => (
-    <button
-        onClick={onClick}
-        className={`slide-indicator text-base text-15 sm:text-20 ${isActive ? 'text-white' : 'text-white/60 hover:text-white'
-            }`}
-    >
+    <FadeIn onClick={onClick} className={`slide-indicator text-base text-15 sm:text-20 ${isActive ? 'text-white' : 'text-white/60 hover:text-white'} cursor-pointer select-none hover:scale-110 transition-all duration-300`}>
         {String(index + 1).padStart(2, '0')}
-    </button>
+    </FadeIn>
 );
 
 // Mobile Navigation Controls Component
@@ -130,32 +125,25 @@ const MobileNavigationControls = ({ onPrev, onNext, indicators }: {
     indicators: React.ReactNode;
 }) => (
     <div className="navigation-controls md:hidden flex flex-row items-center justify-center gap-30 sm:gap-35 lg:gap-55">
-        <button
-            onClick={onPrev}
-            className="navigation-button w-40 sm:w-50 h-40 sm:h-50 text-white rounded-full border-1 border-white flex items-center justify-center"
-        >
+        <FadeIn delay={0.2} duration={0.5} onClick={onPrev} className="navigation-button w-40 sm:w-50 h-40 sm:h-50 text-white rounded-full border-1 border-white flex items-center justify-center">
             <img src={arrowPrev} alt="Previous" className="w-18 sm:w-20" />
-        </button>
+        </FadeIn>
 
-        <div className="flex gap-15 items-center justify-center">
+        <FadeIn delay={0.2} duration={0.5} className="flex gap-15 items-center justify-center">
             {indicators}
-        </div>
+        </FadeIn>
 
-        <button
-            onClick={onNext}
-            className="navigation-button w-40 sm:w-50 h-40 sm:h-50 text-white rounded-full border-1 border-white flex items-center justify-center"
-            style={{ zIndex: 20 }}
-        >
+        <FadeIn delay={0.2} duration={0.5} onClick={onNext} className="navigation-button w-40 sm:w-50 h-40 sm:h-50 text-white rounded-full border-1 border-white flex items-center justify-center z-20">
             <img src={arrowNext} alt="Next" className="w-18 sm:w-20" />
-        </button>
+        </FadeIn>
     </div>
 );
 
 // Desktop Slide Indicators Component
 const DesktopSlideIndicators = ({ indicators }: { indicators: React.ReactNode }) => (
-    <div className="navigation-controls hidden md:flex w-full flex flex-row items-center justify-center gap-35 lg:gap-45">
+    <FadeIn delay={0.2} duration={0.5} className="navigation-controls hidden md:flex w-full flex flex-row items-center justify-center gap-35 lg:gap-45">
         {indicators}
-    </div>
+    </FadeIn>
 );
 
 const Students = () => {
@@ -233,8 +221,7 @@ const Students = () => {
             <div className={containerClasses}>
                 {/* Slide Container */}
                 <div className="slide-container overflow-hidden">
-                    <div
-                        className="flex flex-row transition-transform pb-30 sm:pb-40 lg:pb-80 pt-20"
+                    <div className="flex flex-row transition-transform pb-30 sm:pb-40 lg:pb-80 pt-20"
                         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
                     >
                         {memoizedSlides}

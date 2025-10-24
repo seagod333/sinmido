@@ -2,7 +2,7 @@ import { memo } from "react";
 import { Link } from "react-router-dom";
 import { Layouts } from "../../components/layouts/layouts";
 import { ComponentsSpacing1, HeaderSpacing } from "../../components/common/index";
-import { BackgroundImage, PageHeader, SlideUp } from "../../components/animation";
+import { BackgroundImage, PageHeader, SlideUp, FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "../../components/animation";
 
 import interviewBackgroundImg from "../../assets/image/interview/background.png";
 import interviewImg1 from "../../assets/image/interview/interview-1.png";
@@ -105,75 +105,79 @@ const jobRolesData: JobRole[] = [
 
 const InterviewCard = memo(({ data, index }: InterviewCardProps) => {
     return (
-        <SlideUp delay={index * 0.1} duration={0.7} className="w-full">
-            <Link to="/interview/details" className="relative bg-white flex flex-col max-w-460 m-auto">
+        <ScaleIn delay={index * 0.1} duration={0.8} className="w-full">
+            <Link to="/interview/details" className="relative bg-white flex flex-col min-h-full max-w-460 m-auto">
                 {/* Profile Image */}
                 <div className="flex-shrink-0">
-                    <img src={data.image} alt={data.name}
-                        className="w-full rounded-t-lg aspect-[95/100] object-cover"
-                    />
+                    <FadeIn delay={0.2} duration={0.6} className="w-full">
+                        <img src={data.image} alt={data.name}
+                            className="w-full rounded-t-lg aspect-[95/100] object-cover"
+                        />
+                    </FadeIn>
                 </div>
 
                 {/* Content */}
                 <div className="flex-1 rounded-b-lg border-1 border-t-0 border-secondary">
                     <div className="flex flex-col gap-10 lg:gap-30 px-35 pt-10 lg:pt-35 pb-20 lg:pb-35">
-                        <div className="text-14 sm:text-16 text-black">
+                        <FadeIn delay={0.3} duration={0.6} className="text-14 sm:text-16 text-black">
                             {data.joinYear}
-                        </div>
+                        </FadeIn>
 
                         <div className="flex flex-wrap justify-between items-center">
-                            <h3 className="text-18 sx:text-24 lg:text-30 font-600 text-black">
+                            <FadeIn delay={0.4} duration={0.6} className="text-18 sx:text-24 lg:text-30 font-600 text-black">
                                 {data.name}
-                            </h3>
+                            </FadeIn>
 
-                            <p className="text-10 sx:text-12 lg:text-20 text-eleventh">
+                            <FadeIn delay={0.5} duration={0.6} className="text-10 sx:text-12 lg:text-20 text-eleventh">
                                 {data.nameEn}
-                            </p>
+                            </FadeIn>
                         </div>
 
-                        <span className="text-12 lg:text-18 text-black font-500">
+                        <FadeIn delay={0.6} duration={0.6} className="text-12 lg:text-18 text-black font-500">
                             {data.department}
-                        </span>
+                        </FadeIn>
                     </div>
                 </div>
 
-                <div className={`absolute top-0 right-0 px-20 py-10 lg:px-45 lg:py-15 ${data.bg} rounded-tr-lg`}>
+                <FadeIn delay={0.7} duration={0.6} className={`absolute top-0 right-0 px-20 py-10 lg:px-45 lg:py-15 ${data.bg} rounded-tr-lg`}>
                     <span className="text-white text-12 lg:text-14">
                         {data.quote}
                     </span>
-                </div>
+                </FadeIn>
             </Link>
-        </SlideUp>
+        </ScaleIn>
     );
 });
 
 const JobRoleCard = memo(({ role, index }: { role: JobRole, index: number }) => {
     return (
-        <SlideUp delay={index * 0.08} duration={0.7} className="w-full">
-            <div className="flex flex-col gap-15 lg:gap-50 py-15 lg:py-80 px-15 lg:px-75 bg-white">
-                <div className="grid lg:grid-cols-5 gap-15 sx:gap-20 lg:gap-45">
-                    <div className="lg:col-span-3">
+        <div className="flex flex-col gap-15 lg:gap-50 py-15 lg:py-80 px-15 lg:px-75 bg-white">
+            <div className="grid lg:grid-cols-5 gap-15 sx:gap-20 lg:gap-45">
+                <div className="lg:col-span-3">
+                    <FadeIn delay={0.2} duration={0.6} className="w-full">
                         <img src={role.image} alt={role.title} className="w-full aspect-[6/4] object-cover" />
-                    </div>
-
-                    <div className="lg:col-span-2 flex flex-col gap-15 sx:gap-20 justify-evenly">
-                        <div className="text-20 sx:text-24 lg:text-40 font-500 text-center">
-                            {role.title}
-                        </div>
-
-                        <div className="text-12 lg:text-26 font-500 text-center">
-                            {role.desc}
-                        </div>
-                    </div>
+                    </FadeIn>
                 </div>
 
-                <div className="border-t-1 border-black" />
+                <div className="lg:col-span-2 flex flex-col gap-15 sx:gap-20 justify-evenly">
+                    <FadeIn delay={0.3} duration={0.6} className="text-20 sx:text-24 lg:text-40 font-500 text-center">
+                        {role.title}
+                    </FadeIn>
 
-                <div className="text-10 sx:text-12 lg:text-40 text-black font-500 text-center">
-                    {role.detail}
+                    <FadeIn delay={0.4} duration={0.6} className="text-12 lg:text-26 font-500 text-center">
+                        {role.desc}
+                    </FadeIn>
                 </div>
             </div>
-        </SlideUp>
+
+            <FadeIn delay={0.5} duration={0.6} className="border-t-1 border-black">
+                <div />
+            </FadeIn>
+
+            <FadeIn delay={0.6} duration={0.6} className="text-10 sx:text-12 lg:text-40 text-black font-500 text-center">
+                {role.detail}
+            </FadeIn>
+        </div>
     );
 });
 
@@ -188,54 +192,54 @@ const Interview = memo(() => {
                     />
                 </BackgroundImage>
 
-                <PageHeader className="relative z-10 pb-20 sm:pb-30 lg:pb-40">
-                    <span className="text-white text-18 sm:text-20 lg:text-60 font-600 text-center">
+                <PageHeader delay={0.5} duration={1} className="relative z-10 pb-20 sm:pb-30 lg:pb-40">
+                    <FadeIn delay={0.7} duration={0.8} className="text-white text-18 sm:text-20 lg:text-60 font-600 text-center">
                         Interview
-                    </span>
+                    </FadeIn>
                 </PageHeader>
             </HeaderSpacing>
 
             <ComponentsSpacing1 className="flex flex-col gap-30 sm:gap-50 lg:gap-100 bg-primary overflow-hidden">
-                <SlideUp delay={0} duration={0.7} className="text-sixth/70 text-20 sm:text-24 lg:text-50 font-600 text-center">
+                <SlideUp delay={0.3} duration={0.8} className="text-sixth/70 text-20 sm:text-24 lg:text-50 font-600 text-center">
                     シンミドウで働く人たちの声
                 </SlideUp>
 
                 {/* Interview Cards Grid */}
-                <div className="w-full">
+                <StaggerContainer className="w-full">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-40 lg:gap-80">
                         {interviewData.map((interview, index) => (
-                            <InterviewCard
-                                key={interview.id}
-                                data={interview}
-                                index={index}
-                            />
+                            <InterviewCard key={interview.id} data={interview} index={index} />
                         ))}
                     </div>
-                </div>
+                </StaggerContainer>
             </ComponentsSpacing1>
 
             <ComponentsSpacing1 className="flex flex-col gap-30 sm:gap-50 lg:gap-100 bg-primary">
-                <SlideUp delay={0} duration={0.7} className="hidden lg:block text-sixth/70 text-20 sm:text-24 lg:text-50 font-600 text-center">
+                <SlideUp delay={0.3} duration={0.8} className="hidden lg:block text-sixth/70 text-20 sm:text-24 lg:text-50 font-600 text-center">
                     職種紹介
                 </SlideUp>
 
                 <div className="w-full flex flex-row gap-10 lg:gap-80">
                     <div className="block w-20 lg:w-84 bg-fourteenth">
-                        <div className="w-full h-250 lg:h-500 bg-sixteenth sticky top-75 sm:top-100 lg:top-120" />
+                        <FadeIn delay={0.2} duration={0.6} className="w-full h-250 lg:h-500 bg-sixteenth sticky top-75 sm:top-100 lg:top-120">
+                            <div />
+                        </FadeIn>
                     </div>
 
                     <div className="flex-1 flex flex-row">
                         <div className="bg-primary pt-30 lg:pt-100">
-                            <div className="sticky top-75 sm:top-100 lg:top-120 border-b-33 lg:border-b-90 border-t-33 lg:border-t-90 border-r-20 border-transparent border-r-fourteenth" />
+                            <FadeIn delay={0.3} duration={0.6} className="sticky top-75 sm:top-100 lg:top-120 border-b-33 lg:border-b-90 border-t-33 lg:border-t-90 border-r-20 border-transparent border-r-fourteenth">
+                                <div />
+                            </FadeIn>
                         </div>
 
-                        <div className="flex-1 bg-fourteenth px-13 lg:px-50 py-30 lg:py-60">
+                        <StaggerItem className="flex-1 bg-fourteenth px-13 lg:px-50 py-30 lg:py-60">
                             <div className="grid grid-cols-1 gap-30 sx:gap-40 lg:gap-50">
                                 {jobRolesData.map((role, index) => (
                                     <JobRoleCard key={role.id} role={role} index={index} />
                                 ))}
                             </div>
-                        </div>
+                        </StaggerItem>
                     </div>
                 </div>
             </ComponentsSpacing1>

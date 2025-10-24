@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { Layouts } from "../../components/layouts/layouts";
 import { ComponentsSpacing, HeaderSpacing } from "../../components/common/index";
-import { BackgroundImage, PageHeader, SlideUp } from "../../components/animation";
+import { BackgroundImage, PageHeader, SlideUp, FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "../../components/animation";
 
 import backgroundImg from "../../assets/image/environment/background.png";
 import introImg1 from "../../assets/image/environment/intro-1.png";
@@ -159,11 +159,7 @@ const trainingPrograms: TrainingProgram[] = [
 
 const ComponentsHeader = memo(({ title, className = "" }: { title: string, className?: string }) => {
     return (
-        <SlideUp
-            className={`text-sixth text-18 sm:text-20 lg:text-50 font-600 text-center ${className}`}
-            delay={0}
-            duration={0.7}
-        >
+        <SlideUp delay={0} duration={0.7} className={`text-sixth text-18 sm:text-20 lg:text-50 font-600 text-center ${className}`}>
             {title}
         </SlideUp>
     );
@@ -171,54 +167,54 @@ const ComponentsHeader = memo(({ title, className = "" }: { title: string, class
 
 const EmployeeCard = memo(({ data, index }: { data: EmployeeData, index: number }) => {
     return (
-        <SlideUp delay={index * 0.1} duration={0.7}
-            className="bg-white border border-nineteenth rounded-10 overflow-hidden py-8 lg:py-15"
-        >
+        <ScaleIn delay={index * 0.1} duration={0.8} className="bg-white border border-nineteenth rounded-10 overflow-hidden py-8 lg:py-15">
             <div className="flex flex-col">
                 <div className="px-12 lg:px-25">
-                    <h3 className="text-black text-15 sm:text-20 lg:text-32 font-600 text-center">
+                    <FadeIn delay={0.2} duration={0.6} className="text-black text-15 sm:text-20 lg:text-32 font-600 text-center">
                         {data.title}
-                    </h3>
+                    </FadeIn>
                 </div>
 
-                <img src={data.img} alt={data.title}
-                    className="w-full h-full object-cover aspect-[5/3] px-25 lg:px-45 py-5 lg:py-30"
-                />
+                <FadeIn delay={0.3} duration={0.6} className="w-full">
+                    <img src={data.img} alt={data.title}
+                        className="w-full h-full object-cover aspect-[5/3] px-25 lg:px-45 py-5 lg:py-30"
+                    />
+                </FadeIn>
             </div>
 
             <div className="px-25 lg:px-10 py-25 lg:py-25">
                 <ul className="space-y-2">
                     {data.desc.map((item: string, key: number) => (
-                        <li key={key} className="text-black text-10 lg:text-16 font-500">
+                        <FadeIn key={key} delay={0.4 + (key * 0.05)} duration={0.6} className="text-black text-10 lg:text-16 font-500">
                             {item}
-                        </li>
+                        </FadeIn>
                     ))}
                 </ul>
             </div>
-        </SlideUp>
+        </ScaleIn>
     );
 });
 
 const TrainingProgramCard = memo(({ program }: { program: TrainingProgram }) => (
-    <div className="text-primary">
+    <ScaleIn delay={program.id * 0.2} duration={0.8} className="text-primary">
         <div className={`${program.bgColor} ${program.maxWidth} m-auto flex flex-col gap-30 lg:gap-50 px-20 lg:px-35 py-15 lg:py-70`}>
-            <div className="text-20 lg:text-25 font-500 text-center">
+            <FadeIn delay={0.2} duration={0.6} className="text-20 lg:text-25 font-500 text-center">
                 {program.title}
-            </div>
+            </FadeIn>
 
-            <div className="text-10 lg:text-20 font-400">
+            <FadeIn delay={0.3} duration={0.6} className="text-10 lg:text-20 font-400">
                 {program.description}
-            </div>
+            </FadeIn>
 
             <div className="flex flex-col gap-15 lg:gap-30">
                 {program.points.map((point, index) => (
-                    <div key={index} className="text-10 lg:text-20 font-400">
+                    <FadeIn key={index} delay={0.4 + (index * 0.1)} duration={0.6} className="text-10 lg:text-20 font-400">
                         {point}
-                    </div>
+                    </FadeIn>
                 ))}
             </div>
         </div>
-    </div>
+    </ScaleIn>
 ));
 
 const WorkEnvironment = memo(() => {
@@ -229,52 +225,60 @@ const WorkEnvironment = memo(() => {
                     <img src={backgroundImg} className="w-full h-full object-cover" />
                 </BackgroundImage>
 
-                <PageHeader className="relative flex flex-col z-10 pb-20 sm:pb-30 lg:pb-40">
-                    <div className="hidden lg:block max-w-1150 text-white text-18 sm:text-20 lg:text-60 font-500 text-center">
+                <PageHeader delay={0.5} duration={1} className="relative flex flex-col z-10 pb-20 sm:pb-30 lg:pb-40">
+                    <FadeIn delay={0.7} duration={0.8} className="hidden lg:block max-w-1150 text-white text-18 sm:text-20 lg:text-60 font-500 text-center">
                         働く環境・制度
-                    </div>
+                    </FadeIn>
                 </PageHeader>
             </HeaderSpacing>
 
             <ComponentsSpacing className="flex flex-col gap-30 sm:gap-40 lg:gap-90">
                 <ComponentsHeader title="オフィス紹介" />
 
-                <div className="grid grid-cols-1 sx:grid-cols-2 lg:grid-cols-3">
+                <StaggerContainer className="grid grid-cols-1 sx:grid-cols-2 lg:grid-cols-3">
                     {introData.map((data: any, key: number) => (
-                        <img key={key} src={data.img} className="w-full aspect-square" />
+                        <FadeIn key={key} delay={key * 0.1} duration={0.6} className="w-full">
+                            <img src={data.img} className="w-full aspect-square" />
+                        </FadeIn>
                     ))}
-                </div>
+                </StaggerContainer>
             </ComponentsSpacing>
 
             <ComponentsSpacing className="flex flex-col gap-30 sm:gap-40 xl:gap-90 bg-fifth overflow-hidden">
                 <ComponentsHeader title="働き方" />
 
-                <div className="w-full overflow-x-auto">
+                <FadeIn delay={0.3} duration={0.8} className="w-full overflow-x-auto">
                     <img src={workStyle} className="min-w-600" />
-                </div>
+                </FadeIn>
             </ComponentsSpacing>
 
             <ComponentsSpacing className="flex flex-col gap-30 sm:gap-40 lg:gap-90">
                 <ComponentsHeader title="福利厚生" />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 sx:gap-15 lg:gap-40 xl2:gap-65">
+                <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 sx:gap-15 lg:gap-40 xl2:gap-65">
                     {employeeDatas.map((data: any, index: number) => (
                         <EmployeeCard key={index} data={data} index={index} />
                     ))}
-                </div>
+                </StaggerContainer>
             </ComponentsSpacing>
 
             <ComponentsSpacing className="relative flex flex-col gap-30 sm:gap-40 lg:gap-150 overflow-hidden">
-                <img src={trainingBgImg} className="absolute top-0 left-0 w-full h-full object-cover z-0" />
-                <img src={trainingViewImg} className="absolute hidden xl:block w-70% aspect-[9/4] top-5% left-10% object-cover z-5" style={{ transform: "rotate(10deg)" }} />
+                <FadeIn delay={0.2} duration={0.8} className="absolute top-0 left-0 w-full h-full object-cover z-0">
+                    <img src={trainingBgImg} className="w-full h-full object-cover" />
+                </FadeIn>
+                <FadeIn delay={0.4} duration={0.8} className="absolute hidden xl:block w-70% aspect-[9/4] top-5% left-10% object-cover z-5" style={{ transform: "rotate(10deg)" }}>
+                    <img src={trainingViewImg} className="w-full h-full object-cover" />
+                </FadeIn>
 
                 <ComponentsHeader title="研修制度" className="z-10" />
 
-                <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-45 items-end z-10">
+                <StaggerContainer className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-45 items-end z-10">
                     {trainingPrograms.map((program) => (
-                        <TrainingProgramCard key={program.id} program={program} />
+                        <StaggerItem key={program.id}>
+                            <TrainingProgramCard program={program} />
+                        </StaggerItem>
                     ))}
-                </div>
+                </StaggerContainer>
             </ComponentsSpacing>
         </Layouts>
     );
