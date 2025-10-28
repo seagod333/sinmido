@@ -209,8 +209,8 @@ module.exports = {
         twentyth: "#1284A3",
         twentyfirst: "#0A6A93",
         twentysecond: "#0A5A93",
-        twentythird: "",
-        twentyfourth: "",
+        twentythird: "#676464",
+        twentyfourth: "#8DA8B6",
 
       },
 
