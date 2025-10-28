@@ -164,7 +164,7 @@ const heroNews: HeroNewsItem[] = [
         color: 'primary',
     },
     {
-        link: "#",
+        link: "/job-description",
         center: true,
         reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
@@ -175,7 +175,7 @@ const heroNews: HeroNewsItem[] = [
         color: 'primary',
     },
     {
-        link: "#",
+        link: "/faqs",
         center: true,
         reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
@@ -186,14 +186,14 @@ const heroNews: HeroNewsItem[] = [
         color: 'primary',
     },
     {
-        link: "#",
+        link: "/white-paper",
         center: true,
         reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
         img: news9,
     },
     {
-        link: "#",
+        link: "/column",
         center: true,
         reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },

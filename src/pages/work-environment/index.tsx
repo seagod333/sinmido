@@ -248,7 +248,7 @@ const WorkEnvironment = memo(() => {
                 <ComponentsHeader title="働き方" />
 
                 <FadeIn delay={0.3} duration={0.8} className="w-full overflow-x-auto">
-                    <img src={workStyle} className="min-w-600" />
+                    <img src={workStyle} className="min-w-600 mx-auto" />
                 </FadeIn>
             </ComponentsSpacing>
 

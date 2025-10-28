@@ -205,7 +205,7 @@ const InterviewDetails = memo(() => {
                 <img src={interviewFooter} className="w-full aspect-[9/4] object-cover" />
             </FadeIn>
 
-            <StaggerContainer>
+            <StaggerContainer >
                 <ComponentsSpacing2 className="flex flex-col gap-15 sx:gap-20">
                     <StaggerItem>
                         <FadeIn delay={0.2} duration={0.6} className="flex lg:hidden flex-col items-center gap-10 cursor-pointer">

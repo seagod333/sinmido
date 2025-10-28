@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, memo } from 'react';
+import { Suspense, lazy, memo } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { NotFound, Loading, ErrorBoundary } from './components/common';
 import { Layouts } from './components/layouts/layouts';
@@ -6,7 +6,7 @@ import { Layouts } from './components/layouts/layouts';
 // TypeScript interfaces
 interface RouteConfig {
   path: string;
-  component: React.LazyExoticComponent<React.ComponentType<any>>;
+  component: any;
   exact?: boolean;
 }
 
@@ -18,6 +18,10 @@ const Interview = lazy(() => import('./pages/interview'));
 const InterviewDetails = lazy(() => import('./pages/interview/details'));
 const WorkEnvironment = lazy(() => import('./pages/work-environment'));
 const AppRequirements = lazy(() => import('./pages/requirements'));
+const JobDescription = lazy(() => import('./pages/job-description'));
+const Faqs = lazy(() => import('./pages/faqs'));
+const WhitePaper = lazy(() => import('./pages/white-paper'));
+const Column = lazy(() => import('./pages/column'));
 
 // Route configuration
 const routeConfigs: RouteConfig[] = [
@@ -27,7 +31,11 @@ const routeConfigs: RouteConfig[] = [
   { path: '/interview', component: Interview },
   { path: '/interview/details', component: InterviewDetails },
   { path: '/work-environment', component: WorkEnvironment },
-  { path: '/requirements', component: AppRequirements }
+  { path: '/requirements', component: AppRequirements },
+  { path: '/job-description', component: JobDescription },
+  { path: '/faqs', component: Faqs },
+  { path: '/white-paper', component: WhitePaper },
+  { path: '/column', component: Column }
 ];
 
 // Optimized Routers component
