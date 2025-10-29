@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 import { FadeIn, ScaleIn } from '../animation';
 
 // TypeScript interfaces
@@ -12,7 +12,7 @@ interface LoadingProps {
 const Loading = memo<LoadingProps>(({ 
   className = "", 
   size = 'md',
-  message = "Loading...",
+  message = "読み込み中...",
   showMessage = true
 }) => {
   const sizeClasses = {

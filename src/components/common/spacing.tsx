@@ -1,4 +1,4 @@
-import { memo } from "react";
+import React, { memo } from "react";
 
 // Type definition for spacing components
 interface SpacingProps {
@@ -17,7 +17,7 @@ const GlobalSpacing = memo<SpacingProps>(({ children, className = "" }) => {
 
 const HeaderSpacing = memo<SpacingProps>(({ children, className = "" }) => {
     return (
-        <div className={`pt-60 xs:pt-65 sx:pt-70 sm:pt-75 md:pt-85 lg:pt-100 xl:pt-120 2xl:pt-140 ${className}`}>
+        <div className={`pt-70 xs:pt-75 sx:pt-80 sm:pt-85 md:pt-95 lg:pt-100 xl:pt-120 2xl:pt-140 ${className}`}>
             {children}
         </div>
     )

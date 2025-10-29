@@ -1,4 +1,4 @@
-import { memo, useMemo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { motion, MotionProps, Variants } from 'framer-motion';
 
 // Optimized animation variants with better performance

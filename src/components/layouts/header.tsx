@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { useState, memo, useCallback } from "react";
+import React, { useState, memo, useCallback } from "react";
+import { Link } from "gatsby";
 import DropdownMenu from "../drop-menu/dropdown-menu";
 import { GlobalSpacing } from "../common/index";
 import logo from "../../assets/image/logo.png";
@@ -37,7 +37,7 @@ const Header = memo<HeaderProps>(({ className = "" }) => {
   return (
     <GlobalSpacing className={`header-wrapper fixed top-0 left-0 right-0 z-50 ${className}`}>
       <header className="relative z-50">
-        <div className="flex justify-between items-center py-15 sm:py-25 lg:py-20">
+        <div className="flex justify-between items-center py-15 sx:py-25 lg:py-20">
           {/* Left Section - Brand */}
           <div className="flex flex-col flex-column group">
             <Link to="/" className="flex flex-row">
@@ -74,7 +74,7 @@ const Header = memo<HeaderProps>(({ className = "" }) => {
             <div className="relative">
               <button
                 onClick={toggleDropdown}
-                className="relative w-40 sm:w-50 lg:w-64 h-40 sm:h-50 lg:h-64 rounded-100 flex items-center justify-center group hover-lift border-1 border-white transition-all duration-200 hover:bg-white/10"
+                className="relative w-40 sm:w-50 lg:w-64 h-40 sm:h-50 lg:h-64 rounded-100 flex items-center justify-center group hover-lift border-1 border-white transition-all duration-200 bg-white/10 hover:bg-white/20"
                 aria-label="Toggle navigation menu"
                 aria-expanded={isDropdownOpen}
               >

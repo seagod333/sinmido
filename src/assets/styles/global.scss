@@ -1,10 +1,3 @@
-// Import font definitions
-@use './fonts/fonts.scss';
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 * {
   box-sizing: border-box;
 }
@@ -98,4 +91,20 @@ body {
 
 .zoom-on-hover:hover img {
   transform: scale(1.1);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.row-span-1\.5 {
+  grid-row: span 1.5 / span 1.5;
+}
+
+// Responsive lg:row-span utilities for fractional values
+@media (width >= 1024px) {
+  .lg\:row-span-2 {
+    grid-row: span 2 / span 2;
+  }
 }

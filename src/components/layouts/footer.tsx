@@ -1,5 +1,5 @@
-import { memo } from "react";
-import { Link } from "react-router-dom";
+import React, { memo } from "react";
+import { Link } from "gatsby";
 import instagramIcon from "../../assets/image/icons/instagram.png";
 import youtubeIcon from "../../assets/image/icons/youtube.png";
 import logo from "../../assets/image/logo.png";

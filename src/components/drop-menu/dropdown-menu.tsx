@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { useRef, useEffect, useState, memo, useCallback } from "react";
+import React, { useRef, useEffect, useState, memo, useCallback } from "react";
+import { Link } from "gatsby";
 
 import { sleep } from "../../utils/utils";
 import "./dropdown-menu.scss";
@@ -71,7 +71,7 @@ const DropdownMenu = memo<DropdownMenuProps>(({
 
     return (
         <div
-            className={`dropdown-menu ${isClosing ? 'closing' : ''} absolute flex flex-col gap-4 lg:gap-12 py-5 sm:py-8 lg:py-12 right-0 top-full w-200 mt-12 rounded-xl z-100 bg-white dropdown-backdrop ${className}`}
+            className={`dropdown-menu ${isClosing ? 'closing' : ''} absolute flex flex-col gap-4 lg:gap-12 py-5 sm:py-8 lg:py-12 right-0 top-full w-200 mt-12 rounded-10 z-100 bg-white dropdown-backdrop ${className}`}
             ref={dropdownRef}
             role="menu"
             aria-label="Navigation menu"

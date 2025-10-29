@@ -6,7 +6,7 @@ function range(start, end, increment = 1) {
 }
 
 function range1(start, end, increment = 10) {
-  const count = Math.floor((end - start + 1 / increment) * increment);
+  const count = Math.floor((end - start) * increment) + 1;
   return Array(count).fill(0).map((_, idx) => start + idx / increment);
 }
 
@@ -52,11 +52,21 @@ module.exports = {
     ...range(1, 24).map(i => `row-end-${i}`),
     // Responsive grid utilities
     ...range(1, 24).map(i => `lg:col-span-${i}`),
-    ...range(1, 24).map(i => `lg:row-span-${i}`),
     ...range(1, 24).map(i => `md:col-span-${i}`),
+    ...range(1, 24).map(i => `sx:col-span-${i}`),
+    ...range(1, 24).map(i => `lg:row-span-${i}`),
     ...range(1, 24).map(i => `md:row-span-${i}`),
-    ...range(1, 24).map(i => `sm:col-span-${i}`),
-    ...range(1, 24).map(i => `sm:row-span-${i}`),
+    ...range(1, 24).map(i => `sx:row-span-${i}`),
+    // Gap utilities
+    ...range(0, 200).map(i => `gap-${i}`),
+    ...range(0, 200).map(i => `gap-x-${i}`),
+    ...range(0, 200).map(i => `gap-y-${i}`),
+    ...range(0, 200).map(i => `md:gap-${i}`),
+    ...range(0, 200).map(i => `sx:gap-${i}`),
+    // Responsive gap utilities
+    ...range(0, 200).map(i => `lg:gap-${i}`),
+    ...range(0, 200).map(i => `md:gap-${i}`),
+    ...range(0, 200).map(i => `sx:gap-${i}`),
     // Aspect ratio classes
     'aspect-square',
     'aspect-video',
@@ -230,6 +240,12 @@ module.exports = {
 
       borderRadius: {
         DEFAULT: '5px',
+        sm: '2px',
+        md: '6px',
+        lg: '8px',
+        xl: '12px',
+        '2xl': '16px',
+        '3xl': '24px',
         ...range(0, 100).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
       },
 
@@ -428,6 +444,39 @@ module.exports = {
       '8': '2rem',
       '9': '2.25rem',
       '10': '2.5rem',
+    },
+
+    // Gap utilities
+    gap: {
+      ...range(0, 200).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
+      ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem` }), {}),
+    },
+
+    // Column gap utilities
+    gapX: {
+      ...range(0, 200).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
+      ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem` }), {}),
+    },
+
+    // Row gap utilities
+    gapY: {
+      ...range(0, 200).reduce((merged, f) => ({ ...merged, [f]: `${f}px` }), {}),
+      ...range1(0.5, 5, 10).reduce((merged, f) => ({ ...merged, [f + 'r']: `${f}rem` }), {}),
+    },
+
+    // Grid template rows
+    gridTemplateRows: {
+      ...range(1, 24).reduce((merged, f) => ({ ...merged, [f]: `repeat(${f}, minmax(0, 1fr))` }), {}),
+    },
+
+    // Grid row span utilities
+    gridRow: {
+      ...range(1, 24).reduce((merged, f) => ({ ...merged, [`span-${f}`]: `span ${f} / span ${f}` }), {}),
+    },
+
+    // Row span utilities (alternative approach)
+    rowSpan: {
+      ...range(1, 24).reduce((merged, f) => ({ ...merged, [f]: `span ${f} / span ${f}` }), {}),
     },
   },
 

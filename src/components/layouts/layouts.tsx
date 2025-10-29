@@ -1,10 +1,13 @@
-import { useState, memo, useCallback } from "react";
+import React, { useState, memo, useCallback } from "react";
 
 import Header from "./header";
 import Footer from "./footer";
 import backgroundVideo from "../../assets/video/background.mp4";
 import backgroundThumb from "../../assets/video/background-thumb.jpg";
+
 import './layouts.scss';
+import "../../assets/styles/tailwind.css";
+import "../../assets/styles/global.scss";
 
 export interface LayoutProps {
   children?: React.ReactNode;

@@ -1,165 +1,49 @@
-# Sinmido - React TypeScript Project
+<p align="center">
+  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
+    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
+  </a>
+</p>
+<h1 align="center">
+  Gatsby Minimal TypeScript Starter
+</h1>
 
-A modern React application built with TypeScript, Vite, and Tailwind CSS.
+## 🚀 Quick start
 
-## 🚀 Features
+1.  **Create a Gatsby site.**
 
-- ⚡ **Vite** - Lightning fast build tool
-- ⚛️ **React 18** - Latest React with hooks and concurrent features
-- 🔷 **TypeScript** - Type-safe JavaScript
-- 🎨 **Tailwind CSS** - Utility-first CSS framework
-- 🎭 **Sass/SCSS** - CSS preprocessor for enhanced styling
-- 🧭 **React Router** - Client-side routing
-- 📱 **Responsive Design** - Mobile-first approach
-- 🎬 **Video Backgrounds** - Rich media support
+    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
 
-## 🛠️ Tech Stack
+    ```shell
+    # create a new Gatsby site using the minimal TypeScript starter
+    npm init gatsby -- -ts
+    ```
 
-- **Frontend Framework**: React 18.2.0
-- **Build Tool**: Vite 5.0.8
-- **Language**: TypeScript 5.2.2
-- **Styling**: Tailwind CSS 3.3.6 + Sass 1.69.5
-- **Routing**: React Router DOM 7.9.4
-- **Linting**: ESLint with TypeScript support
+2.  **Start developing.**
 
-## 📁 Project Structure
+    Navigate into your new site’s directory and start it up.
 
-```
-src/
-├── @types/           # TypeScript type definitions
-├── assets/           # Static assets (images, fonts, styles, videos)
-│   ├── image/        # Image assets
-│   ├── styles/       # Global styles and fonts
-│   └── video/        # Video assets
-├── components/       # Reusable React components
-│   └── layouts/      # Layout components (header, footer)
-├── pages/           # Page components
-│   └── dashboard/    # Dashboard pages
-├── provider/        # Context providers and API utilities
-├── main.tsx         # Application entry point
-└── routers.tsx      # Routing configuration
-```
+    ```shell
+    cd my-gatsby-site/
+    npm run develop
+    ```
 
-## 🚀 Getting Started
+3.  **Open the code and start customizing!**
 
-### Prerequisites
+    Your site is now running at http://localhost:8000!
 
-- Node.js (version 16 or higher)
-- npm or yarn package manager
+    Edit `src/pages/index.tsx` to see your site update in real-time!
 
-### Installation
+4.  **Learn more**
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd jp
-   ```
+    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+    - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+    - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+## 🚀 Quick start (Netlify)
 
-3. **Start the development server**
-   ```bash
-   npm run dev
-   ```
+Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
 
-4. **Open your browser**
-   Navigate to `http://localhost:3003` (or the port shown in your terminal)
-
-## 📜 Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint for code quality
-
-## 🎨 Styling
-
-This project uses a combination of:
-- **Tailwind CSS** for utility-first styling
-- **Sass/SCSS** for custom styles and components
-- **Custom fonts** (Shippori Mincho) for Japanese typography
-- **Responsive design** with mobile-first approach
-
-### Font Usage
-Custom fonts are available in `src/assets/styles/fonts/`. See `FONT_USAGE_EXAMPLES.md` for implementation details.
-
-## 📱 Pages & Components
-
-### Dashboard Pages
-- **Hero Section** - Landing page with video background
-- **Students** - Student showcase with image galleries
-- **Recruit** - Recruitment information and opportunities
-
-### Layout Components
-- **Header** - Navigation and branding
-- **Footer** - Site footer with links
-- **Layouts** - Main layout wrapper
-
-## 🔧 Configuration
-
-### Vite Configuration
-- Development server runs on port 3003
-- Hot module replacement enabled
-- TypeScript support configured
-
-### Tailwind Configuration
-- Custom utilities and components
-- Responsive breakpoints
-- Custom color palette
-
-### TypeScript Configuration
-- Strict type checking enabled
-- Path mapping configured
-- React JSX support
-
-## 🚀 Deployment
-
-### Build for Production
-```bash
-npm run build
-```
-
-The built files will be in the `dist/` directory, ready for deployment to any static hosting service.
-
-### Preview Production Build
-```bash
-npm run preview
-```
-
-## 📦 Dependencies
-
-### Production Dependencies
-- `react` - React library
-- `react-dom` - React DOM rendering
-- `react-router-dom` - Client-side routing
-
-### Development Dependencies
-- `@vitejs/plugin-react` - Vite React plugin
-- `typescript` - TypeScript compiler
-- `tailwindcss` - CSS framework
-- `sass` - CSS preprocessor
-- `eslint` - Code linting
-- `autoprefixer` - CSS vendor prefixing
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is private and proprietary.
-
-## 🆘 Support
-
-For support and questions, please contact the development team.
-
----
-
-Built with ❤️ using React, TypeScript, and Vite
+[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
