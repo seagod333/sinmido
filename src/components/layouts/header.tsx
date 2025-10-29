@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, memo, useCallback } from "react";
 import DropdownMenu from "../drop-menu/dropdown-menu";
-import { GlobalSpacing } from "../common/Spacing";
+import { GlobalSpacing } from "../common/index";
 import logo from "../../assets/image/logo.png";
 
 // TypeScript interfaces
