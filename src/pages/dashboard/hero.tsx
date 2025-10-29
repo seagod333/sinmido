@@ -87,6 +87,7 @@ const heroNews: HeroNewsItem[] = [
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
         img: news2,
         bodyTitle: {
+            desc: ["#FOLLOW"],
             subTitle: [
                 "Sinmido",
                 "採用公式",
@@ -135,6 +136,7 @@ const heroNews: HeroNewsItem[] = [
         reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
         img: news6,
+        headerTitle: "#RECRUIT INFO",
         bodyTitle: {
             subTitle: ["募集要項"]
         },
@@ -169,6 +171,7 @@ const heroNews: HeroNewsItem[] = [
         reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
         img: news7,
+        headerTitle: "#INTERVIEW",
         bodyTitle: {
             subTitle: ["インタビュー"]
         },
@@ -180,6 +183,7 @@ const heroNews: HeroNewsItem[] = [
         reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
         img: news8,
+        headerTitle: "#DOWNLOAD MATERIALS",
         bodyTitle: {
             subTitle: ["ホワイトペーパー"]
         },
@@ -188,9 +192,14 @@ const heroNews: HeroNewsItem[] = [
     {
         link: "/white-paper",
         center: true,
-        reactAnimation: false,
+        reactAnimation: true,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
         img: news9,
+        bodyTitle: {
+            desc: ["#FAQ"],
+            subTitle: ["よくある質問"]
+        },
+        color: 'secondary',
     },
     {
         link: "/column",
@@ -198,6 +207,7 @@ const heroNews: HeroNewsItem[] = [
         reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
         img: news10,
+        headerTitle: "#JOB DETAIL",
         bodyTitle: {
             subTitle: ["仕事内容"]
         },
@@ -209,6 +219,7 @@ const heroNews: HeroNewsItem[] = [
         reactAnimation: false,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
         img: news11,
+        headerTitle: "#WORK STYLE",
         bodyTitle: {
             subTitle: ["働く環境・制度"]
         },
@@ -217,13 +228,14 @@ const heroNews: HeroNewsItem[] = [
     {
         link: "#",
         center: true,
-        reactAnimation: false,
+        reactAnimation: true,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },
         img: news12,
         bodyTitle: {
+            desc: ["#COLUMN"],
             subTitle: ["コラム"]
         },
-        color: 'primary',
+        color: 'secondary',
     }
 ];
 
