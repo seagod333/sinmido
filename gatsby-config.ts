@@ -6,7 +6,8 @@ const config: GatsbyConfig = {
     siteUrl: `http://localhost:3003`, // your Gatsby dev URL
   },
   graphqlTypegen: true,
-  pathPrefix: `wordpress/wp-content/themes/sinmido/public`,
+  pathPrefix: `/`,
+  // pathPrefix: `wordpress/wp-content/themes/sinmido/public`,
   flags: {},
   plugins: [
     "gatsby-plugin-postcss",
