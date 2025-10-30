@@ -14,29 +14,29 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-output",
     },
-    {
-      resolve: "gatsby-source-wordpress",
-      options: {
-        // 🔥 REQUIRED: Your WordPress GraphQL URL
-        url: "http://localhost/wordpress/graphql",
+    // {
+    //   resolve: "gatsby-source-wordpress",
+    //   options: {
+    //     // 🔥 REQUIRED: Your WordPress GraphQL URL
+    //     url: "http://localhost/wordpress/graphql",
 
-        // Optional but recommended:
-        schema: {
-          timeout: 60000,
-        },
-        develop: {
-          hardCacheMediaFiles: true,
-        },
-        type: {
-          MediaItem: {
-            createFileNodes: true,
-          },
-        },
-      },
-    },
-    "gatsby-plugin-image",
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
+    //     // Optional but recommended:
+    //     schema: {
+    //       timeout: 60000,
+    //     },
+    //     develop: {
+    //       hardCacheMediaFiles: true,
+    //     },
+    //     type: {
+    //       MediaItem: {
+    //         createFileNodes: true,
+    //       },
+    //     },
+    //   },
+    // },
+    // "gatsby-plugin-image",
+    // "gatsby-plugin-sharp",
+    // "gatsby-transformer-sharp",
   ],
 };
 
