@@ -22,6 +22,8 @@ import workStyle from "../assets/image/environment/work-style.png";
 
 interface IntroData {
     img: string;
+    title: string;
+    desc: string;
 }
 
 interface EmployeeData {
@@ -42,16 +44,28 @@ interface TrainingProgram {
 const introData: IntroData[] = [
     {
         img: introImg1,
+        title: "Entrance",
+        desc: "エントランス 1"
     }, {
         img: introImg2,
+        title: "Office",
+        desc: "オフィス"
     }, {
         img: introImg3,
+        title: "Meeting room",
+        desc: "会議室 1"
     }, {
         img: introImg4,
+        title: "Entrance",
+        desc: "エントランス 2"
     }, {
         img: introImg5,
+        title: "Event space",
+        desc: "イベントスペース"
     }, {
         img: introImg6,
+        title: "Meeting room",
+        desc: ""
     }
 ];
 
@@ -237,8 +251,18 @@ const WorkEnvironment = memo(() => {
 
                 <StaggerContainer className="grid grid-cols-1 sx:grid-cols-2 lg:grid-cols-3">
                     {introData.map((data: any, key: number) => (
-                        <FadeIn key={key} delay={key * 0.1} duration={0.6} className="w-full">
+                        <FadeIn key={key} delay={key * 0.1} duration={0.6} className="relative w-full cursor-pointer">
                             <img src={data.img} className="w-full aspect-square" />
+
+                            <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center gap-5 lg:gap-15 bg-secondary/60">
+                                <FadeIn delay={0.2} duration={0.6} className="text-white text-18 sm:text-20 lg:text-50 font-500 text-center">
+                                    {data.title}
+                                </FadeIn>
+
+                                <FadeIn delay={0.3} duration={0.6} className="text-white text-10 sm:text-12 lg:text-40 font-500 text-center">
+                                    {data.desc}
+                                </FadeIn>
+                            </div>
                         </FadeIn>
                     ))}
                 </StaggerContainer>

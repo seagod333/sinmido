@@ -107,7 +107,7 @@ const heroNews: HeroNewsItem[] = [
         color: 'primary',
     },
     {
-        link: "/interview/details",
+        link: "/interview-details",
         center: true,
         reactAnimation: true,
         size: { w: 1, h: 1, response: { w: 1, h: 1 } },

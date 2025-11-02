@@ -106,7 +106,7 @@ const jobRolesData: JobRole[] = [
 const InterviewCard = memo(({ data, index }: InterviewCardProps) => {
     return (
         <ScaleIn delay={index * 0.1} duration={0.8} className="w-full">
-            <Link to="/interview/details" className="relative bg-white flex flex-col min-h-full max-w-460 m-auto">
+            <Link to="/interview-details" className="relative bg-white flex flex-col min-h-full max-w-460 m-auto">
                 {/* Profile Image */}
                 <div className="flex-shrink-0">
                     <FadeIn delay={0.2} duration={0.6} className="w-full">

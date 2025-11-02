@@ -73,27 +73,25 @@ const NavigationSection = memo(({ items }: { items: NavigationItem[] }) => (
 ));
 
 const SocialMediaSection = memo(() => (
-  <FadeIn delay={0.4} duration={0.6}>
-    <div className="flex flex-row gap-50">
-      {SOCIAL_LINKS.map((social) => (
-        <div key={`social-${social.alt}`} className="flex-1 flex flex-col items-center justify-center">
-          <a
-            href={social.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-5 border border-white rounded-full cursor-pointer transition-all duration-200 hover:bg-white/10 hover:scale-110"
-            aria-label={social.label}
-          >
-            <img
-              src={social.icon}
-              alt={social.alt}
-              className="w-30 h-30"
-              loading="lazy"
-            />
-          </a>
-        </div>
-      ))}
-    </div>
+  <FadeIn delay={0.4} duration={0.6} className="flex flex-row gap-50">
+    {SOCIAL_LINKS.map((social) => (
+      <div key={`social-${social.alt}`} className="flex-1 flex flex-col items-center justify-center">
+        <a
+          href={social.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex flex-col items-center justify-center p-8 border border-white rounded-full cursor-pointer transition-all duration-200 hover:bg-white/10 hover:scale-110 aspect-square"
+          aria-label={social.label}
+        >
+          <img
+            src={social.icon}
+            alt={social.alt}
+            className="w-30 h-30"
+            loading="lazy"
+          />
+        </a>
+      </div>
+    ))}
   </FadeIn>
 ));
 
@@ -120,14 +118,12 @@ const CopyrightSection = memo(() => (
 ));
 
 const MobileBrandSection = memo(() => (
-  <FadeIn delay={0.2} duration={0.6}>
-    <div className="sm:px-15 sm:py-15 px-10 py-10 bg-white flex flex-col justify-center">
-      <div className="text-10 sm:text-12 text-center text-gray-700">
-        2027年度新卒採用
-      </div>
-      <div className="text-12 sm:text-16 text-center font-semibold text-gray-900">
-        MY PAGE
-      </div>
+  <FadeIn delay={0.2} duration={0.6} className="sm:px-15 sm:py-15 px-10 py-10 bg-white flex flex-col justify-center">
+    <div className="text-10 sm:text-12 text-center text-gray-700">
+      2027年度新卒採用
+    </div>
+    <div className="text-12 sm:text-16 text-center font-semibold text-gray-900">
+      MY PAGE
     </div>
   </FadeIn>
 ));
@@ -151,26 +147,22 @@ const MobileNavigationSection = memo(({ items }: { items: NavigationItem[] }) =>
 const MobileSocialSection = memo(() => (
   <div className="bg-black flex flex-row">
     {SOCIAL_LINKS.map((social, index) => (
-      <FadeIn key={`social-${social.alt}`} delay={0.4 + index * 0.1} duration={0.6}>
-        <div
-          className={`flex-1 flex flex-col items-center justify-center ${index < SOCIAL_LINKS.length - 1 ? 'border-r border-white' : ''
-            }`}
+      <FadeIn key={`social-${social.alt}`} delay={0.4 + index * 0.1} duration={0.6}
+        className={`flex-1 flex flex-col items-center justify-center ${index < SOCIAL_LINKS.length - 1 ? 'border-r border-white' : ''}`}
+      >
+        <a href={social.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex flex-col items-center justify-center p-5 sm:p-7 border border-white rounded-full cursor-pointer transition-all duration-200 hover:bg-white/10 hover:scale-110 aspect-square"
+          aria-label={social.label}
         >
-          <a
-            href={social.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-5 sm:p-7 border border-white rounded-full cursor-pointer transition-all duration-200 hover:bg-white/10 hover:scale-110"
-            aria-label={social.label}
-          >
-            <img
-              src={social.icon}
-              alt={social.alt}
-              className="sm:w-16 sm:h-16 w-12 h-12"
-              loading="lazy"
-            />
-          </a>
-        </div>
+          <img
+            src={social.icon}
+            alt={social.alt}
+            className="sm:w-16 sm:h-16 w-12 h-12 object-contain"
+            loading="lazy"
+          />
+        </a>
       </FadeIn>
     ))}
   </div>
