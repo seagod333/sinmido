@@ -11,7 +11,7 @@ function range1(start, end, increment = 10) {
 }
 
 const minFont = 5;
-const maxFont = 100;
+const maxFont = 200;
 
 const minPixel = 0;
 const maxPixel = 1500;
@@ -221,7 +221,7 @@ module.exports = {
         twentysecond: "#0A5A93",
         twentythird: "#676464",
         twentyfourth: "#8DA8B6",
-
+        twentyfifth: "#E0D7BC",
       },
 
       fontFamily: {
