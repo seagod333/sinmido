@@ -1,9 +1,10 @@
 import React from "react";
-import { useMemo } from "react";
-import CountUp from "react-countup";
+import { useMemo, useState, useEffect } from "react";
+import Odometer from "react-odometerjs";
 import { Layouts } from "../components/layouts/layouts";
 import { ComponentsSpacing, HeaderSpacing } from "../components/common/index";
 import { SlideUp, BackgroundImage, PageHeader, CounterAnimation, FadeIn, StaggerContainer } from "../components/animation/index";
+import "odometer/themes/odometer-theme-default.css";
 
 import signImg from "../assets/image/corporate-intelligence/sign.png";
 import ceoImage from "../assets/image/corporate-intelligence/ceo.png";
@@ -205,117 +206,142 @@ const CompanyProfileCard = ({ item, index }: { item: CompanyProfileItem; index: 
   </SlideUp>
 );
 
-const StatisticCard = ({ stat, idx }: { stat: StatisticData; idx: number }) => (
-  <CounterAnimation
-    className={`relative w-full aspect-square ${idx === 4 ? 'lg:col-start-3' : ''}`}
-    duration={0.6}
-    delay={idx * 0.1}
-    amount={0.3}
-  >
-    <img src={stat.image} className="w-full h-auto object-cover select-none" alt={stat.title} />
+const StatisticCard = ({ stat, idx }: { stat: StatisticData; idx: number }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [odometerValue, setOdometerValue] = useState(0);
+  const [percentage1Value, setPercentage1Value] = useState(0);
+  const [percentage2Value, setPercentage2Value] = useState(0);
 
-    <div className="absolute top-5% left-0 w-full flex items-center justify-center px-10">
-      <FadeIn delay={0.2} duration={0.6} className="text-black text-20 lg:text-40 font-600 text-center">
-        {stat.title}
-      </FadeIn>
-    </div>
+  useEffect(() => {
+    if (isVisible) {
+      // Small delay to ensure smooth animation start
+      const timer = setTimeout(() => {
+        if (idx === 2) {
+          setPercentage1Value(stat.percentage1 || 0);
+          setPercentage2Value(stat.percentage2 || 0);
+        } else {
+          setOdometerValue(stat.desc || 0);
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible, idx, stat.desc, stat.percentage1, stat.percentage2]);
 
-    {idx === 0 && (
-      <div className="absolute bottom-2% left-0 w-full flex items-center justify-center px-10">
-        <span className="text-secondary text-40 lg:text-80 font-600 text-center">
-          <span className="montserrat font-900 leading-none">
-            <CountUp
-              end={stat.desc || 0}
-              duration={2.5}
-              decimals={1}
-              useEasing={true}
-            />
-          </span>
-          <span className="leading-none">日</span>
-        </span>
+  return (
+    <CounterAnimation
+      className={`relative w-full aspect-square ${idx === 4 ? 'lg:col-start-3' : ''}`}
+      duration={0.6}
+      delay={idx * 0.1}
+      amount={0.3}
+      onViewportEnter={() => {
+        if (!isVisible) {
+          setIsVisible(true);
+        }
+      }}
+    >
+      <img src={stat.image} className="w-full h-auto object-cover select-none" alt={stat.title} />
+
+      <div className="absolute top-5% left-0 w-full flex items-center justify-center px-10">
+        <FadeIn delay={0.2} duration={0.6} className="text-black text-20 lg:text-40 font-600 text-center">
+          {stat.title}
+        </FadeIn>
       </div>
-    )}
 
-    {idx === 1 && (
-      <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full flex items-center justify-center px-10">
-        <span className="text-secondary text-35 lg:text-65 font-600 text-center pt-20 lg:pt-30">
-          <span className="montserrat font-900 leading-none">
-            <CountUp
-              end={stat.desc || 0}
-              duration={2.5}
-              decimals={1}
-              useEasing={true}
-            />
+      {idx === 0 && (
+        <div className="absolute bottom-2% left-0 w-full flex items-center justify-center px-10">
+          <span className="text-secondary text-40 lg:text-80 font-600 text-center">
+            <span className="montserrat font-900 leading-none">
+              <Odometer
+                value={odometerValue}
+                duration={2500}
+                format="(,ddd).d"
+              />
+            </span>
+            <span className="leading-none">日</span>
           </span>
-          <span className="text-25 lg:text-50 font-500 leading-none">時間</span>
-        </span>
-      </div>
-    )}
+        </div>
+      )}
 
-    {idx === 2 && (
-      <div className="absolute left-1/2 top-2/3 transform -translate-x-1/2 -translate-y-2/3 w-full">
-        <div className="grid grid-cols-2 gap-10% pt-40% px-12%">
-          <div className="flex flex-col">
-            <span className="text-eighth text-20 lg:text-30 font-500">男性</span>
-            <span className="text-eighth text-30 lg:text-40 pl-20%">
-              <span className="montserrat font-700">
-                <CountUp
-                  end={stat.percentage1 || 0}
-                  duration={2.5}
-                  useEasing={true}
-                />
-              </span>
-              <span className="montserrat font-600">%</span>
+      {idx === 1 && (
+        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full flex items-center justify-center px-10">
+          <span className="text-secondary text-35 lg:text-65 font-600 text-center pt-20 lg:pt-30">
+            <span className="montserrat font-900 leading-none">
+              <Odometer
+                value={odometerValue}
+                duration={2500}
+                format="(,ddd).d"
+              />
             </span>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-ninth text-20 lg:text-30 font-500">女性</span>
-            <span className="text-ninth text-30 lg:text-40 pl-20%">
-              <span className="montserrat font-700">
-                <CountUp
-                  end={stat.percentage2 || 0}
-                  duration={2.5}
-                  useEasing={true}
-                />
+            <span className="text-25 lg:text-50 font-500 leading-none">時間</span>
+          </span>
+        </div>
+      )}
+
+      {idx === 2 && (
+        <div className="absolute left-1/2 top-2/3 transform -translate-x-1/2 -translate-y-2/3 w-full">
+          <div className="grid grid-cols-2 gap-10% pt-40% px-12%">
+            <div className="flex flex-col">
+              <span className="text-eighth text-20 lg:text-30 font-500">男性</span>
+              <span className="text-eighth text-30 lg:text-40 pl-20%">
+                <span className="montserrat font-700">
+                  <Odometer
+                    value={percentage1Value}
+                    duration={2500}
+                    format="(,ddd)"
+                  />
+                </span>
+                <span className="montserrat font-600">%</span>
               </span>
-              <span className="montserrat font-600">%</span>
-            </span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-ninth text-20 lg:text-30 font-500">女性</span>
+              <span className="text-ninth text-30 lg:text-40 pl-20%">
+                <span className="montserrat font-700">
+                  <Odometer
+                    value={percentage2Value}
+                    duration={2500}
+                    format="(,ddd)"
+                  />
+                </span>
+                <span className="montserrat font-600">%</span>
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-    )}
+      )}
 
-    {idx === 3 && (
-      <div className="absolute bottom-2% left-0 w-full flex items-center justify-center px-10">
-        <span className="text-secondary text-40 lg:text-80 font-600 text-center">
-          <span className="montserrat font-900 leading-none">
-            <CountUp
-              end={stat.desc || 0}
-              duration={2.5}
-              useEasing={true}
-            />
+      {idx === 3 && (
+        <div className="absolute bottom-2% left-0 w-full flex items-center justify-center px-10">
+          <span className="text-secondary text-40 lg:text-80 font-600 text-center">
+            <span className="montserrat font-900 leading-none">
+              <Odometer
+                value={isVisible ? (stat.desc || 0) : 0}
+                duration={2500}
+                format="(,ddd)"
+              />
+            </span>
+            <span className="leading-none">％</span>
           </span>
-          <span className="leading-none">％</span>
-        </span>
-      </div>
-    )}
+        </div>
+      )}
 
-    {idx === 4 && (
-      <div className="absolute bottom-2% left-0 w-full flex items-center justify-center px-10">
-        <span className="text-secondary text-40 lg:text-80 font-600 text-center">
-          <span className="montserrat font-900 text-eighth leading-none">
-            <CountUp
-              end={stat.desc || 0}
-              duration={2.5}
-              useEasing={true}
-            />
+      {idx === 4 && (
+        <div className="absolute bottom-2% left-0 w-full flex items-center justify-center px-10">
+          <span className="text-secondary text-40 lg:text-80 font-600 text-center">
+            <span className="montserrat font-900 text-eighth leading-none">
+              <Odometer
+                value={isVisible ? (stat.desc || 0) : 0}
+                duration={2500}
+                format="(,ddd)"
+              />
+            </span>
+            <span className="leading-none">時間</span>
           </span>
-          <span className="leading-none">時間</span>
-        </span>
-      </div>
-    )}
-  </CounterAnimation>
-);
+        </div>
+      )}
+    </CounterAnimation>
+  );
+};
 
 const CorporateIntelligence = () => {
   // Memoized components for better performance

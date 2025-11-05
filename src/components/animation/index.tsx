@@ -128,6 +128,7 @@ interface BaseMotionProps extends Omit<MotionProps, 'variants' | 'initial' | 'an
   once?: boolean;
   amount?: number;
   threshold?: number;
+  onViewportEnter?: () => void;
 }
 
 interface CustomMotionProps extends BaseMotionProps {
@@ -499,6 +500,7 @@ export const CounterAnimation = memo<BaseMotionProps>(({
   once = false,
   amount = 0.3,
   threshold = 0.1,
+  onViewportEnter,
   ...props
 }) => {
   const viewportConfig = useMemo(() => ({
@@ -519,6 +521,7 @@ export const CounterAnimation = memo<BaseMotionProps>(({
       whileInView={{ opacity: 1, scale: 1 }}
       transition={transitionConfig}
       viewport={viewportConfig}
+      onViewportEnter={onViewportEnter}
       {...props}
     >
       {children}

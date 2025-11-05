@@ -618,11 +618,11 @@ const WorkEnvironment = memo(() => {
                 </ScaleIn>
 
                 {/* Projects Section */}
-                <StaggerContainer className="flex flex-col gap-30 sm:gap-40 lg:gap-90">
+                <div className="flex flex-col gap-30 sm:gap-40 lg:gap-90">
                     {projectData.map((project) => (
                         <ProjectCard key={project.id} data={project} />
                     ))}
-                </StaggerContainer>
+                </div>
             </ComponentsSpacing>
 
             <ComponentsSpacing className="relative flex flex-col gap-30 sm:gap-40 lg:gap-150 overflow-hidden">
