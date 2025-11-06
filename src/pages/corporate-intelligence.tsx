@@ -1,10 +1,12 @@
 import React from "react";
 import { useMemo, useState, useEffect } from "react";
-import Odometer from "react-odometerjs";
 import { Layouts } from "../components/layouts/layouts";
-import { ComponentsSpacing, HeaderSpacing } from "../components/common/index";
+import { ComponentsSpacing, HeaderSpacing, ClientOnly } from "../components/common/index";
 import { SlideUp, BackgroundImage, PageHeader, CounterAnimation, FadeIn, StaggerContainer } from "../components/animation/index";
 import "odometer/themes/odometer-theme-default.css";
+
+// Dynamically import Odometer to avoid SSR issues
+const Odometer = React.lazy(() => import("react-odometerjs").then(module => ({ default: module.default })));
 
 import signImg from "../assets/image/corporate-intelligence/sign.png";
 import ceoImage from "../assets/image/corporate-intelligence/ceo.png";
@@ -251,11 +253,15 @@ const StatisticCard = ({ stat, idx }: { stat: StatisticData; idx: number }) => {
         <div className="absolute bottom-2% left-0 w-full flex items-center justify-center px-10">
           <span className="text-secondary text-40 lg:text-80 font-600 text-center">
             <span className="montserrat font-900 leading-none">
-              <Odometer
-                value={odometerValue}
-                duration={2500}
-                format="(,ddd).d"
-              />
+              <ClientOnly fallback={<span>{odometerValue.toFixed(1)}</span>}>
+                <React.Suspense fallback={<span>{odometerValue.toFixed(1)}</span>}>
+                  <Odometer
+                    value={odometerValue}
+                    duration={2500}
+                    format="(,ddd).d"
+                  />
+                </React.Suspense>
+              </ClientOnly>
             </span>
             <span className="leading-none">日</span>
           </span>
@@ -266,11 +272,15 @@ const StatisticCard = ({ stat, idx }: { stat: StatisticData; idx: number }) => {
         <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full flex items-center justify-center px-10">
           <span className="text-secondary text-35 lg:text-65 font-600 text-center pt-20 lg:pt-30">
             <span className="montserrat font-900 leading-none">
-              <Odometer
-                value={odometerValue}
-                duration={2500}
-                format="(,ddd).d"
-              />
+              <ClientOnly fallback={<span>{odometerValue.toFixed(1)}</span>}>
+                <React.Suspense fallback={<span>{odometerValue.toFixed(1)}</span>}>
+                  <Odometer
+                    value={odometerValue}
+                    duration={2500}
+                    format="(,ddd).d"
+                  />
+                </React.Suspense>
+              </ClientOnly>
             </span>
             <span className="text-25 lg:text-50 font-500 leading-none">時間</span>
           </span>
@@ -284,11 +294,15 @@ const StatisticCard = ({ stat, idx }: { stat: StatisticData; idx: number }) => {
               <span className="text-eighth text-20 lg:text-30 font-500">男性</span>
               <span className="text-eighth text-30 lg:text-40 pl-20%">
                 <span className="montserrat font-700">
-                  <Odometer
-                    value={percentage1Value}
-                    duration={2500}
-                    format="(,ddd)"
-                  />
+                  <ClientOnly fallback={<span>{percentage1Value}</span>}>
+                    <React.Suspense fallback={<span>{percentage1Value}</span>}>
+                      <Odometer
+                        value={percentage1Value}
+                        duration={2500}
+                        format="(,ddd)"
+                      />
+                    </React.Suspense>
+                  </ClientOnly>
                 </span>
                 <span className="montserrat font-600">%</span>
               </span>
@@ -297,11 +311,15 @@ const StatisticCard = ({ stat, idx }: { stat: StatisticData; idx: number }) => {
               <span className="text-ninth text-20 lg:text-30 font-500">女性</span>
               <span className="text-ninth text-30 lg:text-40 pl-20%">
                 <span className="montserrat font-700">
-                  <Odometer
-                    value={percentage2Value}
-                    duration={2500}
-                    format="(,ddd)"
-                  />
+                  <ClientOnly fallback={<span>{percentage2Value}</span>}>
+                    <React.Suspense fallback={<span>{percentage2Value}</span>}>
+                      <Odometer
+                        value={percentage2Value}
+                        duration={2500}
+                        format="(,ddd)"
+                      />
+                    </React.Suspense>
+                  </ClientOnly>
                 </span>
                 <span className="montserrat font-600">%</span>
               </span>
@@ -314,11 +332,15 @@ const StatisticCard = ({ stat, idx }: { stat: StatisticData; idx: number }) => {
         <div className="absolute bottom-2% left-0 w-full flex items-center justify-center px-10">
           <span className="text-secondary text-40 lg:text-80 font-600 text-center">
             <span className="montserrat font-900 leading-none">
-              <Odometer
-                value={isVisible ? (stat.desc || 0) : 0}
-                duration={2500}
-                format="(,ddd)"
-              />
+              <ClientOnly fallback={<span>{isVisible ? (stat.desc || 0) : 0}</span>}>
+                <React.Suspense fallback={<span>{isVisible ? (stat.desc || 0) : 0}</span>}>
+                  <Odometer
+                    value={isVisible ? (stat.desc || 0) : 0}
+                    duration={2500}
+                    format="(,ddd)"
+                  />
+                </React.Suspense>
+              </ClientOnly>
             </span>
             <span className="leading-none">％</span>
           </span>
@@ -329,11 +351,15 @@ const StatisticCard = ({ stat, idx }: { stat: StatisticData; idx: number }) => {
         <div className="absolute bottom-2% left-0 w-full flex items-center justify-center px-10">
           <span className="text-secondary text-40 lg:text-80 font-600 text-center">
             <span className="montserrat font-900 text-eighth leading-none">
-              <Odometer
-                value={isVisible ? (stat.desc || 0) : 0}
-                duration={2500}
-                format="(,ddd)"
-              />
+              <ClientOnly fallback={<span>{isVisible ? (stat.desc || 0) : 0}</span>}>
+                <React.Suspense fallback={<span>{isVisible ? (stat.desc || 0) : 0}</span>}>
+                  <Odometer
+                    value={isVisible ? (stat.desc || 0) : 0}
+                    duration={2500}
+                    format="(,ddd)"
+                  />
+                </React.Suspense>
+              </ClientOnly>
             </span>
             <span className="leading-none">時間</span>
           </span>

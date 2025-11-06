@@ -2,6 +2,7 @@
 export { default as Loading } from './Loading';
 export { default as ErrorBoundary } from './ErrorBoundary';
 export { default as PageWrapper } from './PageWrapper';
+export { default as ClientOnly } from './ClientOnly';
 export { GlobalSpacing, HeaderSpacing, ComponentsSpacing, ComponentsSpacing1, ComponentsSpacing2 } from './spacing';
 
 // Re-export types if needed
